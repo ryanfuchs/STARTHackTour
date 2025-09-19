@@ -52,7 +52,13 @@ const Dashboard = ({ onLogout }) => {
     <div className="dashboard">
       <header className="dashboard-header">
         <div className="header-content">
-          <h1 className="dashboard-title">Finance Dashboard</h1>
+          <div className="dashboard-brand">
+            <img src="/images/Logo-WP.svg" alt="Wellershoff & Partners" className="dashboard-logo" />
+            <div className="brand-text">
+              <h1 className="dashboard-title">Pulse</h1>
+              <span className="brand-subtitle">by Wellershoff & Partners</span>
+            </div>
+          </div>
           <div className="header-actions">
             <span className="user-info">Welcome back, John</span>
             <button onClick={onLogout} className="btn btn-secondary">

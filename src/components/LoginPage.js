@@ -32,8 +32,12 @@ const LoginPage = ({ onLogin }) => {
       <div className="particle particle-8"></div>
       <div className="login-card">
         <div className="login-header">
-          <h1 className="login-title">Finance Dashboard</h1>
-          <p className="login-subtitle">Sign in to your account</p>
+          <div className="logo-container">
+            <img src="/images/Logo-WP.svg" alt="Wellershoff & Partners" className="login-logo" />
+          </div>
+          <h1 className="login-title">Pulse</h1>
+          <p className="login-subtitle">by Wellershoff & Partners</p>
+          <p className="login-description">Sign in to your account</p>
         </div>
         
         <form onSubmit={handleSubmit} className="login-form">

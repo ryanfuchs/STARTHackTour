@@ -239,16 +239,40 @@
   margin-bottom: 32px;
 }
 
+.logo-container {
+  margin-bottom: 24px;
+}
+
+.login-logo {
+  height: 60px;
+  width: auto;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.login-logo:hover {
+  opacity: 1;
+}
+
 .login-title {
-  font-size: 28px;
-  font-weight: 600;
+  font-size: 32px;
+  font-weight: 700;
   color: #000000;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+  letter-spacing: -0.5px;
 }
 
 .login-subtitle {
   font-size: 16px;
   color: #6D6E70;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.login-description {
+  font-size: 14px;
+  color: #6D6E70;
+  margin-bottom: 0;
 }
 
 .login-form {
