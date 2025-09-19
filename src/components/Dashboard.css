@@ -1,0 +1,230 @@
+.dashboard {
+  min-height: 100vh;
+  background-color: #FFFFFF;
+}
+
+.dashboard-header {
+  background-color: #F1F1F2;
+  border-bottom: 1px solid #E5E5E6;
+  padding: 20px 0;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-info {
+  color: #6D6E70;
+  font-size: 14px;
+}
+
+.dashboard-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+/* Portfolio Card */
+.portfolio-card {
+  grid-column: span 2;
+}
+
+.portfolio-value {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.value-amount {
+  font-size: 32px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.value-change {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.value-change.positive {
+  color: #4CAF50;
+  background-color: rgba(76, 175, 80, 0.1);
+}
+
+.portfolio-chart {
+  height: 200px;
+}
+
+/* Allocation Card */
+.allocation-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.allocation-chart {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.allocation-legend {
+  margin-top: 16px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.legend-label {
+  flex: 1;
+  font-size: 14px;
+  color: #000000;
+}
+
+.legend-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6D6E70;
+}
+
+/* Performance Card */
+.performance-card {
+  grid-column: span 1;
+}
+
+.performance-chart {
+  height: 200px;
+}
+
+/* Insights Card */
+.insights-card {
+  grid-column: span 2;
+}
+
+.insights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.insight-item {
+  padding: 16px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #E5E5E6;
+  transition: all 0.2s ease;
+}
+
+.insight-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.insight-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.insight-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.confidence-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.confidence-badge.bullish {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #4CAF50;
+}
+
+.confidence-badge.neutral {
+  background-color: rgba(142, 164, 183, 0.1);
+  color: #8EA4B7;
+}
+
+.confidence-badge.opportunity {
+  background-color: rgba(176, 146, 109, 0.1);
+  color: #B0926D;
+}
+
+.insight-description {
+  font-size: 14px;
+  color: #6D6E70;
+  line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .portfolio-card,
+  .insights-card {
+    grid-column: span 1;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .dashboard-main {
+    padding: 20px 16px;
+  }
+}
+
