@@ -87,6 +87,42 @@
   margin-bottom: 20px;
 }
 
+/* Pulse Insights Card */
+.pulse-insights-card {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #8EA4B7 0%, #B0926D 100%);
+  border: none;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.pulse-insights-card .card-title {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.pulse-insights-content {
+  padding: 8px 0;
+}
+
+.pulse-insights-description {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.circle-packing-wrapper {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 8px;
+  height: 500px;
+  min-height: 500px;
+}
+
 /* Portfolio Card */
 .portfolio-card {
   grid-column: span 2;
@@ -243,6 +279,10 @@
 @media (max-width: 768px) {
   .dashboard-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .pulse-insights-card {
+    grid-column: span 1;
   }
   
   .portfolio-card,
