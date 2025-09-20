@@ -115,12 +115,13 @@
 }
 
 .circle-packing-wrapper {
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 8px;
-  padding: 16px;
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
   margin-top: 8px;
   height: 500px;
   min-height: 500px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* Portfolio Card */

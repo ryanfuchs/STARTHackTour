@@ -17,11 +17,11 @@ const CirclePacking = ({ data }) => {
     const width = containerRect.width;
     const height = containerRect.height;
 
-    // Create the color scale
-    const color = d3.scaleLinear()
-      .domain([0, 5])
-      .range(["hsl(152,80%,80%)", "hsl(228,30%,40%)"])
-      .interpolate(d3.interpolateHcl);
+    // Create the color scale using chart colors
+    const chartColors = ["#748BB8", "#9EAECE", "#D6DDEA", "#B0926D", "#8EA4B7"];
+    const color = d3.scaleOrdinal()
+      .domain([0, 1, 2, 3, 4])
+      .range(chartColors);
 
     // Compute the layout
     const pack = data => d3.pack()
@@ -38,14 +38,14 @@ const CirclePacking = ({ data }) => {
       .attr("viewBox", `-${width / 2} -${height / 2} ${width} ${height}`)
       .attr("width", "100%")
       .attr("height", "100%")
-      .attr("style", `display: block; background: ${color(0)}; cursor: pointer;`);
+      .attr("style", `display: block; background: #F1F1F2; cursor: pointer;`);
 
     // Append the nodes
     const node = svg.append("g")
       .selectAll("circle")
       .data(root.descendants().slice(1))
       .join("circle")
-      .attr("fill", d => d.children ? color(d.depth) : "white")
+      .attr("fill", d => d.children ? color(d.depth % 5) : "white")
       .attr("pointer-events", d => !d.children ? "none" : null)
       .on("mouseover", function() { d3.select(this).attr("stroke", "#000"); })
       .on("mouseout", function() { d3.select(this).attr("stroke", null); })
