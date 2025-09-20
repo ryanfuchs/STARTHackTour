@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } from 'recharts';
 import CirclePacking from './CirclePacking';
 import BlindSpotDashboard from './BlindSpotDashboard';
@@ -14,6 +14,8 @@ const Dashboard = ({ onLogout }) => {
 
   // Current user ID (you can get this from authentication)
   const [currentUserId] = useState('user1');
+
+  // Handle date navigation
 
   // Sample data for charts
   const portfolioData = [
@@ -89,21 +91,16 @@ const Dashboard = ({ onLogout }) => {
           <div className="card pulse-insights-card">
             <div className="pulse-insights-header">
               <h3 className="card-title">Pulse Insights</h3>
-              <div className="date-input-container">
-                <label htmlFor="pulse-date" className="date-label">Date:</label>
-                <input
-                  id="pulse-date"
-                  type="date"
-                  value={selectedDate}
-                  onChange={(e) => setSelectedDate(e.target.value)}
-                  className="date-input"
-                />
-              </div>
             </div>
             <div className="pulse-insights-content">
               <div className="pulse-insights-main full-width">
                 <div className="circle-packing-wrapper">
-                  <CirclePacking data={circlePackingData} selectedDate={selectedDate} currentUserId={currentUserId} />
+                  <CirclePacking 
+                    data={circlePackingData} 
+                    selectedDate={selectedDate} 
+                    currentUserId={currentUserId}
+                    onDateChange={setSelectedDate}
+                  />
                 </div>
                 <div id="pulse-summary-panel" className="pulse-summary-panel">
                   <div className="summary-placeholder">

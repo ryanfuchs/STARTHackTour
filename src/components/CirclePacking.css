@@ -182,8 +182,8 @@
   opacity: 0.8;
 }
 
-/* Reading Legend */
-.reading-legend {
+/* Date Controls Above Legend */
+.date-controls-above-legend {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -193,8 +193,75 @@
   padding: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   font-size: 12px;
+  z-index: 15;
+  width: 200px;
+  margin-bottom: 8px;
+}
+
+.date-input-in-legend {
+  width: auto;
+  min-width: 120px;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  margin: 0 auto 8px auto;
+  background: white;
+  display: block;
+}
+
+.date-input-in-legend:focus {
+  outline: none;
+  border-color: #748BB8;
+  box-shadow: 0 0 0 2px rgba(116, 139, 184, 0.2);
+}
+
+.date-arrows-in-legend {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.date-arrow-in-legend {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.date-arrow-in-legend:hover {
+  background: #f5f5f5;
+  border-color: #748BB8;
+  color: #748BB8;
+}
+
+.date-arrow-in-legend:active {
+  background: #e8e8e8;
+  transform: scale(0.95);
+}
+
+/* Reading Legend */
+.reading-legend {
+  position: absolute;
+  top: 120px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #E5E5E6;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
   z-index: 10;
-  max-width: 200px;
+  width: 200px;
   transition: all 0.3s ease;
 }
 
@@ -297,12 +364,20 @@
 
 /* Responsive legend */
 @media (max-width: 768px) {
+  .date-controls-above-legend {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 10px auto;
+    width: 200px;
+  }
+  
   .reading-legend {
     position: relative;
     top: auto;
     right: auto;
-    margin-top: 10px;
-    max-width: 100%;
+    margin: 10px auto;
+    width: 200px;
   }
   
   .legend-items {

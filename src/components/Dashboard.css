@@ -125,6 +125,12 @@
   gap: 8px;
 }
 
+.date-label {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 500;
+}
+
 .date-input {
   background-color: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -151,11 +157,12 @@
 }
 
 /* Date Navigation Styles */
+
 .date-arrows {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 8px;
 }
 
 .date-arrow {
@@ -197,6 +204,7 @@
   border-color: rgba(255, 255, 255, 0.3);
   transform: none;
 }
+
 
 .pulse-insights-content {
   padding: 8px 0;
@@ -510,12 +518,8 @@
     align-items: stretch;
   }
   
-  .date-navigation-container {
-    min-width: auto;
-  }
-  
   .date-arrows {
-    gap: 8px;
+    gap: 6px;
   }
   
   .date-arrow {
