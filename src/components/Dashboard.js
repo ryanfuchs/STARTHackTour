@@ -1,6 +1,7 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } from 'recharts';
 import CirclePacking from './CirclePacking';
+import newsData from '../data/newsData.json';
 import './Dashboard.css';
 
 const Dashboard = ({ onLogout }) => {
@@ -49,48 +50,8 @@ const Dashboard = ({ onLogout }) => {
     }
   ];
 
-  // Sample hierarchical data for circle packing
-  const circlePackingData = {
-    name: "Portfolio",
-    children: [
-      {
-        name: "Equities",
-        value: 56250,
-        children: [
-          { name: "Technology", value: 22500 },
-          { name: "Healthcare", value: 16875 },
-          { name: "Financials", value: 11250 },
-          { name: "Consumer", value: 5625 }
-        ]
-      },
-      {
-        name: "Fixed Income",
-        value: 31300,
-        children: [
-          { name: "Government Bonds", value: 18780 },
-          { name: "Corporate Bonds", value: 9390 },
-          { name: "Municipal Bonds", value: 3130 }
-        ]
-      },
-      {
-        name: "Alternatives",
-        value: 25120,
-        children: [
-          { name: "Real Estate", value: 12560 },
-          { name: "Commodities", value: 7536 },
-          { name: "Private Equity", value: 5024 }
-        ]
-      },
-      {
-        name: "Cash & Equivalents",
-        value: 12760,
-        children: [
-          { name: "Money Market", value: 8932 },
-          { name: "Treasury Bills", value: 3828 }
-        ]
-      }
-    ]
-  };
+  // Use the imported news data for circle packing
+  const circlePackingData = newsData;
 
   return (
     <div className="dashboard">
@@ -116,10 +77,10 @@ const Dashboard = ({ onLogout }) => {
         <div className="dashboard-grid">
           {/* Pulse Insights Card */}
           <div className="card pulse-insights-card">
-            <h3 className="card-title">Pulse insights</h3>
+            <h3 className="card-title">News Categories</h3>
             <div className="pulse-insights-content">
               <p className="pulse-insights-description">
-                Interactive portfolio analysis with hierarchical asset breakdown
+                Interactive news categorization with hierarchical topic breakdown
               </p>
               <div className="circle-packing-wrapper">
                 <CirclePacking data={circlePackingData} />

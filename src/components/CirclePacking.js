@@ -23,13 +23,13 @@ const CirclePacking = ({ data }) => {
       .domain([0, 1, 2, 3, 4])
       .range(chartColors);
 
-    // Compute the layout
+    // Compute the layout with horizontal arrangement
     const pack = data => d3.pack()
       .size([width, height])
       .padding(3)
       (d3.hierarchy(data)
         .sum(d => d.value)
-        .sort((a, b) => b.value - a.value));
+        .sort((a, b) => a.value - b.value)); // Reverse sort for horizontal arrangement
     
     const root = pack(data);
 
@@ -85,7 +85,8 @@ const CirclePacking = ({ data }) => {
 
     function resetToInitialView() {
       const transition = svg.transition()
-        .duration(750)
+        .duration(1500)
+        .ease(d3.easeCubicInOut)
         .tween("zoom", d => {
           const initialRadius = Math.max(root.r, width/2, height/2);
           const i = d3.interpolateZoom(view, [root.x, root.y, initialRadius * 2]);
@@ -114,10 +115,27 @@ const CirclePacking = ({ data }) => {
       const focus0 = focus;
       focus = d;
 
+      // Calculate optimal zoom level to show all children without cutting them off
+      let targetRadius;
+      if (d.children && d.children.length > 0) {
+        // Find the maximum radius needed to contain all children
+        const maxChildRadius = Math.max(...d.children.map(child => child.r));
+        const maxChildDistance = Math.max(...d.children.map(child => 
+          Math.sqrt((child.x - d.x) ** 2 + (child.y - d.y) ** 2) + child.r
+        ));
+        // Add padding but keep zoom level reasonable
+        targetRadius = Math.max(maxChildDistance * 1.5, d.r * 3);
+      } else {
+        // For leaf nodes, use a moderate zoom level
+        targetRadius = d.r * 4;
+      }
+
       const transition = svg.transition()
-        .duration(event.altKey ? 7500 : 750)
+        .duration(event.altKey ? 15000 : 1500)
+        .ease(d3.easeCubicInOut)
         .tween("zoom", d => {
-          const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
+          // Always center on the selected circle
+          const i = d3.interpolateZoom(view, [focus.x, focus.y, targetRadius]);
           return t => zoomTo(i(t));
         });
 
@@ -147,7 +165,7 @@ const CirclePacking = ({ data }) => {
         .padding(3)
         (d3.hierarchy(data)
           .sum(d => d.value)
-          .sort((a, b) => b.value - a.value));
+          .sort((a, b) => a.value - b.value)); // Reverse sort for horizontal arrangement
       
       const newRoot = newPack(data);
       
@@ -157,7 +175,8 @@ const CirclePacking = ({ data }) => {
       
       newNodes
         .transition()
-        .duration(750)
+        .duration(1500)
+        .ease(d3.easeCubicInOut)
         .attr("transform", d => `translate(${d.x},${d.y})`)
         .attr("r", d => d.r);
       
@@ -166,7 +185,8 @@ const CirclePacking = ({ data }) => {
       
       newLabels
         .transition()
-        .duration(750)
+        .duration(1500)
+        .ease(d3.easeCubicInOut)
         .attr("transform", d => `translate(${d.x},${d.y})`);
       
       // Update focus and view to show all circles
