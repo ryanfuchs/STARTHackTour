@@ -64,11 +64,13 @@ const Dashboard = ({ onLogout }) => {
 
   // Transform the new data structure for circle packing
   const transformDataForCirclePacking = (data) => {
-    if (!Array.isArray(data)) return { name: "News Portfolio", children: [] };
+    // Handle the new nested structure: data[0].data.labeldata
+    const labelData = data && data[0] && data[0].data && data[0].data.labeldata;
+    if (!Array.isArray(labelData)) return { name: "News Portfolio", children: [] };
     
     return {
       name: "News Portfolio",
-      children: data.map((item, index) => {
+      children: labelData.map((item, index) => {
         // Calculate average relevancy across portfolios
         const avgRelevancy = item.relevancy_port1 && item.relevancy_port2 && item.relevancy_port3 
           ? Math.round((item.relevancy_port1 + item.relevancy_port2 + item.relevancy_port3) / 3)
@@ -93,23 +95,70 @@ const Dashboard = ({ onLogout }) => {
           });
         }
         
-        // Add individual articles
-        if (item.children) {
-          item.children.forEach((child, childIndex) => {
-            children.push({
-              name: child.title || `Article ${childIndex + 1}`,
-              value: Math.floor(Math.random() * 100), // Random value for now
-              description: child.summary || "No summary available",
-              timestamp: child.date || new Date().toISOString(),
-              lastUpdated: child.date || new Date().toISOString(),
-              readBy: child.read || [],
-              id: child.id || `article-${childIndex}`,
-              label: child.label || `label-${childIndex}`,
-              source: child.source || "Unknown source",
-              isSummary: false
-            });
+        // Add individual articles - handle nested children structure
+        const processChildren = (childrenArray, parentIndex = 0) => {
+          if (!childrenArray) return [];
+          
+          return childrenArray.map((child, childIndex) => {
+            // If this child has its own children (nested structure), process them recursively
+            if (child.children && child.children.length > 0) {
+              // This is a sub-group, process its children recursively
+              const subGroupChildren = [];
+              
+              // Add summary for sub-group if it exists
+              if (child.label_summary) {
+                subGroupChildren.push({
+                  name: `Summary: ${child.label_title || `Sub-group ${childIndex + 1}`}`,
+                  value: 90,
+                  description: child.label_summary,
+                  timestamp: new Date().toISOString(),
+                  lastUpdated: new Date().toISOString(),
+                  readBy: child.read || [],
+                  id: `summary-${parentIndex}-${childIndex}`,
+                  label: `summary-${parentIndex}-${childIndex}`,
+                  source: null,
+                  isSummary: true
+                });
+              }
+              
+              // Process nested children (articles) and add them to sub-group
+              const nestedChildren = processChildren(child.children, childIndex);
+              subGroupChildren.push(...nestedChildren);
+              
+              // Return the sub-group with its children
+              return {
+                name: child.label_title || `Sub-group ${childIndex + 1}`,
+                value: child.urgency || 50,
+                description: child.label_summary || "No summary available",
+                timestamp: new Date().toISOString(),
+                lastUpdated: new Date().toISOString(),
+                readBy: child.read || [],
+                id: child.id || `subgroup-${parentIndex}-${childIndex}`,
+                label: child.label || `label-${parentIndex}-${childIndex}`,
+                source: null,
+                children: subGroupChildren,
+                isSummary: false
+              };
+            } else {
+              // This is a leaf article
+              return {
+                name: child.title || `Article ${childIndex + 1}`,
+                value: Math.floor(Math.random() * 100), // Random value for now
+                description: child.summary || "No summary available",
+                timestamp: child.date || new Date().toISOString(),
+                lastUpdated: child.date || new Date().toISOString(),
+                readBy: child.read || [],
+                id: child.id || `article-${parentIndex}-${childIndex}`,
+                label: child.label || `label-${parentIndex}-${childIndex}`,
+                source: child.source || "Unknown source",
+                isSummary: false
+              };
+            }
           });
-        }
+        };
+        
+        const processedChildren = processChildren(item.children, index);
+        children.push(...processedChildren);
         
         return {
           name: item.label_title || `News Group ${index + 1}`,
