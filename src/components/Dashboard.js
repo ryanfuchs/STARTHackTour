@@ -1,5 +1,6 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } from 'recharts';
+import CsvGraphView from './CsvGraphView';
 import './Dashboard.css';
 
 const Dashboard = ({ onLogout }) => {
@@ -70,7 +71,6 @@ const Dashboard = ({ onLogout }) => {
 
       <main className="dashboard-main">
         <div className="dashboard-grid">
-          {/* Portfolio Value Card */}
           <div className="card portfolio-card">
             <h3 className="card-title">Portfolio Value</h3>
             <div className="portfolio-value">
@@ -142,6 +142,16 @@ const Dashboard = ({ onLogout }) => {
                   <span className="legend-value">{item.value}%</span>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Pulse Insights Card */}
+          <div className="card pulse-insights-card">
+            <h3 className="card-title">Pulse Insights</h3>
+            <p className="card-subtitle">Interactive data visualization and network analysis</p>
+            
+            <div className="pulse-insights-content">
+              <CsvGraphView />
             </div>
           </div>
 
