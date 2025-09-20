@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import './CirclePacking.css';
 
-const CirclePacking = ({ data, selectedDate }) => {
+const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChange }) => {
   const svgRef = useRef();
+  const [isLegendCollapsed, setIsLegendCollapsed] = useState(true);
 
   useEffect(() => {
     if (!data || !svgRef.current) return;
@@ -23,6 +24,47 @@ const CirclePacking = ({ data, selectedDate }) => {
     const color = d3.scaleOrdinal()
       .domain([0, 1, 2, 3, 4])
       .range(chartColors);
+
+    // Helper function to check if current user has read a node
+    const hasUserRead = (nodeData) => {
+      return nodeData.readBy && nodeData.readBy.includes(currentUserId);
+    };
+
+    // Helper function to check if a group/category is read
+    // A group is read if its summary is read OR all its children are read
+    const isGroupRead = (nodeData) => {
+      if (!nodeData.children) return false;
+      
+      // Check if summary is read
+      const summary = nodeData.children.find(child => child.isSummary);
+      if (summary && hasUserRead(summary)) {
+        return true;
+      }
+      
+      // Check if all non-summary children are read
+      const nonSummaryChildren = nodeData.children.filter(child => !child.isSummary);
+      if (nonSummaryChildren.length === 0) return false;
+      
+      return nonSummaryChildren.every(child => {
+        if (child.children) {
+          return isGroupRead(child); // Recursive check for nested groups
+        } else {
+          return hasUserRead(child); // Check leaf nodes
+        }
+      });
+    };
+
+    // Helper function to get the appropriate color based on reading status
+    const getNodeColor = (d) => {
+      if (d.data.isSummary) {
+        return hasUserRead(d.data) ? d3.color(summaryColor).brighter(0.3) : d3.color(summaryColor).darker(0.4);
+      } else if (d.children) {
+        const baseColor = color(d.depth % 5);
+        return isGroupRead(d.data) ? d3.color(baseColor).brighter(0.4) : baseColor;
+      } else {
+        return hasUserRead(d.data) ? "#F0F0F0" : "white";
+      }
+    };
 
     // Filter data based on selected date (selected date and 7 days back)
     const filterDataByDate = (node, selectedDate) => {
@@ -74,10 +116,25 @@ const CirclePacking = ({ data, selectedDate }) => {
       mainContainer.classList.remove('full-width');
       mainContainer.classList.add('with-panel');
 
+      const isRead = hasUserRead(nodeData);
+      const isGroupReadStatus = nodeData.children ? isGroupRead(nodeData) : false;
+      const readCount = nodeData.readBy ? nodeData.readBy.length : 0;
+
       // Populate panel content first
       summaryPanel.innerHTML = `
         <div class="summary-header">
           <h3>${nodeData.name}</h3>
+          <div class="reading-status">
+            <span class="status-indicator ${isRead ? 'read' : 'unread'}">
+              ${isRead ? 'READ' : 'UNREAD'}
+            </span>
+            ${nodeData.children ? `
+              <span class="group-status ${isGroupReadStatus ? 'group-read' : 'group-unread'}">
+                Group: ${isGroupReadStatus ? 'COMPLETE' : 'INCOMPLETE'}
+              </span>
+            ` : ''}
+            <span class="read-count">${readCount} team members read this</span>
+          </div>
         </div>
         <div class="summary-content">
           <div class="info-section">
@@ -102,8 +159,23 @@ const CirclePacking = ({ data, selectedDate }) => {
               <p>${nodeData.value}%</p>
             </div>
           ` : ''}
+          <div class="reading-controls">
+            <button 
+              class="btn ${isRead ? 'btn-secondary' : 'btn-primary'}"
+              onclick="toggleReadingStatus('${nodeData.name}', ${isRead})"
+            >
+              ${isRead ? 'Mark as Unread' : 'Mark as Read'}
+            </button>
+          </div>
         </div>
       `;
+
+      // Make toggleReadingStatus available globally
+      window.toggleReadingStatus = (articleName, currentlyRead) => {
+        // This would typically update the data and trigger a re-render
+        console.log('Toggle reading status:', articleName, !currentlyRead);
+        // For now, just log - you can implement the actual update logic
+      };
 
       // Trigger animation after a small delay to ensure content is rendered
       setTimeout(() => {
@@ -150,46 +222,136 @@ const CirclePacking = ({ data, selectedDate }) => {
       .attr("height", "100%")
       .attr("style", `display: block; background: #F1F1F2; cursor: pointer;`);
 
-    // Append the nodes
+    // Append the nodes with smooth transitions
     const node = svg.append("g")
       .selectAll("circle")
-      .data(root.descendants().slice(1))
-      .join("circle")
-      .attr("fill", d => {
-        if (d.data.isSummary) {
-          return summaryColor;
-        } else if (d.children) {
-          return color(d.depth % 5);
-        } else {
-          return "white";
-        }
-      })
+      .data(root.descendants().slice(1), d => d.data.name) // Use name as key for proper tracking
+      .join(
+        enter => enter.append("circle")
+          .attr("fill", d => getNodeColor(d))
+          .attr("stroke", d => {
+            if (d.data.isSummary) {
+              return hasUserRead(d.data) ? d3.color(summaryColor).brighter(0.2) : d3.color(summaryColor).darker(0.6);
+            } else if (d.children) {
+              const baseColor = color(d.depth % 5);
+              return isGroupRead(d.data) ? d3.color(baseColor).brighter(0.2) : d3.color(baseColor).darker(0.4);
+            } else {
+              return hasUserRead(d.data) ? "#8EA4B7" : "#748BB8";
+            }
+          })
+          .attr("stroke-width", d => {
+            if (d.data.isSummary) {
+              return hasUserRead(d.data) ? 2 : 2;
+            } else if (d.children) {
+              return isGroupRead(d.data) ? 2 : 3;
+            } else {
+              return hasUserRead(d.data) ? 2 : 1;
+            }
+          })
+          .attr("opacity", 0)
+          .attr("r", 0)
+          .attr("transform", d => `translate(${d.x},${d.y})`)
+          .call(enter => enter.transition()
+            .duration(800)
+            .ease(d3.easeCubicInOut)
+            .attr("opacity", 1)
+            .attr("r", d => d.r)
+          ),
+        update => update
+          .call(update => update.transition()
+            .duration(600)
+            .ease(d3.easeCubicInOut)
+            .attr("transform", d => `translate(${d.x},${d.y})`)
+            .attr("r", d => d.r)
+            .attr("fill", d => getNodeColor(d))
+            .attr("stroke", d => {
+              if (d.data.isSummary) {
+                return hasUserRead(d.data) ? d3.color(summaryColor).brighter(0.2) : d3.color(summaryColor).darker(0.6);
+              } else if (d.children) {
+                const baseColor = color(d.depth % 5);
+                return isGroupRead(d.data) ? d3.color(baseColor).brighter(0.2) : d3.color(baseColor).darker(0.4);
+              } else {
+                return hasUserRead(d.data) ? "#8EA4B7" : "#748BB8";
+              }
+            })
+            .attr("stroke-width", d => {
+              if (d.data.isSummary) {
+                return hasUserRead(d.data) ? 2 : 2;
+              } else if (d.children) {
+                return isGroupRead(d.data) ? 2 : 3;
+              } else {
+                return hasUserRead(d.data) ? 2 : 1;
+              }
+            })
+          ),
+        exit => exit
+          .call(exit => exit.transition()
+            .duration(400)
+            .ease(d3.easeCubicInOut)
+            .attr("opacity", 0)
+            .attr("r", 0)
+            .remove()
+          )
+      )
       .attr("pointer-events", d => (!d.children && !d.data.description) ? "none" : null)
-      .on("mouseover", function() { d3.select(this).attr("stroke", "#000"); })
-      .on("mouseout", function() { d3.select(this).attr("stroke", null); })
+      .on("mouseover", function(event, d) { 
+        d3.select(this).transition()
+          .duration(200)
+          .attr("stroke-width", 3);
+      })
+      .on("mouseout", function(event, d) { 
+        const strokeWidth = d.data.isSummary ? 2 :
+                           d.children ? (isGroupRead(d.data) ? 2 : 3) :
+                           (hasUserRead(d.data) ? 2 : 1);
+        d3.select(this).transition()
+          .duration(200)
+          .attr("stroke-width", strokeWidth);
+      })
       .on("click", (event, d) => {
         event.stopPropagation();
         if (d.data.isSummary || (!d.children && d.data.description)) {
-          // Show summary panel only for summaries or leaf nodes (nodes with no children)
           showSummaryPanel(d.data);
         } else if (focus !== d && d.children && !d.data.isSummary) {
-          // Zoom only for parent nodes with children and hide summary panel
           hideSummaryPanel();
           zoom(event, d);
         }
       });
 
-    // Append the text labels
+    // Append the text labels with smooth transitions
     const label = svg.append("g")
       .style("font", "10px sans-serif")
       .attr("pointer-events", "none")
       .attr("text-anchor", "middle")
       .selectAll("text")
-      .data(root.descendants())
-      .join("text")
-      .style("fill-opacity", d => d.parent === root ? 1 : 0)
-      .style("display", d => d.parent === root ? "inline" : "none")
-      .text(d => d.data.name);
+      .data(root.descendants(), d => d.data.name) // Use name as key for proper tracking
+      .join(
+        enter => enter.append("text")
+          .text(d => d.data.name)
+          .style("fill-opacity", 0)
+          .attr("transform", d => `translate(${d.x},${d.y})`)
+          .call(enter => enter.transition()
+            .duration(800)
+            .delay(200)
+            .ease(d3.easeCubicInOut)
+            .style("fill-opacity", d => d.parent === root ? 1 : 0)
+            .style("display", d => d.parent === root ? "inline" : "none")
+          ),
+        update => update
+          .call(update => update.transition()
+            .duration(600)
+            .ease(d3.easeCubicInOut)
+            .attr("transform", d => `translate(${d.x},${d.y})`)
+            .style("fill-opacity", d => d.parent === root ? 1 : 0)
+            .style("display", d => d.parent === root ? "inline" : "none")
+          ),
+        exit => exit
+          .call(exit => exit.transition()
+            .duration(400)
+            .ease(d3.easeCubicInOut)
+            .style("fill-opacity", 0)
+            .remove()
+          )
+      );
 
     // Create the zoom behavior and set initial view to show all circles
     svg.on("click", (event) => {
@@ -209,7 +371,7 @@ const CirclePacking = ({ data, selectedDate }) => {
 
     function resetToInitialView() {
       const transition = svg.transition()
-        .duration(1500)
+        .duration(1200)
         .ease(d3.easeCubicInOut)
         .tween("zoom", d => {
           const initialRadius = Math.max(root.r, width/2, height/2);
@@ -255,7 +417,7 @@ const CirclePacking = ({ data, selectedDate }) => {
       }
 
       const transition = svg.transition()
-        .duration(event.altKey ? 15000 : 1500)
+        .duration(event.altKey ? 15000 : 1000)
         .ease(d3.easeCubicInOut)
         .tween("zoom", d => {
           // Always center on the selected circle
@@ -299,7 +461,7 @@ const CirclePacking = ({ data, selectedDate }) => {
       
       newNodes
         .transition()
-        .duration(1500)
+        .duration(1000)
         .ease(d3.easeCubicInOut)
         .attr("transform", d => `translate(${d.x},${d.y})`)
         .attr("r", d => d.r);
@@ -309,7 +471,7 @@ const CirclePacking = ({ data, selectedDate }) => {
       
       newLabels
         .transition()
-        .duration(1500)
+        .duration(1000)
         .ease(d3.easeCubicInOut)
         .attr("transform", d => `translate(${d.x},${d.y})`);
       
@@ -326,11 +488,71 @@ const CirclePacking = ({ data, selectedDate }) => {
       window.removeEventListener('resize', handleResize);
       svg.selectAll("*").remove();
     };
-  }, [data, selectedDate]);
+  }, [data, selectedDate, currentUserId]);
 
   return (
     <div className="circle-packing-container">
       <svg ref={svgRef}></svg>
+      <div className="date-controls-above-legend">
+        <input
+          type="date"
+          value={selectedDate}
+          onChange={(e) => onDateChange && onDateChange(e.target.value)}
+          className="date-input-in-legend"
+        />
+        <div className="date-arrows-in-legend">
+          <button 
+            className="date-arrow-in-legend"
+            onClick={() => onDateChange && onDateChange(new Date(new Date(selectedDate).getTime() - 24 * 60 * 60 * 1000).toISOString().split('T')[0])}
+            title="Previous day"
+          >
+            ←
+          </button>
+          <button 
+            className="date-arrow-in-legend"
+            onClick={() => onDateChange && onDateChange(new Date(new Date(selectedDate).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0])}
+            title="Next day"
+          >
+            →
+          </button>
+        </div>
+      </div>
+      <div className={`reading-legend ${isLegendCollapsed ? 'collapsed' : ''}`}>
+        <div className="legend-header" onClick={() => setIsLegendCollapsed(!isLegendCollapsed)}>
+          <div className="legend-title">Reading Status</div>
+          <div className="legend-toggle">
+            <span className={`toggle-icon ${isLegendCollapsed ? 'collapsed' : ''}`}>▼</span>
+          </div>
+        </div>
+        {!isLegendCollapsed && (
+          <div className="legend-items">
+            <div className="legend-item">
+              <div className="legend-color read-article"></div>
+              <span>Read Article</span>
+            </div>
+            <div className="legend-item">
+              <div className="legend-color unread-article"></div>
+              <span>Unread Article</span>
+            </div>
+            <div className="legend-item">
+              <div className="legend-color read-summary"></div>
+              <span>Read Summary</span>
+            </div>
+            <div className="legend-item">
+              <div className="legend-color unread-summary"></div>
+              <span>Unread Summary</span>
+            </div>
+            <div className="legend-item">
+              <div className="legend-color read-group"></div>
+              <span>Read Group</span>
+            </div>
+            <div className="legend-item">
+              <div className="legend-color unread-group"></div>
+              <span>Unread Group</span>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
