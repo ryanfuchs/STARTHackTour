@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } from 'recharts';
 import CirclePacking from './CirclePacking';
 import BlindSpotDashboard from './BlindSpotDashboard';
-import outputData from '../output_with_ids.json';
 import './Dashboard.css';
 
 const Dashboard = ({ onLogout }) => {
@@ -15,7 +14,35 @@ const Dashboard = ({ onLogout }) => {
   // Current user ID (you can get this from authentication)
   const [currentUserId] = useState('user1');
 
-  // Handle date navigation
+  // State for fetched data
+  const [outputData, setOutputData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('https://t3zuixlu7gmep4l657lhm5ekpm0ukrrb.lambda-url.eu-north-1.on.aws');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        setOutputData(data);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching data:', err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // Sample data for charts
   const portfolioData = [
@@ -179,7 +206,7 @@ const Dashboard = ({ onLogout }) => {
     };
   };
 
-  const circlePackingData = transformDataForCirclePacking(outputData);
+  const circlePackingData = outputData ? transformDataForCirclePacking(outputData) : { name: "News Portfolio", children: [] };
 
   return (
     <div className="dashboard">
@@ -210,19 +237,35 @@ const Dashboard = ({ onLogout }) => {
             </div>
             <div className="pulse-insights-content">
               <div className="pulse-insights-main full-width">
-                <div className="circle-packing-wrapper">
-                  <CirclePacking 
-                    data={circlePackingData} 
-                    selectedDate={selectedDate} 
-                    currentUserId={currentUserId}
-                    onDateChange={setSelectedDate}
-                  />
-                </div>
-                <div id="pulse-summary-panel" className="pulse-summary-panel">
-                  <div className="summary-placeholder">
-                    <p>Click on a summary or article to view details</p>
+                {loading ? (
+                  <div className="loading-container">
+                    <div className="loading-spinner"></div>
+                    <p>Loading news data...</p>
                   </div>
-                </div>
+                ) : error ? (
+                  <div className="error-container">
+                    <p>Error loading data: {error}</p>
+                    <button onClick={() => window.location.reload()} className="btn btn-primary">
+                      Retry
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <div className="circle-packing-wrapper">
+                      <CirclePacking 
+                        data={circlePackingData} 
+                        selectedDate={selectedDate} 
+                        currentUserId={currentUserId}
+                        onDateChange={setSelectedDate}
+                      />
+                    </div>
+                    <div id="pulse-summary-panel" className="pulse-summary-panel">
+                      <div className="summary-placeholder">
+                        <p>Click on a summary or article to view details</p>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
