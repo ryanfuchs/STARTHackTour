@@ -74,6 +74,43 @@ const Dashboard = ({ onLogout }) => {
           ? Math.round((item.relevancy_port1 + item.relevancy_port2 + item.relevancy_port3) / 3)
           : 50;
         
+        // Create children array with summary node and individual articles
+        const children = [];
+        
+        // Add summary node as first child
+        if (item.label_summary) {
+          children.push({
+            name: `Summary: ${item.label_title || `News Group ${index + 1}`}`,
+            value: 90, // High priority for summary nodes
+            description: item.label_summary,
+            timestamp: new Date().toISOString(),
+            lastUpdated: new Date().toISOString(),
+            readBy: item.read || [],
+            id: `summary-${index}`,
+            label: `summary-${index}`,
+            source: null,
+            isSummary: true // Mark as summary node
+          });
+        }
+        
+        // Add individual articles
+        if (item.children) {
+          item.children.forEach((child, childIndex) => {
+            children.push({
+              name: child.title || `Article ${childIndex + 1}`,
+              value: Math.floor(Math.random() * 100), // Random value for now
+              description: child.summary || "No summary available",
+              timestamp: child.date || new Date().toISOString(),
+              lastUpdated: child.date || new Date().toISOString(),
+              readBy: child.read || [],
+              id: child.id || `article-${childIndex}`,
+              label: child.label || `label-${childIndex}`,
+              source: child.source || "Unknown source",
+              isSummary: false
+            });
+          });
+        }
+        
         return {
           name: item.label_title || `News Group ${index + 1}`,
           value: item.urgency || 50,
@@ -85,17 +122,9 @@ const Dashboard = ({ onLogout }) => {
           relevancy: avgRelevancy,
           reasoning: item.reasoning_portfolios,
           count: item.count || 0,
-          children: item.children ? item.children.map((child, childIndex) => ({
-            name: child.title || `Article ${childIndex + 1}`,
-            value: Math.floor(Math.random() * 100), // Random value for now
-            description: child.summary || "No summary available",
-            timestamp: child.date || new Date().toISOString(),
-            lastUpdated: child.date || new Date().toISOString(),
-            readBy: child.read || [],
-            id: child.id || `article-${childIndex}`,
-            label: child.label || `label-${childIndex}`,
-            source: child.source || "Unknown source"
-          })) : []
+          children: children,
+          // Add source for the main group if available
+          source: item.source || null
         };
       })
     };

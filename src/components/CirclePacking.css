@@ -213,6 +213,115 @@
   line-height: 1.4;
 }
 
+/* HTML content styling */
+.description-content {
+  margin: 0;
+  font-size: 16px;
+  color: #000000;
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.description-content p {
+  margin: 0 0 12px 0;
+}
+
+.description-content p:last-child {
+  margin-bottom: 0;
+}
+
+.description-content h1,
+.description-content h2,
+.description-content h3,
+.description-content h4,
+.description-content h5,
+.description-content h6 {
+  margin: 16px 0 8px 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.description-content h1:first-child,
+.description-content h2:first-child,
+.description-content h3:first-child,
+.description-content h4:first-child,
+.description-content h5:first-child,
+.description-content h6:first-child {
+  margin-top: 0;
+}
+
+.description-content ul,
+.description-content ol {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.description-content li {
+  margin: 4px 0;
+}
+
+.description-content blockquote {
+  margin: 12px 0;
+  padding: 8px 16px;
+  border-left: 3px solid #8EA4B7;
+  background-color: #F8F9FA;
+  font-style: italic;
+}
+
+.description-content code {
+  background-color: #F1F1F2;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+}
+
+.description-content pre {
+  background-color: #F1F1F2;
+  padding: 12px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 8px 0;
+}
+
+.description-content pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Source styling */
+.source-content {
+  margin: 0;
+}
+
+.source-link {
+  color: #8EA4B7;
+  text-decoration: none;
+  font-size: 14px;
+  word-break: break-all;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.source-link:hover {
+  color: #748BB8;
+  text-decoration: underline;
+}
+
+/* Reasoning text styling */
+.reasoning-text {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
 /* Date Controls Above Legend */
 .date-controls-above-legend {
   position: absolute;

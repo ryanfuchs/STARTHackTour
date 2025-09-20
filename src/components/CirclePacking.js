@@ -25,14 +25,21 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       .domain([0, 1, 2, 3, 4])
       .range(chartColors);
 
-    // Helper function to check if current user has read a node
+    // Helper function to check if a node has been read
+    // Something is read if the readBy array is not empty
     const hasUserRead = (nodeData) => {
-      return nodeData.readBy && nodeData.readBy.includes(currentUserId);
+      return nodeData.readBy && nodeData.readBy.length > 0;
     };
 
     // Helper function to check if a group/category is read
-    // A group is read if its summary is read OR all its children are read
+    // A group is read if it has been marked as read in its readBy array
+    // OR if its summary is read OR all its children are read
     const isGroupRead = (nodeData) => {
+      // First check if the group itself has been marked as read
+      if (hasUserRead(nodeData)) {
+        return true;
+      }
+      
       if (!nodeData.children) return false;
       
       // Check if summary is read
@@ -67,15 +74,16 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
     };
 
     // Helper function to check if text fits in circle and wrap if needed
-    const processTextForCircle = (text, maxWidth, fontSize = 10, maxLines = 3) => {
+    // More lenient - only hide text when circle is truly too small
+    const processTextForCircle = (text, maxWidth, fontSize = 10, maxLines = 4) => {
       const words = text.split(' ');
       const lines = [];
       let currentLine = words[0];
 
       for (let i = 1; i < words.length; i++) {
         const testLine = currentLine + ' ' + words[i];
-        // Approximate text width calculation (rough estimate: 0.6 * fontSize per character)
-        const testWidth = testLine.length * fontSize * 0.6;
+        // More generous text width calculation (0.5 * fontSize per character)
+        const testWidth = testLine.length * fontSize * 0.5;
         
         if (testWidth < maxWidth) {
           currentLine = testLine;
@@ -86,8 +94,13 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       }
       lines.push(currentLine);
       
-      // If text has more than maxLines, it's too long
-      if (lines.length > maxLines) {
+      // Only consider text too long if it has more than maxLines AND the circle is very small
+      // For larger circles, allow more lines
+      const minCircleSize = 30; // Minimum radius to show text
+      const isTooSmall = maxWidth < minCircleSize;
+      const isTooManyLines = lines.length > maxLines;
+      
+      if (isTooSmall || (isTooManyLines && maxWidth < 60)) {
         return { lines: [], tooLong: true };
       }
       
@@ -104,7 +117,8 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       const filteredNode = { ...node };
       
       if (node.children) {
-        filteredNode.children = node.children
+        // First, filter all children
+        const filteredChildren = node.children
           .map(child => filterDataByDate(child, selectedDate))
           .filter(child => {
             // Keep the node if it has children (parent nodes) or if it matches the date criteria
@@ -118,13 +132,31 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
               return nodeDate >= sevenDaysAgo && nodeDate <= selectedDateTime;
             }
             
-            // For summary nodes, keep them if they have filtered children
-            if (child.isSummary) {
-              return child.children && child.children.length > 0;
-            }
-            
             return false; // Remove nodes that don't match criteria
           });
+        
+        // Check if any non-summary children (articles) match the date criteria
+        const hasMatchingArticles = node.children.some(child => {
+          if (child.isSummary) return false; // Skip summary nodes
+          if (child.timestamp) {
+            const nodeDate = new Date(child.timestamp);
+            return nodeDate >= sevenDaysAgo && nodeDate <= selectedDateTime;
+          }
+          return false;
+        });
+        
+        // Add summary nodes back if there are matching articles
+        const finalChildren = [...filteredChildren];
+        if (hasMatchingArticles) {
+          // Add summary nodes from the original children
+          node.children.forEach(child => {
+            if (child.isSummary && !finalChildren.some(fc => fc.id === child.id)) {
+              finalChildren.unshift(child); // Add summary at the beginning
+            }
+          });
+        }
+        
+        filteredNode.children = finalChildren;
       }
       
       return filteredNode;
@@ -167,24 +199,28 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
         <div class="summary-content">
           <div class="info-section">
             <h4>Description</h4>
-            <p>${nodeData.description || 'No description available'}</p>
+            <div class="description-content">${nodeData.description || 'No description available'}</div>
           </div>
-          ${nodeData.timestamp ? `
+          ${nodeData.source ? `
+            <div class="info-section">
+              <h4>Source</h4>
+              <div class="source-content">
+                <a href="${nodeData.source}" target="_blank" rel="noopener noreferrer" class="source-link">
+                  ${nodeData.source}
+                </a>
+              </div>
+            </div>
+          ` : ''}
+          ${nodeData.timestamp && !nodeData.isSummary ? `
             <div class="info-section">
               <h4>Published</h4>
               <p>${new Date(nodeData.timestamp).toLocaleDateString()}</p>
             </div>
           ` : ''}
-          ${nodeData.lastUpdated ? `
+          ${nodeData.lastUpdated && !nodeData.isSummary ? `
             <div class="info-section">
               <h4>Last Updated</h4>
               <p>${new Date(nodeData.lastUpdated).toLocaleDateString()}</p>
-            </div>
-          ` : ''}
-          ${nodeData.value ? `
-            <div class="info-section">
-              <h4>Urgency Score</h4>
-              <p>${nodeData.value}/10</p>
             </div>
           ` : ''}
           ${nodeData.relevancy ? `
@@ -206,7 +242,7 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
                 ${Object.entries(nodeData.reasoning).map(([portfolio, reasoning]) => `
                   <div class="reasoning-item">
                     <strong>${portfolio.replace('port_', 'Portfolio ')}:</strong>
-                    <p>${reasoning}</p>
+                    <div class="reasoning-text">${reasoning}</div>
                   </div>
                 `).join('')}
               </div>
@@ -367,9 +403,9 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
           .duration(200)
           .attr("stroke-width", 3);
         
-        // Show tooltip if text is too long
+        // Show tooltip only if text is too long to display
         const maxWidth = d.r * 1.8;
-        const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+        const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
         if (textResult.tooLong) {
           tooltip
             .style("opacity", 1)
@@ -392,7 +428,7 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       .on("mousemove", function(event, d) {
         // Update tooltip position on mouse move
         const maxWidth = d.r * 1.8;
-        const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+        const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
         if (textResult.tooLong) {
           tooltip
             .style("left", (event.pageX + 10) + "px")
@@ -430,7 +466,7 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
           textGroup.each(function(d) {
             const textElement = d3.select(this);
             const maxWidth = d.r * 1.8; // Use 90% of circle diameter
-            const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+            const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
             
             if (!textResult.tooLong && textResult.lines.length > 0) {
               const lineHeight = 12;
@@ -455,13 +491,13 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
             .style("fill-opacity", d => {
               if (d.parent !== root) return 0;
               const maxWidth = d.r * 1.8;
-              const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+              const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
               return textResult.tooLong ? 0 : 1;
             })
             .style("display", d => {
               if (d.parent !== root) return "none";
               const maxWidth = d.r * 1.8;
-              const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+              const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
               return textResult.tooLong ? "none" : "inline";
             })
           );
@@ -473,7 +509,7 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
           update.each(function(d) {
             const textElement = d3.select(this);
             const maxWidth = d.r * 1.8; // Use 90% of circle diameter
-            const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+            const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
             
             if (!textResult.tooLong && textResult.lines.length > 0) {
               const lineHeight = 12;
@@ -498,13 +534,13 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
             .style("fill-opacity", d => {
               if (d.parent !== root) return 0;
               const maxWidth = d.r * 1.8;
-              const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+              const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
               return textResult.tooLong ? 0 : 1;
             })
             .style("display", d => {
               if (d.parent !== root) return "none";
               const maxWidth = d.r * 1.8;
-              const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+              const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
               return textResult.tooLong ? "none" : "inline";
             })
           );
@@ -560,7 +596,7 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
             const textElement = d3.select(this);
             textElement.selectAll("tspan").remove();
             const maxWidth = d.r * 1.8;
-            const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+            const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
             
             if (!textResult.tooLong && textResult.lines.length > 0) {
               const lineHeight = 12;
@@ -633,7 +669,7 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
             const textElement = d3.select(this);
             textElement.selectAll("tspan").remove();
             const maxWidth = d.r * 1.8;
-            const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+            const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
             
             if (!textResult.tooLong && textResult.lines.length > 0) {
               const lineHeight = 12;
