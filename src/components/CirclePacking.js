@@ -49,7 +49,12 @@ const CirclePacking = ({ data }) => {
       .attr("pointer-events", d => !d.children ? "none" : null)
       .on("mouseover", function() { d3.select(this).attr("stroke", "#000"); })
       .on("mouseout", function() { d3.select(this).attr("stroke", null); })
-      .on("click", (event, d) => focus !== d && (zoom(event, d), event.stopPropagation()));
+      .on("click", (event, d) => {
+        event.stopPropagation();
+        if (focus !== d) {
+          zoom(event, d);
+        }
+      });
 
     // Append the text labels
     const label = svg.append("g")
@@ -64,13 +69,37 @@ const CirclePacking = ({ data }) => {
       .text(d => d.data.name);
 
     // Create the zoom behavior and set initial view to show all circles
-    svg.on("click", (event) => zoom(event, root));
+    svg.on("click", (event) => {
+      // If clicking on empty space (not on a circle), return to initial view
+      const target = event.target;
+      if (target === svg.node()) {
+        resetToInitialView();
+      }
+    });
     let focus = root;
     let view;
     
     // Set initial view to show the entire root circle (all circles visible)
     const initialRadius = Math.max(root.r, width/2, height/2);
     zoomTo([root.x, root.y, initialRadius * 2]);
+
+    function resetToInitialView() {
+      const transition = svg.transition()
+        .duration(750)
+        .tween("zoom", d => {
+          const initialRadius = Math.max(root.r, width/2, height/2);
+          const i = d3.interpolateZoom(view, [root.x, root.y, initialRadius * 2]);
+          return t => zoomTo(i(t));
+        });
+
+      focus = root;
+      
+      label
+        .transition(transition)
+        .style("fill-opacity", d => d.parent === root ? 1 : 0)
+        .on("start", function(d) { if (d.parent === root) this.style.display = "inline"; })
+        .on("end", function(d) { if (d.parent !== root) this.style.display = "none"; });
+    }
 
     function zoomTo(v) {
       const k = width / v[2];
@@ -143,7 +172,7 @@ const CirclePacking = ({ data }) => {
       // Update focus and view to show all circles
       focus = newRoot;
       const newInitialRadius = Math.max(newRoot.r, newWidth/2, newHeight/2);
-      view = [focus.x, focus.y, newInitialRadius * 2];
+      zoomTo([focus.x, focus.y, newInitialRadius * 2]);
     };
 
     window.addEventListener('resize', handleResize);
