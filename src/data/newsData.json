@@ -1,0 +1,261 @@
+  {
+    "name": "News Portfolio",
+    "children": [
+      {
+        "name": "Financial Markets",
+        "value": 95,
+      "children": [
+        {
+          "name": "Stock Markets",
+          "value": 45,
+          "children": [
+            { "name": "Tech Stocks", "value": 95, "description": "Apple, Microsoft, Google earnings and market movements", "timestamp": "2024-01-15T14:30:00Z", "lastUpdated": "2024-01-15T16:45:00Z" },
+            { "name": "Banking Sector", "value": 88, "description": "Federal Reserve decisions, bank earnings, interest rates", "timestamp": "2024-01-15T09:15:00Z", "lastUpdated": "2024-01-15T11:20:00Z" },
+            { "name": "Healthcare Stocks", "value": 82, "description": "Pharmaceutical companies, biotech innovations, FDA approvals", "timestamp": "2024-01-15T12:00:00Z", "lastUpdated": "2024-01-15T13:30:00Z" },
+            { "name": "Summary", "value": 100, "description": "3 topics, avg relevance: 88%", "timestamp": "2024-01-15T14:30:00Z", "lastUpdated": "2024-01-15T16:45:00Z", "isSummary": true }
+          ]
+        },
+        {
+          "name": "Cryptocurrency",
+          "value": 32,
+          "children": [
+            { "name": "Bitcoin", "value": 92, "description": "BTC price movements, institutional adoption, regulatory news", "timestamp": "2024-01-15T08:00:00Z", "lastUpdated": "2024-01-15T10:15:00Z" },
+            { "name": "Ethereum", "value": 78, "description": "ETH updates, DeFi protocols, smart contract developments", "timestamp": "2024-01-15T07:30:00Z", "lastUpdated": "2024-01-15T09:45:00Z" },
+            { "name": "Altcoins", "value": 65, "description": "Other cryptocurrencies, new token launches, market analysis", "timestamp": "2024-01-15T06:45:00Z", "lastUpdated": "2024-01-15T08:30:00Z" },
+            { "name": "Summary", "value": 85, "description": "3 topics, avg relevance: 78%", "timestamp": "2024-01-15T08:00:00Z", "lastUpdated": "2024-01-15T10:15:00Z", "isSummary": true }
+          ]
+        },
+        {
+          "name": "Economic Indicators",
+          "value": 18,
+          "children": [
+            { "name": "Inflation Data", "value": 85, "description": "CPI, PPI reports, inflation trends and forecasts", "timestamp": "2024-01-15T13:00:00Z", "lastUpdated": "2024-01-15T15:20:00Z" },
+            { "name": "Employment Reports", "value": 72, "description": "Jobs data, unemployment rates, wage growth", "timestamp": "2024-01-15T11:30:00Z", "lastUpdated": "2024-01-15T14:10:00Z" },
+            { "name": "GDP Growth", "value": 68, "description": "Economic growth rates, recession indicators, recovery trends", "timestamp": "2024-01-15T10:00:00Z", "lastUpdated": "2024-01-15T12:15:00Z" },
+            { "name": "Summary", "value": 80, "description": "3 topics, avg relevance: 75%", "timestamp": "2024-01-15T13:00:00Z", "lastUpdated": "2024-01-15T15:20:00Z", "isSummary": true }
+          ]
+        }
+      ]
+    },
+    {
+        "name": "Technology",
+        "value": 88,
+      "children": [
+        {
+          "name": "Artificial Intelligence",
+          "value": 38,
+          "children": [
+            { "name": "Machine Learning", "value": 89, "description": "AI model developments, training breakthroughs, research papers", "timestamp": "2024-01-15T16:00:00Z", "lastUpdated": "2024-01-15T18:30:00Z" },
+            { "name": "ChatGPT & LLMs", "value": 94, "description": "Large language models, conversational AI, enterprise applications", "timestamp": "2024-01-15T15:45:00Z", "lastUpdated": "2024-01-15T17:15:00Z" },
+            { "name": "Computer Vision", "value": 76, "description": "Image recognition, autonomous vehicles, medical imaging AI", "timestamp": "2024-01-15T14:15:00Z", "lastUpdated": "2024-01-15T16:45:00Z" },
+            { "name": "Summary", "value": 95, "description": "3 topics, avg relevance: 86%", "timestamp": "2024-01-15T16:00:00Z", "lastUpdated": "2024-01-15T18:30:00Z", "isSummary": true }
+          ]
+        },
+        {
+          "name": "Cybersecurity",
+          "value": 28,
+          "children": [
+            { "name": "Data Breaches", "value": 87, "description": "Security incidents, ransomware attacks, data protection", "timestamp": "2024-01-15T09:00:00Z", "lastUpdated": "2024-01-15T11:30:00Z" },
+            { "name": "Privacy Laws", "value": 73, "description": "GDPR compliance, privacy regulations, data governance", "timestamp": "2024-01-15T08:30:00Z", "lastUpdated": "2024-01-15T10:45:00Z" },
+            { "name": "Zero Trust", "value": 71, "description": "Security frameworks, identity verification, network security", "timestamp": "2024-01-15T07:15:00Z", "lastUpdated": "2024-01-15T09:30:00Z" },
+            { "name": "Summary", "value": 85, "description": "3 topics, avg relevance: 77%", "timestamp": "2024-01-15T09:00:00Z", "lastUpdated": "2024-01-15T11:30:00Z", "isSummary": true }
+          ]
+        },
+        {
+          "name": "Cloud Computing",
+          "value": 22,
+          "children": [
+            { "name": "AWS & Azure", "value": 81, "description": "Cloud platform updates, pricing changes, new services", "timestamp": "2024-01-15T12:30:00Z", "lastUpdated": "2024-01-15T14:45:00Z" },
+            { "name": "Serverless", "value": 69, "description": "Function-as-a-Service, event-driven architectures", "timestamp": "2024-01-15T11:15:00Z", "lastUpdated": "2024-01-15T13:30:00Z" },
+            { "name": "Edge Computing", "value": 62, "description": "Distributed computing, IoT processing, 5G integration", "timestamp": "2024-01-15T10:30:00Z", "lastUpdated": "2024-01-15T12:15:00Z" },
+            { "name": "Summary", "value": 75, "description": "3 topics, avg relevance: 71%", "timestamp": "2024-01-15T12:30:00Z", "lastUpdated": "2024-01-15T14:45:00Z", "isSummary": true }
+          ]
+        }
+      ]
+    },
+    {
+        "name": "Global Economy",
+        "value": 82,
+      "children": [
+        {
+          "name": "Trade & Commerce",
+          "value": 40,
+          "children": [
+            { "name": "Supply Chain", "value": 84, "description": "Global logistics, shipping delays, manufacturing disruptions", "timestamp": "2024-01-15T06:00:00Z", "lastUpdated": "2024-01-15T08:30:00Z" },
+            { "name": "Trade Wars", "value": 77, "description": "International trade disputes, tariffs, trade agreements", "timestamp": "2024-01-15T05:30:00Z", "lastUpdated": "2024-01-15T07:45:00Z" },
+            { "name": "E-commerce", "value": 71, "description": "Online retail growth, marketplace competition, digital payments", "timestamp": "2024-01-15T04:45:00Z", "lastUpdated": "2024-01-15T06:30:00Z" },
+            { "name": "Summary", "value": 80, "description": "3 topics, avg relevance: 77%", "timestamp": "2024-01-15T06:00:00Z", "lastUpdated": "2024-01-15T08:30:00Z", "isSummary": true }
+          ]
+        },
+        {
+          "name": "Central Banks",
+          "value": 35,
+          "children": [
+            { "name": "Federal Reserve", "value": 96, "description": "Fed policy decisions, interest rate changes, quantitative easing", "timestamp": "2024-01-15T13:30:00Z", "lastUpdated": "2024-01-15T15:45:00Z" },
+            { "name": "ECB", "value": 79, "description": "European Central Bank policies, Eurozone monetary policy", "timestamp": "2024-01-15T12:45:00Z", "lastUpdated": "2024-01-15T14:30:00Z" },
+            { "name": "Bank of Japan", "value": 66, "description": "Japanese monetary policy, yield curve control, inflation targeting", "timestamp": "2024-01-15T11:00:00Z", "lastUpdated": "2024-01-15T13:15:00Z" },
+            { "name": "Summary", "value": 90, "description": "3 topics, avg relevance: 80%", "timestamp": "2024-01-15T13:30:00Z", "lastUpdated": "2024-01-15T15:45:00Z", "isSummary": true }
+          ]
+        },
+        {
+          "name": "Emerging Markets",
+          "value": 25,
+          "children": [
+            { "name": "China", "value": 91, "description": "Chinese economic data, manufacturing, consumer spending", "timestamp": "2024-01-15T03:30:00Z", "lastUpdated": "2024-01-15T05:45:00Z" },
+            { "name": "India", "value": 75, "description": "Indian GDP growth, infrastructure development, digital economy", "timestamp": "2024-01-15T02:45:00Z", "lastUpdated": "2024-01-15T04:30:00Z" },
+            { "name": "Brazil", "value": 58, "description": "Brazilian economic recovery, commodity exports, political stability", "timestamp": "2024-01-15T01:30:00Z", "lastUpdated": "2024-01-15T03:15:00Z" },
+            { "name": "Summary", "value": 85, "description": "3 topics, avg relevance: 75%", "timestamp": "2024-01-15T03:30:00Z", "lastUpdated": "2024-01-15T05:45:00Z", "isSummary": true }
+          ]
+        }
+      ]
+    },
+    {
+        "name": "Sustainability",
+        "value": 75,
+      "children": [
+        {
+          "name": "Climate Change",
+          "value": 35,
+          "children": [
+            { "name": "Carbon Markets", "value": 83, "description": "Carbon trading, emissions credits, net-zero commitments", "timestamp": "2024-01-14T16:00:00Z", "lastUpdated": "2024-01-14T18:30:00Z" },
+            { "name": "Renewable Energy", "value": 88, "description": "Solar, wind, hydro power developments, energy storage", "timestamp": "2024-01-14T15:30:00Z", "lastUpdated": "2024-01-14T17:15:00Z" },
+            { "name": "Climate Policy", "value": 74, "description": "Environmental regulations, international climate agreements", "timestamp": "2024-01-14T14:15:00Z", "lastUpdated": "2024-01-14T16:45:00Z" }
+          ]
+        },
+        {
+          "name": "ESG Investing",
+          "value": 30,
+          "children": [
+            { "name": "Green Bonds", "value": 72, "description": "Sustainable finance, environmental impact investing", "timestamp": "2024-01-14T13:00:00Z", "lastUpdated": "2024-01-14T15:20:00Z" },
+            { "name": "Social Impact", "value": 67, "description": "Social responsibility, diversity initiatives, community investing", "timestamp": "2024-01-14T12:30:00Z", "lastUpdated": "2024-01-14T14:45:00Z" },
+            { "name": "Governance", "value": 63, "description": "Corporate governance, board diversity, executive compensation", "timestamp": "2024-01-14T11:15:00Z", "lastUpdated": "2024-01-14T13:30:00Z" },
+            { "name": "Summary", "value": 72, "description": "3 topics, avg relevance: 67%", "timestamp": "2024-01-14T13:00:00Z", "lastUpdated": "2024-01-14T15:20:00Z", "isSummary": true }
+          ]
+        },
+        {
+          "name": "Circular Economy",
+          "value": 15,
+          "children": [
+            { "name": "Waste Reduction", "value": 8, "description": "Recycling innovations, waste-to-energy, plastic alternatives", "timestamp": "2024-01-14T10:00:00Z", "lastUpdated": "2024-01-14T12:15:00Z" },
+            { "name": "Resource Efficiency", "value": 7, "description": "Energy efficiency, water conservation, sustainable materials", "timestamp": "2024-01-14T09:30:00Z", "lastUpdated": "2024-01-14T11:45:00Z" },
+            { "name": "Summary", "value": 9, "description": "2 topics, avg relevance: 7%", "timestamp": "2024-01-14T10:00:00Z", "lastUpdated": "2024-01-14T12:15:00Z", "isSummary": true }
+          ]
+        }
+      ]
+    },
+    {
+        "name": "Real Estate",
+        "value": 65,
+      "children": [
+        {
+          "name": "Commercial Real Estate",
+          "value": 25,
+          "children": [
+            { "name": "Office Space", "value": 12, "description": "Remote work impact, office occupancy rates, lease negotiations", "timestamp": "2024-01-14T08:00:00Z", "lastUpdated": "2024-01-14T10:30:00Z" },
+            { "name": "Retail Properties", "value": 8, "description": "Shopping centers, e-commerce impact, retail bankruptcies", "timestamp": "2024-01-14T07:15:00Z", "lastUpdated": "2024-01-14T09:45:00Z" },
+            { "name": "Industrial", "value": 5, "description": "Warehouses, logistics centers, supply chain real estate", "timestamp": "2024-01-14T06:30:00Z", "lastUpdated": "2024-01-14T08:15:00Z" },
+            { "name": "Summary", "value": 10, "description": "3 topics, avg relevance: 8%", "timestamp": "2024-01-14T08:00:00Z", "lastUpdated": "2024-01-14T10:30:00Z", "isSummary": true }
+          ]
+        },
+        {
+          "name": "Residential",
+          "value": 20,
+          "children": [
+            { "name": "Housing Prices", "value": 10, "description": "Home price trends, affordability crisis, mortgage rates", "timestamp": "2024-01-14T05:45:00Z", "lastUpdated": "2024-01-14T07:30:00Z" },
+            { "name": "Rental Market", "value": 6, "description": "Rent prices, rental demand, tenant protections", "timestamp": "2024-01-14T04:30:00Z", "lastUpdated": "2024-01-14T06:15:00Z" },
+            { "name": "Construction", "value": 4, "description": "New home construction, building permits, construction costs", "timestamp": "2024-01-14T03:15:00Z", "lastUpdated": "2024-01-14T05:00:00Z" },
+            { "name": "Summary", "value": 8, "description": "3 topics, avg relevance: 7%", "timestamp": "2024-01-14T05:45:00Z", "lastUpdated": "2024-01-14T07:30:00Z", "isSummary": true }
+          ]
+        },
+        {
+          "name": "REITs",
+          "value": 15,
+          "children": [
+            { "name": "Equity REITs", "value": 10, "description": "Property ownership REITs, dividend yields, property values", "timestamp": "2024-01-14T02:00:00Z", "lastUpdated": "2024-01-14T04:15:00Z" },
+            { "name": "Mortgage REITs", "value": 5, "description": "Real estate financing, interest rate sensitivity", "timestamp": "2024-01-14T01:30:00Z", "lastUpdated": "2024-01-14T03:45:00Z" },
+            { "name": "Summary", "value": 9, "description": "2 topics, avg relevance: 8%", "timestamp": "2024-01-14T02:00:00Z", "lastUpdated": "2024-01-14T04:15:00Z", "isSummary": true }
+          ]
+        }
+      ]
+    },
+    {
+        "name": "Healthcare",
+        "value": 72,
+      "children": [
+        {
+          "name": "Pharmaceuticals",
+          "value": 20,
+          "children": [
+            { "name": "Drug Development", "value": 10, "description": "Clinical trials, FDA approvals, new drug discoveries", "timestamp": "2024-01-13T16:30:00Z", "lastUpdated": "2024-01-13T18:45:00Z" },
+            { "name": "Generics", "value": 6, "description": "Generic drug competition, patent expirations, pricing", "timestamp": "2024-01-13T15:15:00Z", "lastUpdated": "2024-01-13T17:30:00Z" },
+            { "name": "Vaccines", "value": 4, "description": "Vaccine development, global distribution, public health", "timestamp": "2024-01-13T14:00:00Z", "lastUpdated": "2024-01-13T16:15:00Z" },
+            { "name": "Summary", "value": 8, "description": "3 topics, avg relevance: 7%", "timestamp": "2024-01-13T16:30:00Z", "lastUpdated": "2024-01-13T18:45:00Z", "isSummary": true }
+          ]
+        },
+        {
+          "name": "Healthcare Technology",
+          "value": 18,
+          "children": [
+            { "name": "Telemedicine", "value": 8, "description": "Remote healthcare, digital health platforms, virtual consultations", "timestamp": "2024-01-13T12:45:00Z", "lastUpdated": "2024-01-13T15:00:00Z" },
+            { "name": "Medical Devices", "value": 6, "description": "Wearables, diagnostic equipment, surgical innovations", "timestamp": "2024-01-13T11:30:00Z", "lastUpdated": "2024-01-13T13:45:00Z" },
+            { "name": "Health Data", "value": 4, "description": "Electronic health records, health analytics, patient privacy", "timestamp": "2024-01-13T10:15:00Z", "lastUpdated": "2024-01-13T12:30:00Z" },
+            { "name": "Summary", "value": 8, "description": "3 topics, avg relevance: 6%", "timestamp": "2024-01-13T12:45:00Z", "lastUpdated": "2024-01-13T15:00:00Z", "isSummary": true }
+          ]
+        },
+        {
+          "name": "Healthcare Policy",
+          "value": 12,
+          "children": [
+            { "name": "Insurance", "value": 6, "description": "Health insurance coverage, premium costs, policy changes", "timestamp": "2024-01-13T09:00:00Z", "lastUpdated": "2024-01-13T11:15:00Z" },
+            { "name": "Medicare/Medicaid", "value": 4, "description": "Government healthcare programs, eligibility, funding", "timestamp": "2024-01-13T08:15:00Z", "lastUpdated": "2024-01-13T10:30:00Z" },
+            { "name": "Healthcare Costs", "value": 2, "description": "Medical cost inflation, prescription drug prices", "timestamp": "2024-01-13T07:30:00Z", "lastUpdated": "2024-01-13T09:45:00Z" },
+            { "name": "Summary", "value": 5, "description": "3 topics, avg relevance: 4%", "timestamp": "2024-01-13T09:00:00Z", "lastUpdated": "2024-01-13T11:15:00Z", "isSummary": true }
+          ]
+        }
+      ]
+    },
+    {
+        "name": "Energy",
+        "value": 68,
+      "children": [
+        {
+          "name": "Oil & Gas",
+          "value": 18,
+          "children": [
+            { "name": "Crude Oil", "value": 10, "description": "Oil prices, OPEC decisions, production levels, geopolitical tensions", "timestamp": "2024-01-13T06:00:00Z", "lastUpdated": "2024-01-13T08:30:00Z" },
+            { "name": "Natural Gas", "value": 5, "description": "Gas prices, LNG exports, pipeline developments", "timestamp": "2024-01-13T05:15:00Z", "lastUpdated": "2024-01-13T07:45:00Z" },
+            { "name": "Refining", "value": 3, "description": "Refinery operations, fuel prices, processing margins", "timestamp": "2024-01-13T04:30:00Z", "lastUpdated": "2024-01-13T06:15:00Z" },
+            { "name": "Summary", "value": 8, "description": "3 topics, avg relevance: 6%", "timestamp": "2024-01-13T06:00:00Z", "lastUpdated": "2024-01-13T08:30:00Z", "isSummary": true }
+          ]
+        },
+        {
+          "name": "Clean Energy",
+          "value": 15,
+          "children": [
+            { "name": "Solar Power", "value": 7, "description": "Solar panel costs, installation growth, utility-scale projects", "timestamp": "2024-01-13T03:00:00Z", "lastUpdated": "2024-01-13T05:30:00Z" },
+            { "name": "Wind Energy", "value": 5, "description": "Wind farm development, offshore wind, turbine technology", "timestamp": "2024-01-13T02:15:00Z", "lastUpdated": "2024-01-13T04:45:00Z" },
+            { "name": "Battery Storage", "value": 3, "description": "Energy storage systems, grid stability, electric vehicles", "timestamp": "2024-01-13T01:30:00Z", "lastUpdated": "2024-01-13T03:15:00Z" },
+            { "name": "Summary", "value": 7, "description": "3 topics, avg relevance: 5%", "timestamp": "2024-01-13T03:00:00Z", "lastUpdated": "2024-01-13T05:30:00Z", "isSummary": true }
+          ]
+        },
+        {
+          "name": "Nuclear",
+          "value": 7,
+          "children": [
+            { "name": "Nuclear Power", "value": 4, "description": "Nuclear plant operations, safety regulations, waste management", "timestamp": "2024-01-12T23:45:00Z", "lastUpdated": "2024-01-13T02:00:00Z" },
+            { "name": "Nuclear Fusion", "value": 3, "description": "Fusion research, experimental reactors, clean energy potential", "timestamp": "2024-01-12T22:30:00Z", "lastUpdated": "2024-01-13T01:15:00Z" },
+            { "name": "Summary", "value": 5, "description": "2 topics, avg relevance: 4%", "timestamp": "2024-01-12T23:45:00Z", "lastUpdated": "2024-01-13T02:00:00Z", "isSummary": true }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Summary",
+      "value": 85,
+      "description": "7 main categories covering financial markets, technology, global economy, sustainability, real estate, healthcare, and energy sectors",
+      "timestamp": "2024-01-15T16:00:00Z",
+      "lastUpdated": "2024-01-15T18:00:00Z",
+      "isSummary": true
+    }
+  ]
+}

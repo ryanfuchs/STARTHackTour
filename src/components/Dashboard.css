@@ -87,6 +87,195 @@
   margin-bottom: 20px;
 }
 
+/* Pulse Insights Card */
+.pulse-insights-card {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #8EA4B7 0%, #B0926D 100%);
+  border: none;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.pulse-insights-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.pulse-insights-card .card-title {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.date-input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.date-label {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.date-input {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  color: white;
+  font-size: 14px;
+  padding: 8px 12px;
+  transition: all 0.2s ease;
+}
+
+.date-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.date-input::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.8;
+}
+
+.date-input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+.pulse-insights-content {
+  padding: 8px 0;
+}
+
+.pulse-insights-main {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.pulse-insights-description {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.circle-packing-wrapper {
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
+  margin-top: 8px;
+  height: 500px;
+  min-height: 500px;
+  flex: 1;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.pulse-insights-main.full-width .circle-packing-wrapper {
+  flex: 1 1 100%;
+  width: 100%;
+}
+
+.pulse-insights-main.with-panel .circle-packing-wrapper {
+  flex: 2 1 66%;
+  width: 66%;
+}
+
+.pulse-summary-panel {
+  flex: 0 0 0;
+  min-width: 0;
+  width: 0;
+  height: 500px;
+  min-height: 500px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  margin-top: 8px;
+  overflow-y: auto;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateX(100%);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.summary-placeholder {
+  padding: 40px 24px;
+  text-align: center;
+  color: #6D6E70;
+}
+
+.summary-placeholder p {
+  font-size: 16px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.summary-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #E5E5E6;
+  background-color: #F1F1F2;
+}
+
+.summary-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.summary-content {
+  padding: 24px;
+}
+
+.summary-content .info-section {
+  margin-bottom: 24px;
+}
+
+.summary-content .info-section h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6D6E70;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.summary-content .info-section p {
+  margin: 0;
+  font-size: 16px;
+  color: #000000;
+  line-height: 1.5;
+}
+
+.pulse-summary-panel.visible {
+  flex: 1 1 34%;
+  min-width: 300px;
+  width: 34%;
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.pulse-summary-panel .summary-header,
+.pulse-summary-panel .summary-content {
+  animation: slideInContent 0.5s ease-out 0.1s both;
+}
+
+@keyframes slideInContent {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Portfolio Card */
 .portfolio-card {
   grid-column: span 2;
@@ -243,6 +432,10 @@
 @media (max-width: 768px) {
   .dashboard-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .pulse-insights-card {
+    grid-column: span 1;
   }
   
   .portfolio-card,

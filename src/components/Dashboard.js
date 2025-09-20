@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } from 'recharts';
+import CirclePacking from './CirclePacking';
+import newsData from '../data/newsData.json';
 import './Dashboard.css';
 
 const Dashboard = ({ onLogout }) => {
+  // Date state for Pulse Insights
+  const [selectedDate, setSelectedDate] = useState(() => {
+    const today = new Date();
+    return today.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+  });
+
   // Sample data for charts
   const portfolioData = [
     { name: 'Jan', value: 4000 },
@@ -48,6 +56,9 @@ const Dashboard = ({ onLogout }) => {
     }
   ];
 
+  // Use the imported news data for circle packing
+  const circlePackingData = newsData;
+
   return (
     <div className="dashboard">
       <header className="dashboard-header">
@@ -70,6 +81,35 @@ const Dashboard = ({ onLogout }) => {
 
       <main className="dashboard-main">
         <div className="dashboard-grid">
+          {/* Pulse Insights Card */}
+          <div className="card pulse-insights-card">
+            <div className="pulse-insights-header">
+              <h3 className="card-title">Pulse Insights</h3>
+              <div className="date-input-container">
+                <label htmlFor="pulse-date" className="date-label">Date:</label>
+                <input
+                  id="pulse-date"
+                  type="date"
+                  value={selectedDate}
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                  className="date-input"
+                />
+              </div>
+            </div>
+            <div className="pulse-insights-content">
+              <div className="pulse-insights-main full-width">
+                <div className="circle-packing-wrapper">
+                  <CirclePacking data={circlePackingData} selectedDate={selectedDate} />
+                </div>
+                <div id="pulse-summary-panel" className="pulse-summary-panel">
+                  <div className="summary-placeholder">
+                    <p>Click on a summary or article to view details</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Portfolio Value Card */}
           <div className="card portfolio-card">
             <h3 className="card-title">Portfolio Value</h3>
