@@ -141,11 +141,11 @@ const Dashboard = ({ onLogout }) => {
             } else {
               // This is a leaf article
               return {
-                name: child.title || `Article ${childIndex + 1}`,
+                name: child.label_title || `Article ${childIndex + 1}`,
                 value: Math.floor(Math.random() * 100), // Random value for now
-                description: child.summary || "No summary available",
-                timestamp: child.date || new Date().toISOString(),
-                lastUpdated: child.date || new Date().toISOString(),
+                description: child.label_summary || "No summary available",
+                timestamp: child.published || new Date().toISOString(),
+                lastUpdated: child.published || new Date().toISOString(),
                 readBy: child.read || [],
                 id: child.id || `article-${parentIndex}-${childIndex}`,
                 label: child.label || `label-${parentIndex}-${childIndex}`,
