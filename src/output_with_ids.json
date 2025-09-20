@@ -1,0 +1,1532 @@
+[
+  {
+    "label_title": "SpaceX Starship Explosion Disrupts Flights",
+    "label_summary": "SpaceX’s seventh Starship test ended in a rapid unscheduled disassembly of the upper stage, producing a visible debris field over the Caribbean, delaying and diverting commercial flights and prompting the FAA to order a formal mishap investigation and temporarily ground further Starship launches. The Super Heavy booster was caught successfully, but loss of the Ship and activation of FAA debris-response measures create near-term regulatory, operational and insurance uncertainty for mega-rocket programs.\n\nWhy it matters: the FAA grounding and required investigations are a major regulatory development for commercial spaceflight that can delay launch schedules (including satellite deployments), increase scrutiny and costs for launch providers, and create temporary disruptions for aviation operations and insurers. Related aviation incidents in the cluster (in-flight unexpected movements, close calls, accidental slide deployment, and Icelandic seismic alerts) reinforce the broader theme of recent operational hazards and travel disruption risks.",
+    "read": [],
+    "urgency": 8,
+    "relevancy_port1": 2,
+    "relevancy_port2": 4,
+    "relevancy_port3": 1,
+    "reasoning_portfolios": {
+      "port_1": "Mostly aerospace/aviation news; NVDA, SMCI and VRT are data-center/hardware providers with limited direct exposure to SpaceX launches. Possible second-order effects (satellite demand, supply-chain timing for specialized components) are minor; chosen conservative low score.",
+      "port_2": "Moderate relevance: big cloud/tech firms could see indirect impacts (delays in satellite deployments, competitive dynamics with projects like Amazon’s Kuiper) and potential regulatory attention to commercial launches, but core cloud/ads businesses are not immediately affected.",
+      "port_3": "Negligible: consumer staples and waste management businesses (KO, PG, WM) have no meaningful direct exposure to SpaceX/aviation incidents; operational impacts limited to transient travel disruptions for personnel."
+    },
+    "count": 15,
+    "children": [
+      {
+        "date": "2025-01-25T21:31:41",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/business.xml",
+        "title": "38 Injured After ‘Unexpected Aircraft Movement’ on a United Flight",
+        "summary": "The authorities in Nigeria said that the United Airlines plane had to return to Lagos, Nigeria, after the episode. Six people were treated at a hospital, officials said.",
+        "read": [],
+        "label": "e36e2322-e2db-42e8-8181-376309e93849",
+        "id": "bdf5bef9-485b-4bde-b36d-f69f9cd20ff8"
+      },
+      {
+        "date": "2025-01-13T19:43:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Close call between passenger jets over Phoenix airport",
+        "summary": "Two passenger jets, a Delta flight and a United flight, had a close call over the weekend over Phoenix while they were preparing to land. Kris Van Cleave has the details.",
+        "read": [],
+        "label": "e36e2322-e2db-42e8-8181-376309e93849",
+        "id": "2454b604-161e-427f-a0d7-f823af1535cf"
+      },
+      {
+        "date": "2025-01-14T14:28:35",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Over 130 earthquakes detected under large Iceland volcano",
+        "summary": "The aviation color code over the area has been changed from green to yellow as a precaution, the Icelandic meteorological office said.",
+        "read": [],
+        "label": "e36e2322-e2db-42e8-8181-376309e93849",
+        "id": "875d8a0a-a71b-4261-8d5f-5bd430143350"
+      },
+      {
+        "date": "2025-01-17T00:06:47",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "SpaceX's Starship spacecraft destroyed in mega rocket launch",
+        "summary": "Telemetry from the Starship froze just more than 8 minutes after launch from Texas, moments after engines began shutting down.",
+        "read": [],
+        "label": "e36e2322-e2db-42e8-8181-376309e93849",
+        "id": "23ad6df5-5261-408f-aaeb-baaaa0dfc662"
+      },
+      {
+        "date": "2025-01-26T10:30:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Nature: Flamingos in the Caribbean",
+        "summary": "We leave you this Sunday among flamingos on the Caribbean island of Bonaire. Videographer: Mauricio Handler.",
+        "read": [],
+        "label": "e36e2322-e2db-42e8-8181-376309e93849",
+        "id": "c8dbeb2b-922f-4141-bad7-655b5c0e5c5d"
+      },
+      {
+        "date": "2025-01-14T14:17:00",
+        "source": "https://moxie.foxbusiness.com/google-publisher/latest.xml",
+        "title": "British Airways crewmember accidentally deploys emergency slide at airport",
+        "summary": "A British Airways crewmember accidentally deployed the aircraft’s emergency slide at London’s Heathrow Airport on Monday morning, delaying the flight for hours.",
+        "read": [],
+        "label": "e36e2322-e2db-42e8-8181-376309e93849",
+        "id": "cb86bce8-caf0-42e4-977c-2f35ea72d9e0"
+      },
+      {
+        "date": "2025-01-17T01:08:53",
+        "source": "https://techcrunch.com/feed/",
+        "title": "FAA had to divert flights because of SpaceX Starship explosion",
+        "summary": "<p>The Federal Aviation Administration told TechCrunch it had to &#8220;briefly&#8221; slow and divert a number of aircraft near the area where debris was seen falling after SpaceX&#8217;s Starship exploded during a test flight Thursday. Multiple flights could be seen entering holding patterns or completely changing course in the airspace near Puerto Rico shortly after the [&#8230;]</p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "e36e2322-e2db-42e8-8181-376309e93849",
+        "id": "8aabce47-244c-4177-8b67-84ffb42d85b5"
+      },
+      {
+        "date": "2025-01-17T00:24:00",
+        "source": "https://techcrunch.com/feed/",
+        "title": "SpaceX catches Starship booster a second time, loses ship to an ‘anomaly’ in space",
+        "summary": "<p>SpaceX caught the Starship rocket&#8217;s Super Heavy booster for a second time, after it launched the upper stage into space on Thursday during a seventh test flight of the system. Soon after the successful catch, SpaceX representatives reported the ship was lost after the company lost contact about eight and half minutes into the flight. [&#8230;]</p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "e36e2322-e2db-42e8-8181-376309e93849",
+        "id": "13a37871-de30-47fe-aa4c-59cdbb242117"
+      },
+      {
+        "date": "2025-01-17T18:44:11",
+        "source": "https://techcrunch.com/feed/",
+        "title": "SpaceX and Blue Origin must investigate this week’s big rocket tests, FAA says",
+        "summary": "<p>The Federal Aviation Administration is requiring Elon Musk&#8217;s SpaceX and Jeff Bezos&#8217; Blue Origin to investigate what went wrong on their respective mega-rocket test flights this week. The regulator said both companies must perform what&#8217;s known as a &#8220;mishap investigation.&#8221; These probes involve the companies and the FAA working together to understand what went wrong, [&#8230;]</p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "e36e2322-e2db-42e8-8181-376309e93849",
+        "id": "4e1448a9-d3ec-458e-95e8-502e8284e0a1"
+      },
+      {
+        "date": "2025-01-17T22:35:35",
+        "source": "https://www.engadget.com/rss.xml",
+        "title": "The FAA is grounding SpaceX's Starship after its latest explosion",
+        "summary": "<p>The Federal Aviation Administration is <a class=\"no-affiliate-link\" href=\"https://www.faa.gov/newsroom/statements/general-statements\">ordering SpaceX to conduct a mishap investigation</a> into what caused the company's Starship rocket to <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/science/space/spacexs-starship-explodes-during-ascent-in-its-seventh-test-flight-034440913.html\">explode mid-flight</a> on January 16. Until the FAA approves SpaceX's investigation reported, the company won't be allowed to proceed with future Starship missions.</p>\n<p>SpaceX's launch seemed to be going as planned prior to the explosion. Starship successfully made it off the launch pad and SpaceX was even able to catch the ship's boosters. But then, only eight and a half minutes after taking off, the Starship spacecraft exploded, according to <a class=\"no-affiliate-link\" href=\"https://www.spacex.com/launches/mission/?missionId=starship-flight-7\">SpaceX's post-launch blog post</a>. In response to the sudden explosion, the FAA activated a <a class=\"no-affiliate-link\" href=\"https://notams.aim.faa.gov/notamSearch/createNotamPdf?transactionid=74887191\">\"Debris Response Area\"</a> and slowed or diverted nearby flights to prevent further accidents, severely delaying flights from multiple airlines, <a class=\"no-affiliate-link\" href=\"https://www.cnbc.com/2025/01/16/dozens-of-flights-diverted-delayed-after-faa-warned-of-spacex-rocket-debris-.html\">according to <em>CNBC</em></a>.</p>\n<span id=\"end-legacy-contents\"></span><div id=\"3e24af8dec6b47b4b164a12139451b5d\"><blockquote class=\"twitter-tweet\"><p dir=\"ltr\" lang=\"en\">Success is uncertain, but entertainment is guaranteed! ✨ <br /> <a href=\"https://t.co/nn3PiP8XwG\">pic.twitter.com/nn3PiP8XwG</a></p>— Elon Musk (@elonmusk) <a href=\"https://twitter.com/elonmusk/status/1880040599761596689?ref_src=twsrc%5Etfw\">January 16, 2025</a></blockquote>\n \n\n</div>\n<p>The FAA's statement says that no one was injured by the falling debris but that its working \"to confirm reports of public property damage on Turks and Caicos.\" The mishap investigation SpaceX performs will have to determine not only what caused the explosion, but also what corrective actions the company needs to take to prevent it from happening again. \"Initial data indicates a fire developed in the aft section of the ship,\" SpaceX says.</p>\n<p>This isn't the first time Starship has met an explosive end. Multiple Starship launches have ended with either SpaceX's <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/spacex-starship-booster-explosion-074522654.html\">boosters</a>, the <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/spacex-starship-test-flight-223637824.html\">Starship spacecraft</a> or <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/spacex-loses-another-starship-after-rocket-explodes-during-test-flight-143503845.html\">both</a> exploding. The company does appear to be getting better at catching and reusing its Super Heavy boosters, however. The successful catch that preceded the January 16 explosion is only the second time SpaceX has pulled it off. Its first successful Super Heavy catch was <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/science/space/spacex-successfully-catches-super-heavy-booster-after-launching-starships-fifth-flight-134404103.html\">in October 2024</a>.</p>This article originally appeared on Engadget at https://www.engadget.com/science/space/the-faa-is-grounding-spacexs-starship-after-its-latest-explosion-223535001.html?src=rss",
+        "read": [],
+        "label": "e36e2322-e2db-42e8-8181-376309e93849",
+        "id": "1cc29e03-9b19-4cca-abb6-2a64495a3093"
+      },
+      {
+        "date": "2025-01-17T03:44:40",
+        "source": "https://www.engadget.com/rss.xml",
+        "title": "SpaceX's Starship explodes during ascent in its seventh test flight",
+        "summary": "<p>The Starship's seventh test flight ended in an explosion when the vehicle's upper stage &quot;experienced a rapid unscheduled disassembly during its ascent burn&quot; over the Atlantic Ocean. SpaceX chief Elon Musk <a href=\"https://x.com/elonmusk/status/1880040599761596689\">posted a video</a> of the event, with debris streaking across and lighting up the sky. During the company's webcast, Dan Huot from SpaceX's communications team <a href=\"https://www.space.com/space-exploration/launches-spacecraft/spacex-catches-super-heavy-booster-on-starship-flight-7-test-but-loses-upper-stage-video-photos\">said</a> they &quot;saw engines dropping out on telemetry&quot; by the end of the ascent burn and that they ultimately lost contact with the Ship, which is what the company calls the vehicle's upper stage. SpaceX said in a <a href=\"https://x.com/SpaceX/status/1880033318936199643\">tweet</a> that it will continue reviewing data from the test to understand the explosion's root cause.&nbsp;</p>\n<div id=\"0be40d6b7f8044eba0c1113dc90bb665\"><blockquote class=\"twitter-tweet\"><p dir=\"ltr\" lang=\"en\">Success is uncertain, but entertainment is guaranteed! ✨ <br /> <a href=\"https://t.co/nn3PiP8XwG\">pic.twitter.com/nn3PiP8XwG</a></p>— Elon Musk (@elonmusk) <a href=\"https://twitter.com/elonmusk/status/1880040599761596689?ref_src=twsrc%5Etfw\">January 16, 2025</a></blockquote>\n \n\n</div>\n<p>The Federal Aviation Administration issued an <a href=\"https://notams.aim.faa.gov/notamSearch/createNotamPdf?transactionid=74887191\">advisory</a> for pilots after the incident, warning them about falling debris in certain areas. SpaceX said before the test that it's meant to &quot;launch a new generation ship with significant upgrades&quot; and it was supposed to conduct Starship's first payload deployment test with the help of 10 Starlink simulators.</p>\n<span id=\"end-legacy-contents\"></span><p>Despite the Starship's upper stage burning up, the test was still partially a success. The Ship's Raptor engines fired up during the ascent burn before the ground team lost contact with it around 8 minutes into the flight. SpaceX was also able to retrieve the Super Heavy booster, catching the vehicle's first stage with the mechanical arms on its Starbase launch tower.&nbsp;</p>\n<div id=\"855c12362c3743f6ba87e5b6357e411d\"><blockquote class=\"twitter-tweet\"><p dir=\"ltr\" lang=\"en\">Mechazilla has caught the Super Heavy booster! <a href=\"https://t.co/aq91TloYzY\">pic.twitter.com/aq91TloYzY</a></p>— SpaceX (@SpaceX) <a href=\"https://twitter.com/SpaceX/status/1880024050048589841?ref_src=twsrc%5Etfw\">January 16, 2025</a></blockquote>\n \n\n</div>\n<p></p>This article originally appeared on Engadget at https://www.engadget.com/science/space/spacexs-starship-explodes-during-ascent-in-its-seventh-test-flight-034440913.html?src=rss",
+        "read": [],
+        "label": "e36e2322-e2db-42e8-8181-376309e93849",
+        "id": "3ac4c284-fbd6-4f86-8eee-786f8a8e6351"
+      },
+      {
+        "date": "2025-01-17T22:35:35",
+        "source": "https://www.engadget.com/rss.xml",
+        "title": "The FAA is grounding SpaceX's Starship after its latest explosion",
+        "summary": "<p>The Federal Aviation Administration is <a class=\"no-affiliate-link\" href=\"https://www.faa.gov/newsroom/statements/general-statements\">ordering SpaceX to conduct a mishap investigation</a> into what caused the company's Starship rocket to <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/science/space/spacexs-starship-explodes-during-ascent-in-its-seventh-test-flight-034440913.html\">explode mid-flight</a> on January 16. Until the FAA approves SpaceX's investigation reported, the company won't be allowed to proceed with future Starship missions.</p>\n<p>SpaceX's launch seemed to be going as planned prior to the explosion. Starship successfully made it off the launch pad and SpaceX was even able to catch the ship's boosters. But then, only eight and a half minutes after taking off, the Starship spacecraft exploded, according to <a class=\"no-affiliate-link\" href=\"https://www.spacex.com/launches/mission/?missionId=starship-flight-7\">SpaceX's post-launch blog post</a>. In response to the sudden explosion, the FAA activated a <a class=\"no-affiliate-link\" href=\"https://notams.aim.faa.gov/notamSearch/createNotamPdf?transactionid=74887191\">\"Debris Response Area\"</a> and slowed or diverted nearby flights to prevent further accidents, severely delaying flights from multiple airlines, <a class=\"no-affiliate-link\" href=\"https://www.cnbc.com/2025/01/16/dozens-of-flights-diverted-delayed-after-faa-warned-of-spacex-rocket-debris-.html\">according to <em>CNBC</em></a>.</p>\n<span id=\"end-legacy-contents\"></span><div id=\"3e24af8dec6b47b4b164a12139451b5d\"><blockquote class=\"twitter-tweet\"><p dir=\"ltr\" lang=\"en\">Success is uncertain, but entertainment is guaranteed! ✨ <br /> <a href=\"https://t.co/nn3PiP8XwG\">pic.twitter.com/nn3PiP8XwG</a></p>— Elon Musk (@elonmusk) <a href=\"https://twitter.com/elonmusk/status/1880040599761596689?ref_src=twsrc%5Etfw\">January 16, 2025</a></blockquote>\n \n\n</div>\n<p>The FAA's statement says that no one was injured by the falling debris but that its working \"to confirm reports of public property damage on Turks and Caicos.\" The mishap investigation SpaceX performs will have to determine not only what caused the explosion, but also what corrective actions the company needs to take to prevent it from happening again. \"Initial data indicates a fire developed in the aft section of the ship,\" SpaceX says.</p>\n<p>This isn't the first time Starship has met an explosive end. Multiple Starship launches have ended with either SpaceX's <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/spacex-starship-booster-explosion-074522654.html\">boosters</a>, the <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/spacex-starship-test-flight-223637824.html\">Starship spacecraft</a> or <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/spacex-loses-another-starship-after-rocket-explodes-during-test-flight-143503845.html\">both</a> exploding. The company does appear to be getting better at catching and reusing its Super Heavy boosters, however. The successful catch that preceded the January 16 explosion is only the second time SpaceX has pulled it off. Its first successful Super Heavy catch was <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/science/space/spacex-successfully-catches-super-heavy-booster-after-launching-starships-fifth-flight-134404103.html\">in October 2024</a>.</p>This article originally appeared on Engadget at https://www.engadget.com/science/space/the-faa-is-grounding-spacexs-starship-after-its-latest-explosion-223535001.html?src=rss",
+        "read": [],
+        "label": "e36e2322-e2db-42e8-8181-376309e93849",
+        "id": "1b4076c1-e5f3-403e-998f-159d979bcde9"
+      },
+      {
+        "date": "2025-01-17T22:35:35",
+        "source": "https://www.engadget.com/rss.xml",
+        "title": "The FAA is grounding SpaceX's Starship after its latest explosion",
+        "summary": "<p>The Federal Aviation Administration is <a class=\"no-affiliate-link\" href=\"https://www.faa.gov/newsroom/statements/general-statements\">ordering SpaceX to conduct a mishap investigation</a> into what caused the company's Starship rocket to <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/science/space/spacexs-starship-explodes-during-ascent-in-its-seventh-test-flight-034440913.html\">explode mid-flight</a> on January 16. Until the FAA approves SpaceX's investigation reported, the company won't be allowed to proceed with future Starship missions.</p>\n<p>SpaceX's launch seemed to be going as planned prior to the explosion. Starship successfully made it off the launch pad and SpaceX was even able to catch the ship's boosters. But then, only eight and a half minutes after taking off, the Starship spacecraft exploded, according to <a class=\"no-affiliate-link\" href=\"https://www.spacex.com/launches/mission/?missionId=starship-flight-7\">SpaceX's post-launch blog post</a>. In response to the sudden explosion, the FAA activated a <a class=\"no-affiliate-link\" href=\"https://notams.aim.faa.gov/notamSearch/createNotamPdf?transactionid=74887191\">\"Debris Response Area\"</a> and slowed or diverted nearby flights to prevent further accidents, severely delaying flights from multiple airlines, <a class=\"no-affiliate-link\" href=\"https://www.cnbc.com/2025/01/16/dozens-of-flights-diverted-delayed-after-faa-warned-of-spacex-rocket-debris-.html\">according to <em>CNBC</em></a>.</p>\n<span id=\"end-legacy-contents\"></span><div id=\"3e24af8dec6b47b4b164a12139451b5d\"><blockquote class=\"twitter-tweet\"><p dir=\"ltr\" lang=\"en\">Success is uncertain, but entertainment is guaranteed! ✨ <br /> <a href=\"https://t.co/nn3PiP8XwG\">pic.twitter.com/nn3PiP8XwG</a></p>— Elon Musk (@elonmusk) <a href=\"https://twitter.com/elonmusk/status/1880040599761596689?ref_src=twsrc%5Etfw\">January 16, 2025</a></blockquote>\n \n\n</div>\n<p>The FAA's statement says that no one was injured by the falling debris but that its working \"to confirm reports of public property damage on Turks and Caicos.\" The mishap investigation SpaceX performs will have to determine not only what caused the explosion, but also what corrective actions the company needs to take to prevent it from happening again. \"Initial data indicates a fire developed in the aft section of the ship,\" SpaceX says.</p>\n<p>This isn't the first time Starship has met an explosive end. Multiple Starship launches have ended with either SpaceX's <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/spacex-starship-booster-explosion-074522654.html\">boosters</a>, the <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/spacex-starship-test-flight-223637824.html\">Starship spacecraft</a> or <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/spacex-loses-another-starship-after-rocket-explodes-during-test-flight-143503845.html\">both</a> exploding. The company does appear to be getting better at catching and reusing its Super Heavy boosters, however. The successful catch that preceded the January 16 explosion is only the second time SpaceX has pulled it off. Its first successful Super Heavy catch was <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/science/space/spacex-successfully-catches-super-heavy-booster-after-launching-starships-fifth-flight-134404103.html\">in October 2024</a>.</p>This article originally appeared on Engadget at https://www.engadget.com/science/space/the-faa-is-grounding-spacexs-starship-after-its-latest-explosion-223535001.html?src=rss",
+        "read": [],
+        "label": "e36e2322-e2db-42e8-8181-376309e93849",
+        "id": "98d954cb-d15d-475a-b554-1f7be5e03c0f"
+      },
+      {
+        "date": "2025-01-16T20:14:09",
+        "source": "https://theverge.com/rss/index.xml",
+        "title": "SpaceX catches Starship booster for a second time but loses the spacecraft",
+        "summary": "<figure>\n      <img alt=\"An image of Super Heavy being caught\" src=\"https://cdn.vox-cdn.com/thumbor/KXYzbb8RJxy7BHUdbAb7qOf36IU=/529x307:2033x1310/1310x873/cdn.vox-cdn.com/uploads/chorus_image/image/73851687/super_heavy_catch.5.png\" />\n        <figcaption>Screenshot: SpaceX</figcaption>\n    </figure>\n\n  <p id=\"OMobfA\">SpaceX <a href=\"https://x.com/SpaceX/status/1879290988285620717\">successfully caught</a> its Super Heavy booster for the second time. During Starship’s 7th test flight from Boca Chica, Texas, Super Heavy descended into the launch tower’s “chopstick” arms, allowing it to grab the booster.</p>\n<p id=\"8J1qbq\">Despite the successful catch, SpaceX lost communications with the Starship spacecraft mounted atop the booster. “It successfully separated from the Super Heavy booster, but during that ascent phase, a couple of the engines dropped out, and then shortly thereafter, we lost communication with the vehicle,” SpaceX’s Kate Tice said during the stream. “We are assuming that we have lost the ship.”</p>\n<p id=\"LugEve\"><a href=\"https://x.com/SpaceX/status/1880033318936199643\">According to SpaceX</a>, “Starship experienced a rapid unscheduled disassembly during its ascent burn,” but said teams are still going over the data to find out why.</p>\n<p id=\"pFCbZp\">Several people who said they were on the islands of Turks and Caicos said they saw the Starship’s re-entry debris and <a href=\"https://x.com/sallyethos/status/1880031475938259034\">posted</a> <a href=\"https://x.com/JoshAJohnson10/status/1880029060761538882\">videos</a> of it on social media.</p>\n<div id=\"gzGeWQ\">\n<blockquote align=\"center\" class=\"twitter-tweet\">\n<p dir=\"ltr\" lang=\"en\"><a href=\"https://twitter.com/cnnbrk?ref_src=twsrc%5Etfw\">@cnnbrk</a> <a href=\"https://twitter.com/CNN?ref_src=twsrc%5Etfw\">@CNN</a> <a href=\"https://twitter.com/cnni?ref_src=twsrc%5Etfw\">@cnni</a> <a href=\"https://twitter.com/Pardon_Me_22?ref_src=twsrc%5Etfw\">@Pardon_Me_22</a> appears to be a meteor shower over Turks and Caicos this evening.. Wow!!! Flew right over @ClubMedTurkoise <a href=\"https://t.co/OL7vq8vbkH\">pic.twitter.com/OL7vq8vbkH</a></p>— Joshua Johnson (@JoshAJohnson10) <a href=\"https://twitter.com/JoshAJohnson10/status/1880029060761538882?ref_src=twsrc%5Etfw\">January 16, 2025</a>\n</blockquote>\n\n\n</div>\n<div id=\"o4HyHr\">\n<blockquote align=\"center\" class=\"twitter-tweet\">\n<p dir=\"ltr\" lang=\"en\">This just happened in the sky over <a href=\"https://twitter.com/hashtag/turksandcaicos?src=hash&amp;ref_src=twsrc%5Etfw\">#turksandcaicos</a>   ☄️  ‍♀️ <a href=\"https://twitter.com/hashtag/Aliens?src=hash&amp;ref_src=twsrc%5Etfw\">#Aliens</a> <a href=\"https://twitter.com/hashtag/meteor?src=hash&amp;ref_src=twsrc%5Etfw\">#meteor</a> <a href=\"https://twitter.com/hashtag/firework?src=hash&amp;ref_src=twsrc%5Etfw\">#firework</a>??? <a href=\"https://t.co/OwodvImSVC\">pic.twitter.com/OwodvImSVC</a></p>— Sally Alington (@sallyethos) <a href=\"https://twitter.com/sallyethos/status/1880031475938259034?ref_src=twsrc%5Etfw\">January 16, 2025</a>\n</blockquote>\n\n\n</div>\n<p id=\"of4ms9\">This version of Starship featured “major improvements to reliability and performance” this time around, making the vehicle slightly taller, <a href=\"https://www.spacex.com/launches/mission/?missionId=starship-flight-7\">according to SpaceX</a>. </p>\n<p id=\"hwrNu9\">Along with a redesigned propulsion system and an improved flight computer, this flight featured a new heat shield with “Multiple metallic tile options, including one with active cooling” to test alternative materials and a “backup layer to protect from missing or damaged tiles.” Before the flight, SpaceX also said that on the Starship’s upper stage, “a significant number of tiles will be removed to stress-test vulnerable areas across the vehicle,” but it’s unknown if this was a factor in its destruction.</p>\n<p id=\"E6Tc7j\">The Super Heavy booster in this test was also the first one to reuse a Raptor engine from a previous flight test.</p>\n<div id=\"bh70NP\">\n<blockquote align=\"center\" class=\"twitter-tweet\">\n<p dir=\"ltr\" lang=\"en\">Mechazilla has caught the Super Heavy booster! <a href=\"https://t.co/aq91TloYzY\">pic.twitter.com/aq91TloYzY</a></p>— SpaceX (@SpaceX) <a href=\"https://twitter.com/SpaceX/status/1880024050048589841?ref_src=twsrc%5Etfw\">January 16, 2025</a>\n</blockquote>\n\n\n</div>\n<p id=\"wExQ78\">At 403 feet tall, Starship is the biggest launch vehicle ever. It’s made up of two parts: the Starship spacecraft, which is designed to carry crew and cargo into orbit, and the Super Heavy Booster, which comes with 33 SpaceX Raptor engines that help propel Starship into space. Both the Starship spacecraft and its Super Heavy booster are reusable.</p>\n<p id=\"bsBOTH\">Last year, SpaceX’s launch tower <a href=\"https://www.theverge.com/2024/10/13/24269029/spacex-starship-launch-super-heavy-chopstick-launch-tower-return-fifth-flight-test\">successfully caught its Super Heavy following launch</a>.</p>\n<p id=\"gNMTt6\">During its seventh test flight, Starship was supposed to deploy 10 Starlink “simulators” for the first time. These mock satellites are the same size and weight as Starlink’s actual internet satellites, but they weren’t supposed to stay in space. Instead, they would’ve had the “same suborbital trajectory as Starship” and would “demise upon entry.”</p>\n<p id=\"1VTKY5\"><em><strong>Update, January 16th: </strong></em><em>Noted the outcome of the flight and added videos of the debris over Turks and Caicos.</em></p>",
+        "read": [],
+        "label": "e36e2322-e2db-42e8-8181-376309e93849",
+        "id": "2b2b091e-2260-43a7-a372-9434619f3c47"
+      },
+      {
+        "date": "2025-01-17T14:25:20",
+        "source": "https://theverge.com/rss/index.xml",
+        "title": "SpaceX’s fiery Starship explosion put on a fantastic show but delayed and diverted flights",
+        "summary": "<figure>\n      <img alt=\"The falling debris field that followed the recent SpaceX Starship explosion.\" src=\"https://cdn.vox-cdn.com/thumbor/XgVBNpSm8mDJJEHmFKBayFc5RKA=/0x0:850x567/1310x873/cdn.vox-cdn.com/uploads/chorus_image/image/73853311/spacex_debris.0.jpg\" />\n        <figcaption><em>The falling debris field from the SpaceX Starship explosion lit up the night sky over the Caribbean,</em> | Screenshot: YouTube</figcaption>\n    </figure>\n\n  <p id=\"b3L6ij\">Falling debris from the SpaceX Starship explosion yesterday created what looked like a meteor shower, or a colorful fireworks show based on videos shared by people in the area, but it also delayed flights. </p>\n<p id=\"UzTBzB\">Eight and a half minutes <a href=\"https://www.theverge.com/24345430/spacex-starship-rocket-launch-time-watch-live\">after launch yesterday</a>, the upper stage of the SpaceX Starship “<a href=\"https://x.com/SpaceX/status/1880033318936199643\">experienced a rapid unscheduled disassembly</a>,” following the separation from its booster and the start of its ascent to space.</p>\n<p id=\"UuKAnf\">The footage of the explosion’s aftermath was shared to social media and <a href=\"https://www.reddit.com/r/aviation/comments/1i34dki/starship_blew_up_in_front_of_us_had_to_divert/\">Reddit</a>. Some of it was recorded inside planes flying nearby, and many flights were diverted around the debris field, or delayed until all the fragments touched down.</p>\n<p id=\"qpOnMf\">The Federal Aviation Administration said it had “briefly slowed and diverted planes around the area where space debris was falling,” according to <a href=\"https://www.reuters.com/technology/space/spacex-launches-seventh-starship-mock-satellite-deployment-test-2025-01-16/\"><em>Reuters</em></a>.</p>\n<p id=\"iNcXoP\">The 7th test flight of Starship was at least a partial success, marking the second time SpaceX <a href=\"https://www.theverge.com/2024/10/13/24269029/spacex-starship-launch-super-heavy-chopstick-launch-tower-return-fifth-flight-test\">successfully caught the Super Heavy booster</a> with its launch tower. It was also the first time one of the booster’s Raptor engines was reused from a previous flight. </p>\n<p id=\"GDf3US\">The launch was a testbed for a redesigned propulsion system, an improved flight computer, and the craft’s heat shield. It’s unclear if any of these were factors in the failure, but <a href=\"https://www.spacex.com/launches/mission/?missionId=starship-flight-7#\">SpaceX says</a> that, according to “initial data,” the explosion was potentially the result of a fire that developed in the ship’s rear section.</p>\n<p id=\"y7BSOt\">The company says that “Starship flew within its designated launch corridor” and “any surviving pieces of debris would have fallen into the designated hazard area.” The falling debris put on a show in the evening sky over the Caribbean and was captured by several tourists who seemed both amazed and slightly anxious about what they were witnessing.</p>\n<div id=\"J8vWWL\">\n<blockquote align=\"center\" class=\"twitter-tweet\">\n<p dir=\"ltr\" lang=\"en\"><a href=\"https://twitter.com/cnnbrk?ref_src=twsrc%5Etfw\">@cnnbrk</a> <a href=\"https://twitter.com/CNN?ref_src=twsrc%5Etfw\">@CNN</a> <a href=\"https://twitter.com/cnni?ref_src=twsrc%5Etfw\">@cnni</a> <a href=\"https://twitter.com/Pardon_Me_22?ref_src=twsrc%5Etfw\">@Pardon_Me_22</a> appears to be a meteor shower over Turks and Caicos this evening.. Wow!!! Flew right over @ClubMedTurkoise <a href=\"https://t.co/OL7vq8vbkH\">pic.twitter.com/OL7vq8vbkH</a></p>— Joshua Johnson (@JoshAJohnson10) <a href=\"https://twitter.com/JoshAJohnson10/status/1880029060761538882?ref_src=twsrc%5Etfw\">January 16, 2025</a>\n</blockquote>\n\n\n</div>\n<div id=\"SvOAME\">\n<blockquote align=\"center\" class=\"twitter-tweet\">\n<p dir=\"ltr\" lang=\"en\">Just saw the most insane <a href=\"https://twitter.com/hashtag/spacedebris?src=hash&amp;ref_src=twsrc%5Etfw\">#spacedebris</a> <a href=\"https://twitter.com/hashtag/meteorshower?src=hash&amp;ref_src=twsrc%5Etfw\">#meteorshower</a> right now in Turks and Caicos ⁦<a href=\"https://twitter.com/elonmusk?ref_src=twsrc%5Etfw\">@elonmusk</a>⁩ what is it?? <a href=\"https://t.co/a7f4MbEB8Q\">pic.twitter.com/a7f4MbEB8Q</a></p>— Dean Olson (@deankolson87) <a href=\"https://twitter.com/deankolson87/status/1880026759133032662?ref_src=twsrc%5Etfw\">January 16, 2025</a>\n</blockquote>\n\n\n</div>\n<div id=\"zb3x4O\">\n<blockquote align=\"center\" class=\"twitter-tweet\">\n<p dir=\"ltr\" lang=\"en\">This just happened in the sky over <a href=\"https://twitter.com/hashtag/turksandcaicos?src=hash&amp;ref_src=twsrc%5Etfw\">#turksandcaicos</a>   ☄️  ‍♀️ <a href=\"https://twitter.com/hashtag/Aliens?src=hash&amp;ref_src=twsrc%5Etfw\">#Aliens</a> <a href=\"https://twitter.com/hashtag/meteor?src=hash&amp;ref_src=twsrc%5Etfw\">#meteor</a> <a href=\"https://twitter.com/hashtag/firework?src=hash&amp;ref_src=twsrc%5Etfw\">#firework</a>??? <a href=\"https://t.co/OwodvImSVC\">pic.twitter.com/OwodvImSVC</a></p>— Sally Alington (@sallyethos) <a href=\"https://twitter.com/sallyethos/status/1880031475938259034?ref_src=twsrc%5Etfw\">January 16, 2025</a>\n</blockquote>\n\n\n</div>\n<div id=\"ximBWC\"><div style=\"width: 100%; height: 0; padding-bottom: 56.25%;\"></div></div>\n<div id=\"p3UNAJ\"><div style=\"width: 100%; height: 0; padding-bottom: 56.25%;\"></div></div>\n<div id=\"vtJPBl\">\n<blockquote align=\"center\" class=\"twitter-tweet\">\n<p dir=\"ltr\" lang=\"qme\"> <a href=\"https://t.co/v1kyg6YtTg\">pic.twitter.com/v1kyg6YtTg</a></p>— andres (@_thatonedolphin) <a href=\"https://twitter.com/_thatonedolphin/status/1880043659099533342?ref_src=twsrc%5Etfw\">January 17, 2025</a>\n</blockquote>\n\n\n</div>\n<div id=\"Q2k3Iy\">\n<div class=\"iframely-embed\"><div class=\"iframely-responsive\" style=\"height: 500px; padding-bottom: 0;\"><a href=\"https://www.reddit.com/r/aviation/comments/1i34dki/starship_blew_up_in_front_of_us_had_to_divert/?utm_source=share&amp;utm_medium=mweb3x&amp;utm_name=post_embed&amp;utm_term=1&amp;utm_content=1\"></a></div></div>\n\n</div>\n<div id=\"fopog8\">\n<blockquote align=\"center\" class=\"twitter-tweet\">\n<p dir=\"ltr\" lang=\"en\">After SpaceX Starship’s rapid unscheduled disassembly, our most tracked flights are all aircraft holding or diverting to avoid any potential debris. <a href=\"https://t.co/CzXnD5YvZg\">https://t.co/CzXnD5YvZg</a> <a href=\"https://t.co/4FTa4zI24V\">pic.twitter.com/4FTa4zI24V</a></p>— Flightradar24 (@flightradar24) <a href=\"https://twitter.com/flightradar24/status/1880038519739150811?ref_src=twsrc%5Etfw\">January 16, 2025</a>\n</blockquote>\n\n\n</div>\n<p id=\"rLeHFj\">A screenshot shared by the flight tracking website <a href=\"https://x.com/flightradar24/status/1880038519739150811\">FlightRadar24 to its X account</a> yesterday showed several aircraft in holding patterns or being diverted following the incident, while another showed flight departures from Miami and For Lauderdale airports <a href=\"https://x.com/flightradar24/status/1880046869260492868\">being delayed by 45 minutes</a>.</p>\n<p id=\"jXrsEV\">The last time SpaceX lost the Starship was during its <a href=\"https://www.theverge.com/2024/3/14/24100501/spacex-starship-launch-third-flight-test-success\">third test flight last March</a>. Although it was the first flight where the Starship completed its full-duration ascent burn, SpaceX lost contact with the spacecraft shortly before it was expected to splash down in the Indian Ocean.</p>",
+        "read": [],
+        "label": "e36e2322-e2db-42e8-8181-376309e93849",
+        "id": "b2d20e99-45e3-4c1e-b0b9-ae7e710f838e"
+      }
+    ],
+    "id": "e36e2322-e2db-42e8-8181-376309e93849"
+  },
+  {
+    "label_title": "Trump's Pressure on Allies",
+    "label_summary": "Opinion pieces highlight a sharper US foreign-policy stance under Trump — antagonizing traditional allies, encouraging geopolitical realignments (China leaning more on Europe), and amplified in parts by Elon Musk’s rhetoric. Analysts warn these dynamics could strain alliances, complicate trade relationships, and spur defensive economic policies.\n\nWhy it matters: heightened geopolitical friction can affect cross-border trade, export controls, supply chains, and regulatory risk — all of which influence multinational tech and consumer companies' operations and revenues. These are early-warning signals rather than immediate policy changes; impact depends on whether rhetoric turns into concrete tariffs, sanctions or export controls.",
+    "read": [],
+    "urgency": 6,
+    "relevancy_port1": 6,
+    "relevancy_port2": 7,
+    "relevancy_port3": 2,
+    "reasoning_portfolios": {
+      "port_1": "Moderately relevant — NVDA and SMCI depend on global supply chains, semiconductor export rules and international data-center/server markets; harsher US/ally tensions or export controls could directly affect demand and distribution. Assumption: current coverage is analysis/opinion, not immediate policy change, so score is conservative.",
+      "port_2": "Strong relevance — MSFT, AMZN and GOOGL have large international operations, cloud regions and hardware/software export exposure; changes in alliance dynamics, trade policy or China-Europe realignment could materially affect revenues, compliance costs and market access.",
+      "port_3": "Low relevance — KO, PG and WM are primarily domestic/consumer staples and services with limited direct exposure to high-tech export controls; geopolitical rhetoric could alter commodity/supply chain costs modestly but is unlikely to be pivotal absent concrete trade measures."
+    },
+    "count": 6,
+    "children": [
+      {
+        "date": "2025-01-16T05:38:01",
+        "source": "https://asiatimes.com/feed",
+        "title": "Are Musk’s right-wing rants on Europe channeling Trump?",
+        "summary": "<figure><img alt=\"\" class=\"attachment-rss-image-size size-rss-image-size wp-post-image\" height=\"576\" src=\"https://i0.wp.com/asiatimes.com/wp-content/uploads/2025/01/Donald-Trump-Elon-Musk-America-First.jpg?fit=1024%2C576&amp;quality=89&amp;ssl=1\" width=\"1024\" /></figure>\n<p>Apologies to Karl Marx, but a new “specter is haunting Europe,” and it’s not the leftist movement that spooked 19th Century “old Europe,” as Marx called it in his famous treatise “The Communist Manifesto.” Rather, the threatening specter comes not from a radical left movement but a burgeoning far right, in the alarmed view among [&#8230;]</p>\n<p>The post <a href=\"https://asiatimes.com/2025/01/are-musks-right-wing-rants-on-europe-channeling-trump/\">Are Musk&#8217;s right-wing rants on Europe channeling Trump?</a> appeared first on <a href=\"https://asiatimes.com\">Asia Times</a>.</p>",
+        "read": [],
+        "label": "24068ff6-59e0-4e74-b25b-266e10a0aa59",
+        "id": "52f47086-f2ad-4cc6-afef-c3dd481bf29f"
+      },
+      {
+        "date": "2025-01-16T04:06:45",
+        "source": "https://asiatimes.com/feed",
+        "title": "Eye on Trump, China needs Europe now more than ever",
+        "summary": "<figure><img alt=\"\" class=\"attachment-rss-image-size size-rss-image-size wp-post-image\" height=\"576\" src=\"https://i0.wp.com/asiatimes.com/wp-content/uploads/2025/01/file-20250115-17-5fsj6v-copy-e1736968981131.jpg?fit=1024%2C576&amp;quality=89&amp;ssl=1\" width=\"1024\" /></figure>\n<p>Donald Trump has a knack for antagonizing and confusing China. During his first presidential campaign, he accused China of “raping” the US through unfair trade practices. But later in his first term as US president, Trump also called Chinese President Xi Jinping a &#8220;good friend.&#8221; Throughout the 2024 presidential campaign, Trump suggested he would be [&#8230;]</p>\n<p>The post <a href=\"https://asiatimes.com/2025/01/eye-on-trump-china-needs-europe-now-more-than-ever/\">Eye on Trump, China needs Europe now more than ever</a> appeared first on <a href=\"https://asiatimes.com\">Asia Times</a>.</p>",
+        "read": [],
+        "label": "24068ff6-59e0-4e74-b25b-266e10a0aa59",
+        "id": "993f4140-c6d8-4daf-ae6e-cafb125b8e6f"
+      },
+      {
+        "date": "2025-01-16T05:38:01",
+        "source": "https://asiatimes.com/feed",
+        "title": "Are Musk’s right-wing rants on Europe channeling Trump?",
+        "summary": "<figure><img alt=\"\" class=\"attachment-rss-image-size size-rss-image-size wp-post-image\" height=\"576\" src=\"https://i0.wp.com/asiatimes.com/wp-content/uploads/2025/01/Donald-Trump-Elon-Musk-America-First.jpg?fit=1024%2C576&amp;quality=89&amp;ssl=1\" width=\"1024\" /></figure>\n<p>Apologies to Karl Marx, but a new “specter is haunting Europe,” and it’s not the leftist movement that spooked 19th Century “old Europe,” as Marx called it in his famous treatise “The Communist Manifesto.” Rather, the threatening specter comes not from a radical left movement but a burgeoning far right, in the alarmed view among [&#8230;]</p>\n<p>The post <a href=\"https://asiatimes.com/2025/01/are-musks-right-wing-rants-on-europe-channeling-trump/\">Are Musk&#8217;s right-wing rants on Europe channeling Trump?</a> appeared first on <a href=\"https://asiatimes.com\">Asia Times</a>.</p>",
+        "read": [],
+        "label": "24068ff6-59e0-4e74-b25b-266e10a0aa59",
+        "id": "c2fefbae-8b05-4284-bfcc-19c0b1db5ee5"
+      },
+      {
+        "date": "2025-01-21T02:46:52",
+        "source": "https://asiatimes.com/feed",
+        "title": "Friend or foe? Trump’s threats against ‘free-riding’ allies could backfire",
+        "summary": "<figure><img alt=\"\" class=\"attachment-rss-image-size size-rss-image-size wp-post-image\" height=\"756\" src=\"https://i0.wp.com/asiatimes.com/wp-content/uploads/2025/01/Donald-Trump.jpg?fit=1024%2C756&amp;quality=89&amp;ssl=1\" width=\"1024\" /></figure>\n<p>Donald Trump is an unusual United States president in that he may be the first to strike greater anxiety in allies than in adversaries. Take the responses to his pre-inauguration comments about buying Greenland, for instance, which placed US ally Denmark at the center of the global foreign policy radar screen and caused the Danish [&#8230;]</p>\n<p>The post <a href=\"https://asiatimes.com/2025/01/friend-or-foe-trumps-threats-against-free-riding-allies-could-backfire/\">Friend or foe? Trump’s threats against ‘free-riding’ allies could backfire</a> appeared first on <a href=\"https://asiatimes.com\">Asia Times</a>.</p>",
+        "read": [],
+        "label": "24068ff6-59e0-4e74-b25b-266e10a0aa59",
+        "id": "3f5019e8-6fd5-428a-ae30-8add9e5cfa99"
+      },
+      {
+        "date": "2025-01-21T02:46:52",
+        "source": "https://asiatimes.com/feed",
+        "title": "Friend or foe? Trump’s threats against ‘free-riding’ allies could backfire",
+        "summary": "<figure><img alt=\"\" class=\"attachment-rss-image-size size-rss-image-size wp-post-image\" height=\"756\" src=\"https://i0.wp.com/asiatimes.com/wp-content/uploads/2025/01/Donald-Trump.jpg?fit=1024%2C756&amp;quality=89&amp;ssl=1\" width=\"1024\" /></figure>\n<p>Donald Trump is an unusual United States president in that he may be the first to strike greater anxiety in allies than in adversaries. Take the responses to his pre-inauguration comments about buying Greenland, for instance, which placed US ally Denmark at the center of the global foreign policy radar screen and caused the Danish [&#8230;]</p>\n<p>The post <a href=\"https://asiatimes.com/2025/01/friend-or-foe-trumps-threats-against-free-riding-allies-could-backfire/\">Friend or foe? Trump’s threats against ‘free-riding’ allies could backfire</a> appeared first on <a href=\"https://asiatimes.com\">Asia Times</a>.</p>",
+        "read": [],
+        "label": "24068ff6-59e0-4e74-b25b-266e10a0aa59",
+        "id": "28d2cc0c-c610-4173-b483-2be3b60923a9"
+      },
+      {
+        "date": "2025-01-21T02:46:52",
+        "source": "https://asiatimes.com/feed",
+        "title": "Friend or foe? Trump’s threats against ‘free-riding’ allies could backfire",
+        "summary": "<figure><img alt=\"\" class=\"attachment-rss-image-size size-rss-image-size wp-post-image\" height=\"756\" src=\"https://i0.wp.com/asiatimes.com/wp-content/uploads/2025/01/Donald-Trump.jpg?fit=1024%2C756&amp;quality=89&amp;ssl=1\" width=\"1024\" /></figure>\n<p>Donald Trump is an unusual United States president in that he may be the first to strike greater anxiety in allies than in adversaries. Take the responses to his pre-inauguration comments about buying Greenland, for instance, which placed US ally Denmark at the center of the global foreign policy radar screen and caused the Danish [&#8230;]</p>\n<p>The post <a href=\"https://asiatimes.com/2025/01/friend-or-foe-trumps-threats-against-free-riding-allies-could-backfire/\">Friend or foe? Trump’s threats against ‘free-riding’ allies could backfire</a> appeared first on <a href=\"https://asiatimes.com\">Asia Times</a>.</p>",
+        "read": [],
+        "label": "24068ff6-59e0-4e74-b25b-266e10a0aa59",
+        "id": "a727f51d-3284-47b8-ab7b-fad6784fc1bd"
+      }
+    ],
+    "id": "24068ff6-59e0-4e74-b25b-266e10a0aa59"
+  },
+  {
+    "label_title": "AI Wearables, AR, and Surveillance",
+    "label_summary": "A cluster of stories shows AI moving from models into consumer hardware and services: Meta’s multi-model smart-glasses roadmap (including Oakley-branded and AR prototypes), Apple reorganizing its AI team to improve Siri, Wyze launching AI \"Descriptive Alerts\" behind a new subscription, new powering and 3D-capture tech (power-over-skin, Gaussian splatting), cinematic use of generative audio/image tools, and debate over privacy, ethics and security (surveillance research, Waymo UI hack, delayed AI pendant). Why it matters: this convergence accelerates demand for edge/cloud compute, specialized chips and server infrastructure, creates new subscription monetization vectors, and raises regulatory/privacy risk that could shape adoption and winners.",
+    "read": [],
+    "urgency": 7,
+    "relevancy_port1": 8,
+    "relevancy_port2": 9,
+    "relevancy_port3": 1,
+    "reasoning_portfolios": {
+      "port_1": "High relevance: NVDA benefits from rising GPU/AI compute demand for on-device and cloud-hosted models; SMCI (server OEM) benefits from demand for AI servers and edge appliances; VRT assumed to be Vertiv-like infrastructure provider that would gain from increased data-center and edge-power needs. (Assumption: VRT ticker refers to a data-center/infrastructure company; if incorrect, score is conservative.)",
+      "port_2": "Very high relevance: MSFT/AMZN/GOOGL supply cloud AI services, LLM hosting, and platform integrations for wearable/AR features (and compete with Apple/Meta); Apple’s AI reorganizing and Meta’s glasses roadmap directly affect cloud/service demand and competitive positioning.",
+      "port_3": "Negligible relevance: consumer staples (KO, PG) and waste management (WM) are not materially affected by short-term shifts in AI wearables, device roadmaps, or camera feature rollouts—possible long-run consumer privacy/regulation effects are speculative."
+    },
+    "count": 24,
+    "children": [
+      {
+        "date": "2025-01-24T10:00:54",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/technology.xml",
+        "title": "‘Eternal You’ and the Ethics of Using A.I. to ‘Talk’ to Dead Loved Ones",
+        "summary": "Examining what it means to make money by selling the bereaved on an illusion, the film feels like something of a warning.",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "5798935d-1e69-4a00-8cc0-9784cb136ea8"
+      },
+      {
+        "date": "2025-01-20T22:28:43",
+        "source": "https://techcrunch.com/feed/",
+        "title": "Friend delays shipments of its AI companion pendant",
+        "summary": "<p>Friend, a startup creating a $99, AI-powered necklace designed to be treated as a digital companion, has delayed its first batch of shipments until Q3. Friend had planned to ship devices to pre-order customers in Q1. But according to co-founder and CEO Avi Schiffman, that&#8217;s no longer feasible. &#8220;As much as I would liked to [&#8230;]</p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "504d6177-1401-4b23-a022-079bfcffa9af"
+      },
+      {
+        "date": "2025-01-20T21:49:31",
+        "source": "https://techcrunch.com/feed/",
+        "title": "At the Microsoft Excel World Championship, selfies and a ‘hype’ tunnel",
+        "summary": "<p>An arena. A hype tunnel, the kind through which NBA players typically streak. A competitor dressed in a jersey patterned with a six-pack abs. In a new piece, The New York Times takes readers to an event that organizers call the Microsoft Excel World Championship, a 40-minute, Las Vegas-based competition featuring 12 contestants &#8212; all [&#8230;]</p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "a1b0730f-fa23-4dbe-b80f-6a6248e6a71d"
+      },
+      {
+        "date": "2025-01-21T21:21:53",
+        "source": "https://techcrunch.com/feed/",
+        "title": "Meta is building Oakley smart glasses for athletes: Report",
+        "summary": "<p>Meta&#8217;s Reality Labs is expanding its lineup of AI smart glasses with a new pair of Oakley-branded spectacles targeted at athletes, according to Bloomberg&#8217;s Mark Gurman. Bloomberg reports the new smart glasses, with which Meta seeks to capitalize on the Ray-Ban Meta&#8217;s success, will be based on Oakley&#8217;s Sphaera glasses and will shift the camera [&#8230;]</p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "82868912-e575-4091-8494-3af8fdc917c1"
+      },
+      {
+        "date": "2025-01-22T20:40:24",
+        "source": "https://techcrunch.com/feed/",
+        "title": "Researchers develop a way to power wearables through human skin",
+        "summary": "<p>The dream of battery-free devices has taken an unlikely turn, as Carnegie Mellon researchers debuted Power-Over-Skin. The technology allows for electrical currents to travel through human skin in a bid to power things like blood sugar monitors, pacemakers, and even consumer wearables like smart glasses and fitness trackers. Researchers note the tech is still in [&#8230;]</p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "b30e1798-9a89-4a42-a9e8-abb112159bad"
+      },
+      {
+        "date": "2025-01-23T19:59:32",
+        "source": "https://techcrunch.com/feed/",
+        "title": "Hidden Waymo feature let researcher customize robotaxi’s display",
+        "summary": "<p>Security researcher Jane Wong found a hidden feature that let her change the top display of a Waymo robotaxi. </p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "affc7b49-ae48-411e-82e2-b90b9990498f"
+      },
+      {
+        "date": "2025-01-17T19:46:41",
+        "source": "https://venturebeat.com/feed/",
+        "title": "Runway’s new AI image generator Frames is here, and it looks fittingly cinematic",
+        "summary": "The model excels in rendering advanced textures, natural lighting and complex compositions, providing more flexibility.",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "5b325601-63b4-4853-b05f-c8b92248c419"
+      },
+      {
+        "date": "2025-01-16T19:08:22",
+        "source": "https://www.engadget.com/rss.xml",
+        "title": "MoviePass made a film trailer app for the Oculus Quest and Apple Vision Pro",
+        "summary": "<p></p>\n<p>If you're a cinephile who misses the old Apple TV app for movie trailers, MoviePass CEO Stacy Spikes knows your pain. So he decided to build a trailer app of his own, one that could easily help viewers keep track of upcoming films. But the MoviePass Screening Room isn't heading to Apple TV devices and set-top boxes — instead, Spikes quietly launched it in VR for the <a class=\"rapid-with-clickid\" href=\"https://shopping.yahoo.com/rdlw?merchantId=6f7ae225-b81d-43cd-a3c7-b24c85091f6f&amp;siteId=us-engadget&amp;pageId=1p-autolink&amp;contentUuid=7b54bec3-1ffa-418e-b565-1db39754b827&amp;featureId=text-link&amp;merchantName=Oculus&amp;custData=eyJzb3VyY2VOYW1lIjoiV2ViLURlc2t0b3AtVmVyaXpvbiIsImxhbmRpbmdVcmwiOiJodHRwczovL3d3dy5tZXRhLmNvbS9leHBlcmllbmNlcy9tb3ZpZXBhc3Mtc2NyZWVuaW5nLXJvb20vODQ2OTQ1NjgyNjQwMzU1MS8_c3JzbHRpZD1BZm1CT29wdmZXWHpUYk9XNXljdElSUFBLYkR2YXhHeWQ5SW9KNlppbWVUZjZzQ3g4eDlybUc3UCIsImNvbnRlbnRVdWlkIjoiN2I1NGJlYzMtMWZmYS00MThlLWI1NjUtMWRiMzk3NTRiODI3Iiwib3JpZ2luYWxVcmwiOiJodHRwczovL3d3dy5tZXRhLmNvbS9leHBlcmllbmNlcy9tb3ZpZXBhc3Mtc2NyZWVuaW5nLXJvb20vODQ2OTQ1NjgyNjQwMzU1MS8_c3JzbHRpZD1BZm1CT29wdmZXWHpUYk9XNXljdElSUFBLYkR2YXhHeWQ5SW9KNlppbWVUZjZzQ3g4eDlybUc3UCJ9&amp;signature=AQAAAbsGtEotVwcemMV5kCx8Zu_tWlRHDSsB_2GkuzAQn1Rk&amp;gcReferrer=https%3A%2F%2Fwww.meta.com%2Fexperiences%2Fmoviepass-screening-room%2F8469456826403551%2F%3Fsrsltid%3DAfmBOopvfWXzTbOW5yctIRPPKbDvaxGyd9IoJ6ZimeTf6sCx8x9rmG7P\">Meta Quest</a> and Apple Vision Pro.</p>\n<p>\"I'm in VR all the time,\" Spikes told Engadget in an interview. \"And when I saw how beautiful the imagery was in the Vision Pro, and I know Meta is going to catch up pretty quick on optics, I just said 'This is a <em>great</em> way to watch movie trailers.'\"</p>\n<span id=\"end-legacy-contents\"></span><p>When he tried to actually watch trailers in VR, though, it involved searching through YouTube and hoping he actually landed on a high quality version of what he was looking for. So why not launch a trailer app of his own? One that could help everyone keep tabs on upcoming films, as well as eventually make it easier for MoviePass subscribers to book tickets. \"We wanted to be top of mind,\" Spikes said, as people determined which films to watch.</p>\n<figure><img alt=\"MoviePass Screening Room\" src=\"https://s.yimg.com/os/creatr-uploaded-images/2025-01/83c63a20-d43b-11ef-bb7d-5c98edec0542\" style=\"height: 1872px; width: 3328px;\" /><figcaption></figcaption><div class=\"photo-credit\">MoviePass</div></figure>\n<p>In its current form on the Vision Pro, the MoviePass Screening Room is fairly straightforward. Once you launch the app, you're presented with a list of trailers for recent and upcoming films like <em>Sonic 3</em> and <em>Mission Impossible: The Final Reckoning</em>. Select a title, and it begins playing almost instantly. Spikes says he acquires trailers from Nielsen, directly from studios and from the marketing agency PaperAirplane. The goal is to get the highest quality possible — in many cases that's just 1080p, but some studios offer 4K options.</p>\n<p>After perusing several trailers, I noticed that the bitrate and encoding quality looked better than most YouTube offerings (it's particularly easy to see when you're blowing screens up to the size of cinemas in VR). Mostly, though, I just appreciated having a single place to go to find high quality trailers. Exploring YouTube on the Vision Pro is still a clunky browser-based affair, and it's also filled with tons of low-quality videos and fan edits.</p>\n<figure><img alt=\"MoviePass Screening Room\" src=\"https://s.yimg.com/os/creatr-uploaded-images/2025-01/049f4dd0-d43c-11ef-b7fb-7c4554924220\" style=\"height: 719px; width: 1198px;\" /><figcaption></figcaption><div class=\"photo-credit\">MoviePass</div></figure>\n<p>When I asked if there's some sort of data collection play with this app, especially since Nielsen is a source, Spikes replied, \"We do not intend to go down that path. We see it much more as expanding our own ecosystem. And, you know, when you get into the data world, you're really getting into the advertising world. And that's not the space that we're headed into.\"&nbsp;</p>\n<p>Watching trailers has always been a way for me to wind down after a long day. The best of them are more than just ads, they give us a brief glimpse of cinematic magic coming on the horizon. Spikes himself admits that he used to check the Apple TV trailer app \"religiously,\" so it's not a huge surprise he essentially wants to replicate that experience. While the MoviePass Screening Room is only available on the Vision Pro and Meta Quest at the moment, Spikes says he intends to retool it for the Apple TV, Roku and other platforms eventually, as well as add trailers directly into the MoviePass app.</p>\n<p></p>This article originally appeared on Engadget at https://www.engadget.com/entertainment/tv-movies/moviepass-made-a-film-trailer-app-for-the-oculus-quest-and-apple-vision-pro-190822710.html?src=rss",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "97098d3c-372e-44f7-8c5b-5047902249b0"
+      },
+      {
+        "date": "2025-01-16T19:08:22",
+        "source": "https://www.engadget.com/rss.xml",
+        "title": "MoviePass made a film trailer app for the Oculus Quest and Apple Vision Pro",
+        "summary": "<p></p>\n<p>If you're a cinephile who misses the old Apple TV app for movie trailers, MoviePass CEO Stacy Spikes knows your pain. So he decided to build a trailer app of his own, one that could easily help viewers keep track of upcoming films. But the MoviePass Screening Room isn't heading to Apple TV devices and set-top boxes — instead, Spikes quietly launched it in VR for the <a class=\"rapid-with-clickid\" href=\"https://shopping.yahoo.com/rdlw?merchantId=6f7ae225-b81d-43cd-a3c7-b24c85091f6f&amp;siteId=us-engadget&amp;pageId=1p-autolink&amp;contentUuid=7b54bec3-1ffa-418e-b565-1db39754b827&amp;featureId=text-link&amp;merchantName=Oculus&amp;custData=eyJzb3VyY2VOYW1lIjoiV2ViLURlc2t0b3AtVmVyaXpvbiIsImxhbmRpbmdVcmwiOiJodHRwczovL3d3dy5tZXRhLmNvbS9leHBlcmllbmNlcy9tb3ZpZXBhc3Mtc2NyZWVuaW5nLXJvb20vODQ2OTQ1NjgyNjQwMzU1MS8_c3JzbHRpZD1BZm1CT29wdmZXWHpUYk9XNXljdElSUFBLYkR2YXhHeWQ5SW9KNlppbWVUZjZzQ3g4eDlybUc3UCIsImNvbnRlbnRVdWlkIjoiN2I1NGJlYzMtMWZmYS00MThlLWI1NjUtMWRiMzk3NTRiODI3Iiwib3JpZ2luYWxVcmwiOiJodHRwczovL3d3dy5tZXRhLmNvbS9leHBlcmllbmNlcy9tb3ZpZXBhc3Mtc2NyZWVuaW5nLXJvb20vODQ2OTQ1NjgyNjQwMzU1MS8_c3JzbHRpZD1BZm1CT29wdmZXWHpUYk9XNXljdElSUFBLYkR2YXhHeWQ5SW9KNlppbWVUZjZzQ3g4eDlybUc3UCJ9&amp;signature=AQAAAbsGtEotVwcemMV5kCx8Zu_tWlRHDSsB_2GkuzAQn1Rk&amp;gcReferrer=https%3A%2F%2Fwww.meta.com%2Fexperiences%2Fmoviepass-screening-room%2F8469456826403551%2F%3Fsrsltid%3DAfmBOopvfWXzTbOW5yctIRPPKbDvaxGyd9IoJ6ZimeTf6sCx8x9rmG7P\">Meta Quest</a> and Apple Vision Pro.</p>\n<p>\"I'm in VR all the time,\" Spikes told Engadget in an interview. \"And when I saw how beautiful the imagery was in the Vision Pro, and I know Meta is going to catch up pretty quick on optics, I just said 'This is a <em>great</em> way to watch movie trailers.'\"</p>\n<span id=\"end-legacy-contents\"></span><p>When he tried to actually watch trailers in VR, though, it involved searching through YouTube and hoping he actually landed on a high quality version of what he was looking for. So why not launch a trailer app of his own? One that could help everyone keep tabs on upcoming films, as well as eventually make it easier for MoviePass subscribers to book tickets. \"We wanted to be top of mind,\" Spikes said, as people determined which films to watch.</p>\n<figure><img alt=\"MoviePass Screening Room\" src=\"https://s.yimg.com/os/creatr-uploaded-images/2025-01/83c63a20-d43b-11ef-bb7d-5c98edec0542\" style=\"height: 1872px; width: 3328px;\" /><figcaption></figcaption><div class=\"photo-credit\">MoviePass</div></figure>\n<p>In its current form on the Vision Pro, the MoviePass Screening Room is fairly straightforward. Once you launch the app, you're presented with a list of trailers for recent and upcoming films like <em>Sonic 3</em> and <em>Mission Impossible: The Final Reckoning</em>. Select a title, and it begins playing almost instantly. Spikes says he acquires trailers from Nielsen, directly from studios and from the marketing agency PaperAirplane. The goal is to get the highest quality possible — in many cases that's just 1080p, but some studios offer 4K options.</p>\n<p>After perusing several trailers, I noticed that the bitrate and encoding quality looked better than most YouTube offerings (it's particularly easy to see when you're blowing screens up to the size of cinemas in VR). Mostly, though, I just appreciated having a single place to go to find high quality trailers. Exploring YouTube on the Vision Pro is still a clunky browser-based affair, and it's also filled with tons of low-quality videos and fan edits.</p>\n<figure><img alt=\"MoviePass Screening Room\" src=\"https://s.yimg.com/os/creatr-uploaded-images/2025-01/049f4dd0-d43c-11ef-b7fb-7c4554924220\" style=\"height: 719px; width: 1198px;\" /><figcaption></figcaption><div class=\"photo-credit\">MoviePass</div></figure>\n<p>When I asked if there's some sort of data collection play with this app, especially since Nielsen is a source, Spikes replied, \"We do not intend to go down that path. We see it much more as expanding our own ecosystem. And, you know, when you get into the data world, you're really getting into the advertising world. And that's not the space that we're headed into.\"&nbsp;</p>\n<p>Watching trailers has always been a way for me to wind down after a long day. The best of them are more than just ads, they give us a brief glimpse of cinematic magic coming on the horizon. Spikes himself admits that he used to check the Apple TV trailer app \"religiously,\" so it's not a huge surprise he essentially wants to replicate that experience. While the MoviePass Screening Room is only available on the Vision Pro and Meta Quest at the moment, Spikes says he intends to retool it for the Apple TV, Roku and other platforms eventually, as well as add trailers directly into the MoviePass app.</p>\n<p></p>This article originally appeared on Engadget at https://www.engadget.com/entertainment/tv-movies/moviepass-made-a-film-trailer-app-for-the-oculus-quest-and-apple-vision-pro-190822710.html?src=rss",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "e5ae409b-7c05-4d58-9e3a-5bed21508f04"
+      },
+      {
+        "date": "2025-01-20T22:30:16",
+        "source": "https://www.engadget.com/rss.xml",
+        "title": "Oscar hopeful 'The Brutalist' used AI during production",
+        "summary": "<p>The filmmakers behind <a class=\"no-affiliate-link\" href=\"https://a24films.com/films/the-brutalist\"><em>The Brutalist</em></a>, a likely Oscar contender currently being distributed by A24, used AI to alter actor's dialogue and create images used in the film's epilogue, the film's editor Dávid Jancsó shared in <a class=\"no-affiliate-link\" href=\"https://www.redsharknews.com/why-epic-period-drama-movie-the-brutalist-was-shot-on-vistavision\">an interview with <em>RedShark News</em></a>.&nbsp;</p>\n<p>The epic drama follows a fictional Hungarian architect (as played by Adrien Brody) who struggles to make art under the fickle system of American capitalism (and the weirdos that run it). To make Brody and his costar Felicity Jones' Hungarian pronunciation as accurate as possible, Jancsó says the production used AI from a company called <a class=\"no-affiliate-link\" href=\"https://www.respeecher.com/\">Respeecher</a> to alter the actor's speech.</p>\n<span id=\"end-legacy-contents\"></span><p>Respeecher was able to adjust the actor's vocals to make them match a native Hungarian speaker's pronunciation, though Jancsó says the process didn't do anything you couldn't achieve with traditional dialogue editing. \"You can do this in ProTools yourself, but we had so much dialogue in Hungarian that we really needed to speed up the process, otherwise we'd still be in post.”</p>\n<p>Generative AI was also used to help create architectural drawings used near the end of the film, according to Jancsó. Both decisions were made because of the budgetary constraints the production was under. <em>The Brutalist</em> is an over three-hour film with multiple stars, period-appropriate costuming, and elaborate sets, that was reportedly <a class=\"no-affiliate-link\" href=\"https://www.hollywoodreporter.com/movies/movie-features/making-of-the-brutalist-director-budget-1236084680/\">made for less than $10 million</a>.</p>\n<p>A little over a year after multiple Hollywood unions <a class=\"no-affiliate-link\" href=\"https://apnews.com/article/strike-hollywood-actors-sagaftra-streaming-21ae6ed16f99cfdd5379d6da4b7d324b\">went on strike</a> over the possibility of studios using AI to replace workers, it's still highly controversial to use the tech, let alone be open about it. But the problem is undeniably complicated when there are so many different ways AI can be used. \"The aim was to preserve the authenticity of Adrien and Felicity’s performances in another language, not to replace or alter them and done with the utmost respect for the craft,\" Brady Corbet, the director of <em>The Brutalist</em>, <a class=\"no-affiliate-link\" href=\"https://www.hollywoodreporter.com/movies/movie-news/the-brutalist-ai-backlash-adrien-brody-1236113015/\">told <em>The Hollywood Reporter</em></a><em>&nbsp;</em>in a statement.</p>\n<p>Respeecher was previously used <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/james-earl-jones-retires-darth-vader-ai-201559553.html\">to create new Darth Vader dialogue</a> for Disney+'s <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/obi-wan-kenobi-disney-plus-release-date-221244352.html\"><em>Obi-Wan-Kenobi</em></a><em>, </em>and this likely won't be the last time similar tools are used to cut costs. Making movies requires a lot of resources, and while companies are trying to get AI to catch on, using AI tools will likely remain a viable options to save time and money.</p>This article originally appeared on Engadget at https://www.engadget.com/ai/oscar-hopeful-the-brutalist-used-ai-during-production-223016216.html?src=rss",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "0f372312-409e-448c-a7ce-31aadecbd2c0"
+      },
+      {
+        "date": "2025-01-21T22:25:02",
+        "source": "https://www.engadget.com/rss.xml",
+        "title": "Report: Meta could release its first true AR headset as soon as 2027",
+        "summary": "<p>Mark Gurman at <em>Bloomberg</em> has released a <a class=\"no-affiliate-link\" href=\"https://www.bloomberg.com/news/articles/2025-01-21/meta-hardware-plans-oakley-and-ar-like-glasses-apple-watch-and-airpods-rivals?sref=10lNAhZ9\">report</a> about Meta's next steps in hardware, crediting sources familiar with the company's work. According to these insiders, Meta is developing at least three new smart glasses models and has set a roadmap toward releasing its first true augmented reality glasses. The company is reportedly also continuing efforts to implement AI tools in a wrist wearable and in earbuds.</p>\n<p>Meta already sells smart glasses in partnership with Ray-Ban, a product line internally called Supernova. Gurman reports that this existing lineup will be introduced to new markets, although he didn't offer specifics about where. Meta's technologies also be applied to frames from other brands owned by its partner, Luxottica Group. This will allegedly lead to the launch of glasses codenamed Supernova 2 based on the Sphaera glasses from Oakley. This set would be intended for cyclists and other athletes, and its camera would be placed in the center of the frames.</p>\n<span id=\"end-legacy-contents\"></span><p>The third model is internally dubbed Hypernova. This product would be another step closer to a genuine AR experience, giving wearers the capability to run simple software apps, view notifications and display photos taken by the device. The more advanced feature set would reportedly come with a more advanced price tag; sources told Gurman this set is currently projected to cost $1,000. Insiders had already <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/ar-vr/meta-is-reportedly-adding-displays-to-its-ray-ban-smart-glasses-162634427.html\">revealed</a> last month that Meta was working on bringing a display to its Ray-Ban glasses models.&nbsp;</p>\n<p>Alongside these smart glasses, Meta has also been developing an AR product dubbed <a href=\"https://www.engadget.com/ar-vr/metas-orion-prototype-offers-a-glimpse-into-our-ar-future-123038066.html\"><ins>Orion</ins></a>. Gurman reports that the Orion set will not receive a commercial release. Instead, he said that Meta plans to launch a different iteration of the hardware as early as 2027. This product is codenamed Artemis, and sources told Gurman that these prototype glasses aren't as heavy as Orion and are more advanced than the predecessor.</p>\n<p>Another item of note in Gurman's report is that Meta is developing a wrist strap that could control its smart glasses. Most of the company's models have controls at the temple, but a wrist option would be similar to the one used for the Orion prototype.</p>\n<p>Finally, he confirms that Meta is still working on prototypes of camera-enabled earbuds that could be a rival to Apple's AirPods. <em>The Information</em> <a href=\"https://www.engadget.com/metas-next-hardware-project-might-be-ai-infused-headphones-with-cameras-204741102.html\"><ins>reported</ins></a> on this project in May 2024, and it seems that the concept has faced some development challenges. If these \"Camerabuds\" do reach the market, it likely won't be for years.</p>\n<p>We've reached out to Meta for comment on this report and will update with any statement we receive.</p>This article originally appeared on Engadget at https://www.engadget.com/wearables/report-meta-could-release-its-first-true-ar-headset-as-soon-as-2027-222502610.html?src=rss",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "9ac1b212-b750-4ef3-a216-7edd7c969db6"
+      },
+      {
+        "date": "2025-01-20T22:30:16",
+        "source": "https://www.engadget.com/rss.xml",
+        "title": "Oscar hopeful 'The Brutalist' used AI during production",
+        "summary": "<p>The filmmakers behind <a class=\"no-affiliate-link\" href=\"https://a24films.com/films/the-brutalist\"><em>The Brutalist</em></a>, a likely Oscar contender currently being distributed by A24, used AI to alter actor's dialogue and create images used in the film's epilogue, the film's editor Dávid Jancsó shared in <a class=\"no-affiliate-link\" href=\"https://www.redsharknews.com/why-epic-period-drama-movie-the-brutalist-was-shot-on-vistavision\">an interview with <em>RedShark News</em></a>.&nbsp;</p>\n<p>The epic drama follows a fictional Hungarian architect (as played by Adrien Brody) who struggles to make art under the fickle system of American capitalism (and the weirdos that run it). To make Brody and his costar Felicity Jones' Hungarian pronunciation as accurate as possible, Jancsó says the production used AI from a company called <a class=\"no-affiliate-link\" href=\"https://www.respeecher.com/\">Respeecher</a> to alter the actor's speech.</p>\n<span id=\"end-legacy-contents\"></span><p>Respeecher was able to adjust the actor's vocals to make them match a native Hungarian speaker's pronunciation, though Jancsó says the process didn't do anything you couldn't achieve with traditional dialogue editing. \"You can do this in ProTools yourself, but we had so much dialogue in Hungarian that we really needed to speed up the process, otherwise we'd still be in post.”</p>\n<p>Generative AI was also used to help create architectural drawings used near the end of the film, according to Jancsó. Both decisions were made because of the budgetary constraints the production was under. <em>The Brutalist</em> is an over three-hour film with multiple stars, period-appropriate costuming, and elaborate sets, that was reportedly <a class=\"no-affiliate-link\" href=\"https://www.hollywoodreporter.com/movies/movie-features/making-of-the-brutalist-director-budget-1236084680/\">made for less than $10 million</a>.</p>\n<p>A little over a year after multiple Hollywood unions <a class=\"no-affiliate-link\" href=\"https://apnews.com/article/strike-hollywood-actors-sagaftra-streaming-21ae6ed16f99cfdd5379d6da4b7d324b\">went on strike</a> over the possibility of studios using AI to replace workers, it's still highly controversial to use the tech, let alone be open about it. But the problem is undeniably complicated when there are so many different ways AI can be used. \"The aim was to preserve the authenticity of Adrien and Felicity’s performances in another language, not to replace or alter them and done with the utmost respect for the craft,\" Brady Corbet, the director of <em>The Brutalist</em>, <a class=\"no-affiliate-link\" href=\"https://www.hollywoodreporter.com/movies/movie-news/the-brutalist-ai-backlash-adrien-brody-1236113015/\">told <em>The Hollywood Reporter</em></a><em>&nbsp;</em>in a statement.</p>\n<p>Respeecher was previously used <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/james-earl-jones-retires-darth-vader-ai-201559553.html\">to create new Darth Vader dialogue</a> for Disney+'s <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/obi-wan-kenobi-disney-plus-release-date-221244352.html\"><em>Obi-Wan-Kenobi</em></a><em>, </em>and this likely won't be the last time similar tools are used to cut costs. Making movies requires a lot of resources, and while companies are trying to get AI to catch on, using AI tools will likely remain a viable options to save time and money.</p>This article originally appeared on Engadget at https://www.engadget.com/ai/oscar-hopeful-the-brutalist-used-ai-during-production-223016216.html?src=rss",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "12ded774-6289-4e85-b4a7-4ea69cadfca1"
+      },
+      {
+        "date": "2025-01-21T22:25:02",
+        "source": "https://www.engadget.com/rss.xml",
+        "title": "Report: Meta could release its first true AR headset as soon as 2027",
+        "summary": "<p>Mark Gurman at <em>Bloomberg</em> has released a <a class=\"no-affiliate-link\" href=\"https://www.bloomberg.com/news/articles/2025-01-21/meta-hardware-plans-oakley-and-ar-like-glasses-apple-watch-and-airpods-rivals?sref=10lNAhZ9\">report</a> about Meta's next steps in hardware, crediting sources familiar with the company's work. According to these insiders, Meta is developing at least three new smart glasses models and has set a roadmap toward releasing its first true augmented reality glasses. The company is reportedly also continuing efforts to implement AI tools in a wrist wearable and in earbuds.</p>\n<p>Meta already sells smart glasses in partnership with Ray-Ban, a product line internally called Supernova. Gurman reports that this existing lineup will be introduced to new markets, although he didn't offer specifics about where. Meta's technologies also be applied to frames from other brands owned by its partner, Luxottica Group. This will allegedly lead to the launch of glasses codenamed Supernova 2 based on the Sphaera glasses from Oakley. This set would be intended for cyclists and other athletes, and its camera would be placed in the center of the frames.</p>\n<span id=\"end-legacy-contents\"></span><p>The third model is internally dubbed Hypernova. This product would be another step closer to a genuine AR experience, giving wearers the capability to run simple software apps, view notifications and display photos taken by the device. The more advanced feature set would reportedly come with a more advanced price tag; sources told Gurman this set is currently projected to cost $1,000. Insiders had already <a class=\"no-affiliate-link\" href=\"https://www.engadget.com/ar-vr/meta-is-reportedly-adding-displays-to-its-ray-ban-smart-glasses-162634427.html\">revealed</a> last month that Meta was working on bringing a display to its Ray-Ban glasses models.&nbsp;</p>\n<p>Alongside these smart glasses, Meta has also been developing an AR product dubbed <a href=\"https://www.engadget.com/ar-vr/metas-orion-prototype-offers-a-glimpse-into-our-ar-future-123038066.html\"><ins>Orion</ins></a>. Gurman reports that the Orion set will not receive a commercial release. Instead, he said that Meta plans to launch a different iteration of the hardware as early as 2027. This product is codenamed Artemis, and sources told Gurman that these prototype glasses aren't as heavy as Orion and are more advanced than the predecessor.</p>\n<p>Another item of note in Gurman's report is that Meta is developing a wrist strap that could control its smart glasses. Most of the company's models have controls at the temple, but a wrist option would be similar to the one used for the Orion prototype.</p>\n<p>Finally, he confirms that Meta is still working on prototypes of camera-enabled earbuds that could be a rival to Apple's AirPods. <em>The Information</em> <a href=\"https://www.engadget.com/metas-next-hardware-project-might-be-ai-infused-headphones-with-cameras-204741102.html\"><ins>reported</ins></a> on this project in May 2024, and it seems that the concept has faced some development challenges. If these \"Camerabuds\" do reach the market, it likely won't be for years.</p>\n<p>We've reached out to Meta for comment on this report and will update with any statement we receive.</p>This article originally appeared on Engadget at https://www.engadget.com/wearables/report-meta-could-release-its-first-true-ar-headset-as-soon-as-2027-222502610.html?src=rss",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "22bb7875-e2a8-4ad2-a362-f78c9603d236"
+      },
+      {
+        "date": "2025-01-23T15:00:51",
+        "source": "https://www.engadget.com/rss.xml",
+        "title": "Star Trek: Section 31 review: An embarrassment from start to end",
+        "summary": "<p>Get enough Star Trek fans in a room and the conversation inevitably turns toward which of the series’ cinematic outings is the worst. The consensus view is <em>The Final Frontier, Insurrection</em> and <em>Nemesis </em>are duking it out for the unwanted trophy. Each film has a small legion of fans who will defend each entry’s campy excesses, boldness and tone. (I’m partial to watching <em>The Final Frontier</em> every five years or so, mostly to luxuriate in Jerry Goldsmith’s score.) Thankfully, any and all such discussions will cease once and for all on January 24, 2024, when <em>Star Trek: Section 31</em> debuts on Paramount+.</p>\n<p>It is the single worst thing to carry the Star Trek name in living memory.</p>\n<span id=\"end-legacy-contents\"></span><h2 id=\"jump-link-spoilers-follow-for-star-trek-section-31\"><strong><em>Spoilers follow for Star Trek: Section 31.</em></strong></h2>\n<p></p>\n<div id=\"e03406ffa3264a26a5d0bd308f539f03\"><div style=\"width: 100%; height: 0; padding-bottom: 56.25%;\"></div></div>\n<p><em>Star Trek: Section 31</em> is a made for <del>TV</del> streaming movie focusing on Philipa Georgiou (Michelle Yeoh) after her departure from <em>Star Trek: Discovery.</em> It was originally greenlit in 2019 as a series but, for a wide variety of reasons, it languished in development hell until 2022. In the interim, showrunners Bo Yeon Kim and Erika Lippoldt, along with credited screenwriter Craig Sweeny, sweated the idea. Director Olatunde Osunsanmi told <em>SFX Magazine</em> (via <a href=\"https://trekmovie.com/2024/12/31/director-talks-retooling-section-31-from-a-series-and-says-it-can-lead-to-more-streaming-star-trek-movies/\"><em><ins>TrekMovie</ins></em></a>) that Sweeny would eventually write (and re-write) the project seven different times, first as a TV series, then as a movie. <a href=\"https://www.hollywoodreporter.com/tv/tv-news/michelle-yeohs-section-31-star-trek-phase-2-paramount-1235391286/\"><ins>Trek head honcho Alex Kurtzman</ins></a> was eager to get production underway to take advantage of Yeoh’s 2022 Academy Award win for <em>Everything Everywhere All At Once</em>.</p>\n<p>The result is a film that, even if you’re unaware of the pre-production backstory, sure feels like a series hastily cut down to feature length. It’s not incoherent, but suffers from the same issue that blighted <em>Discovery</em>, where you’re watching a dramatized synopsis rather than a script. There are thematic and plot beats that rhyme with each other, but the meat joining them all together isn’t there. It’s just <em>stuff that happens</em>.</p>\n<p>It doesn’t help that the plot (credited to Kim and Lippoldt) is very much of the “and then this happens” variety that they warn you about in Film School 202. So many major moments in the film are totally unearned, asking you to care about characters you’ve only just met and don’t much like. There’s a risible scene at the end where two people who haven’t really given you the impression they’re into each other have to hold hands and stare into their impending doom. The pair in question have shared their backstories with each other, but there’s no suggestion that they are anything more than just people working together on a job, let alone friends.</p>\n<figure><img alt=\"Rob Kazinsky as Zeph and Omari Hardwick as Alok in Star Trek: Section 31, streaming on Paramount+, 2025. Photo Credit: Michael Gibson/Paramount+\" src=\"https://s.yimg.com/os/creatr-uploaded-images/2025-01/3923c450-d96e-11ef-bfff-1b487f475790\" style=\"height: 3448px; width: 5168px;\" /><figcaption></figcaption><div class=\"photo-credit\">Michael Gibson/Paramount+</div></figure>\n<p>Weak material is less of an issue if you have a cast who can elevate what they’ve been given but, and it pains me to say this, that’s not Michelle Yeoh. Yeoh is a phenomenal performer who has given a litany of underrated performances over her long and distinguished career. But she made her name playing characters with deep interiority, not scenery-chewing high-camp villains. Even in her redemptive phase, it’s impossible to believe Yeoh is the sort of monster Star Trek needs Georgiou to be. Rather than shrinking the scene, and the stakes, to suit her talents, the film makes the canvas wider and expects Yeoh to fill space she’s never needed.</p>\n<p>The rest of the gang is similarly underserved by the material and the sheer volume of clutter the film has little time to get past. Making the Section 31 team six people deep before they meet Georgiou means every character beyond her is a thumbnail sketch at best. There’s the broody one, the “funny” one, the uptight one, the robot one, the hot one and the one with the bad Oirish accent.</p>\n<p>If <em>Section 31</em> was a series, you’d forgive the pithy introductions, knowing you’d get to fill in these characters over the coming weeks, maybe even grow attached to them. In the space of a movie, it doesn’t work since the shocking twists — like an early character death to raise the stakes or a sudden heel-turn in a moment of crisis, don’t work.  Worse still, the dialog is so often indecipherable crosstalk that feels more like woeful improv than useful characterization. That, or it’s just characters reminding the audience of basic story points over and over again, like the fact Georgiou used to be a baddie.</p>\n<p>Olatunde Osunsanmi’s direction has always made an effort to draw attention to itself, with flashy pans, tilts, moves and Dutch angles. Jarringly, all of his flair leaves him when he needs to just shoot people in a room talking — those scenes invariably default to the TV standard medium. Worse still is his action direction, that loses any sense of the space we’re seeing or the story being told. There’s a final punchfight that requires the audiences to be aware of who has the macguffin at various points. But it’s all so incoherent that you’ll struggle to place what’s going on and where, so why bother engaging with it?</p>\n<p>And that’s before we get to the fact that Osunanmi chose to shoot all of Michelle Yeoh’s — <em>Michelle Yeoh’s</em> — fight scenes in close-up. When Yeoh is moving, you want to capture the full extent of her talents and allow her and her fellow performers a chance to show off, too. And yet it’s in these moments that the camera pulls in tight — with what looks like a digital crop with a dose of digital motion blur thrown in. All of which serves to obscure Yeoh’s talents and sap any energy out of the action.</p>\n<figure><img alt=\"Sam Richardson as Quasi and Michelle Yeoh as Georgiou in Star Trek: Section 31, streaming on Paramount+, 2025. Photo Credit: Jan Thijs/Paramount+\" src=\"https://s.yimg.com/os/creatr-uploaded-images/2025-01/6239cd80-d96e-11ef-9bae-b6123349934c\" style=\"height: 4000px; width: 6000px;\" /><figcaption></figcaption><div class=\"photo-credit\">Jan Thijs/Paramount+</div></figure>\n<p>Before watching <em>Section 31</em>, I re-watched the relevant stories from<em> Deep Space Nine</em> and tried to interrogate their ethics. That series asked, several times over, how far someone would, could or should go to defend their ideals and their worldview. The Federation was often described as some form of paradise, but does paradise need its own extrajudicial murder squad? It wasn’t a <em>wicked cool plotline</em>, but a thought experiment to interrogate what Starfleet and its personnel stands for when its very existence is in jeopardy. If there’s one thing that Section 31 isn’t, it’s cool, and if you think it is, then your values are at least halfway in conflict with Star Trek’s founding ethos.</p>\n<p>Unfortunately for us, Trek honcho Alex Kurtzman does think Starfleet having its own space murder squad is wicked cool given their repeated appearances under his watch. Kurtzman has never hidden his love of War on Terror-era narratives, which remain as unwelcome here as they were in <em>Star Trek: Into Darkness</em>. Sadly, <em>Section 31</em> is Star Trek in its <a href=\"https://www.engadget.com/star-trek-picard-season-3-paramount-plus-preview-review-080010710.html\"><ins>face-punching, forced-interrogation, cheek-stabbing, eye-gouging thoughtless grimdark register</ins></a>. Fundamentally, it’s not a fun thing to sit down and watch, beyond its numerous deficiencies as a piece of cinema.</p>\n<p>The biggest tell that <em>Section 31</em> wasn’t going to be a winner was when Rob Kasinsky, who plays Section 31's Zeph, started getting his excuses in early. He said (via <a href=\"https://screenrant.com/star-trek-section-31-movie-rob-kazinsky-reception-fear/\"><em><ins>ScreenRant</ins></em></a>) he was worried the film would be received poorly given all the fans want is “just 1,000 more episodes of <em>TNG</em>.” I’ll admit, there is a chunk of fandom who do just want to be fed a conveyor belt of ‘memberberries. These are the people who thought season three of <a href=\"https://www.engadget.com/star-trek-picard-season-3-paramount-plus-preview-review-080010710.html\"><em>Picard</em></a> was good and are clamoring for <em>Star Trek: Legacy</em>. I, and a lot of other people, just want something that’s halfway thoughtful, entertaining and well-made, and this is none of those things.</p>\n<p>I keep checking my notes for anything positive and the best I can manage is that the costumes, co-created with Balenciaga, are quite nice. They’re a bit too <em>Star Wars</em>, but I like the focus on texture and tailoring in a way that’s better than Trek’s current athleisure trend. Oh, and the CGI is competent and doesn’t slip below the standards set down by <em>Strange New Worlds</em>. There you go, two things that are good about <em>Section 31</em>.</p>\n<p>Fundamentally, I don’t know who this is for. It’s too braindead for the people who want Star Trek in any sort of thoughtful register. It’s not shot through with the fan-service onanism that would <del>pander to</del> please the <em>Star Trek: Legacy </em>crowd. It’s not quite shamelessly brutal enough for the gang who want Star Trek to turn into <em>24</em>. And it’s not high camp enough for the folks who’d like to coo over Michelle Yeoh in a variety of gorgeous costumes. Remember how Warner Bros. <a href=\"https://www.theguardian.com/film/2023/nov/09/warner-bros-coyote-vs-acme-movie-john-cena\"><ins>junked several movies for the tax break?</ins></a> I wish Paramount’s accountants had been as ruthless here.</p>This article originally appeared on Engadget at https://www.engadget.com/entertainment/streaming/star-trek-section-31-review-an-embarrassment-from-start-to-end-150051501.html?src=rss",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "8fc71827-d0c3-4ad9-9889-82c520f307ba"
+      },
+      {
+        "date": "2025-01-23T15:00:51",
+        "source": "https://www.engadget.com/rss.xml",
+        "title": "Star Trek: Section 31 review: An embarrassment from start to end",
+        "summary": "<p>Get enough Star Trek fans in a room and the conversation inevitably turns toward which of the series’ cinematic outings is the worst. The consensus view is <em>The Final Frontier, Insurrection</em> and <em>Nemesis </em>are duking it out for the unwanted trophy. Each film has a small legion of fans who will defend each entry’s campy excesses, boldness and tone. (I’m partial to watching <em>The Final Frontier</em> every five years or so, mostly to luxuriate in Jerry Goldsmith’s score.) Thankfully, any and all such discussions will cease once and for all on January 24, 2024, when <em>Star Trek: Section 31</em> debuts on Paramount+.</p>\n<p>It is the single worst thing to carry the Star Trek name in living memory.</p>\n<span id=\"end-legacy-contents\"></span><h2 id=\"jump-link-spoilers-follow-for-star-trek-section-31\"><strong><em>Spoilers follow for Star Trek: Section 31.</em></strong></h2>\n<p></p>\n<div id=\"e03406ffa3264a26a5d0bd308f539f03\"><div style=\"width: 100%; height: 0; padding-bottom: 56.25%;\"></div></div>\n<p><em>Star Trek: Section 31</em> is a made for <del>TV</del> streaming movie focusing on Philipa Georgiou (Michelle Yeoh) after her departure from <em>Star Trek: Discovery.</em> It was originally greenlit in 2019 as a series but, for a wide variety of reasons, it languished in development hell until 2022. In the interim, showrunners Bo Yeon Kim and Erika Lippoldt, along with credited screenwriter Craig Sweeny, sweated the idea. Director Olatunde Osunsanmi told <em>SFX Magazine</em> (via <a href=\"https://trekmovie.com/2024/12/31/director-talks-retooling-section-31-from-a-series-and-says-it-can-lead-to-more-streaming-star-trek-movies/\"><em><ins>TrekMovie</ins></em></a>) that Sweeny would eventually write (and re-write) the project seven different times, first as a TV series, then as a movie. <a href=\"https://www.hollywoodreporter.com/tv/tv-news/michelle-yeohs-section-31-star-trek-phase-2-paramount-1235391286/\"><ins>Trek head honcho Alex Kurtzman</ins></a> was eager to get production underway to take advantage of Yeoh’s 2022 Academy Award win for <em>Everything Everywhere All At Once</em>.</p>\n<p>The result is a film that, even if you’re unaware of the pre-production backstory, sure feels like a series hastily cut down to feature length. It’s not incoherent, but suffers from the same issue that blighted <em>Discovery</em>, where you’re watching a dramatized synopsis rather than a script. There are thematic and plot beats that rhyme with each other, but the meat joining them all together isn’t there. It’s just <em>stuff that happens</em>.</p>\n<p>It doesn’t help that the plot (credited to Kim and Lippoldt) is very much of the “and then this happens” variety that they warn you about in Film School 202. So many major moments in the film are totally unearned, asking you to care about characters you’ve only just met and don’t much like. There’s a risible scene at the end where two people who haven’t really given you the impression they’re into each other have to hold hands and stare into their impending doom. The pair in question have shared their backstories with each other, but there’s no suggestion that they are anything more than just people working together on a job, let alone friends.</p>\n<figure><img alt=\"Rob Kazinsky as Zeph and Omari Hardwick as Alok in Star Trek: Section 31, streaming on Paramount+, 2025. Photo Credit: Michael Gibson/Paramount+\" src=\"https://s.yimg.com/os/creatr-uploaded-images/2025-01/3923c450-d96e-11ef-bfff-1b487f475790\" style=\"height: 3448px; width: 5168px;\" /><figcaption></figcaption><div class=\"photo-credit\">Michael Gibson/Paramount+</div></figure>\n<p>Weak material is less of an issue if you have a cast who can elevate what they’ve been given but, and it pains me to say this, that’s not Michelle Yeoh. Yeoh is a phenomenal performer who has given a litany of underrated performances over her long and distinguished career. But she made her name playing characters with deep interiority, not scenery-chewing high-camp villains. Even in her redemptive phase, it’s impossible to believe Yeoh is the sort of monster Star Trek needs Georgiou to be. Rather than shrinking the scene, and the stakes, to suit her talents, the film makes the canvas wider and expects Yeoh to fill space she’s never needed.</p>\n<p>The rest of the gang is similarly underserved by the material and the sheer volume of clutter the film has little time to get past. Making the Section 31 team six people deep before they meet Georgiou means every character beyond her is a thumbnail sketch at best. There’s the broody one, the “funny” one, the uptight one, the robot one, the hot one and the one with the bad Oirish accent.</p>\n<p>If <em>Section 31</em> was a series, you’d forgive the pithy introductions, knowing you’d get to fill in these characters over the coming weeks, maybe even grow attached to them. In the space of a movie, it doesn’t work since the shocking twists — like an early character death to raise the stakes or a sudden heel-turn in a moment of crisis, don’t work.  Worse still, the dialog is so often indecipherable crosstalk that feels more like woeful improv than useful characterization. That, or it’s just characters reminding the audience of basic story points over and over again, like the fact Georgiou used to be a baddie.</p>\n<p>Olatunde Osunsanmi’s direction has always made an effort to draw attention to itself, with flashy pans, tilts, moves and Dutch angles. Jarringly, all of his flair leaves him when he needs to just shoot people in a room talking — those scenes invariably default to the TV standard medium. Worse still is his action direction, that loses any sense of the space we’re seeing or the story being told. There’s a final punchfight that requires the audiences to be aware of who has the macguffin at various points. But it’s all so incoherent that you’ll struggle to place what’s going on and where, so why bother engaging with it?</p>\n<p>And that’s before we get to the fact that Osunanmi chose to shoot all of Michelle Yeoh’s — <em>Michelle Yeoh’s</em> — fight scenes in close-up. When Yeoh is moving, you want to capture the full extent of her talents and allow her and her fellow performers a chance to show off, too. And yet it’s in these moments that the camera pulls in tight — with what looks like a digital crop with a dose of digital motion blur thrown in. All of which serves to obscure Yeoh’s talents and sap any energy out of the action.</p>\n<figure><img alt=\"Sam Richardson as Quasi and Michelle Yeoh as Georgiou in Star Trek: Section 31, streaming on Paramount+, 2025. Photo Credit: Jan Thijs/Paramount+\" src=\"https://s.yimg.com/os/creatr-uploaded-images/2025-01/6239cd80-d96e-11ef-9bae-b6123349934c\" style=\"height: 4000px; width: 6000px;\" /><figcaption></figcaption><div class=\"photo-credit\">Jan Thijs/Paramount+</div></figure>\n<p>Before watching <em>Section 31</em>, I re-watched the relevant stories from<em> Deep Space Nine</em> and tried to interrogate their ethics. That series asked, several times over, how far someone would, could or should go to defend their ideals and their worldview. The Federation was often described as some form of paradise, but does paradise need its own extrajudicial murder squad? It wasn’t a <em>wicked cool plotline</em>, but a thought experiment to interrogate what Starfleet and its personnel stands for when its very existence is in jeopardy. If there’s one thing that Section 31 isn’t, it’s cool, and if you think it is, then your values are at least halfway in conflict with Star Trek’s founding ethos.</p>\n<p>Unfortunately for us, Trek honcho Alex Kurtzman does think Starfleet having its own space murder squad is wicked cool given their repeated appearances under his watch. Kurtzman has never hidden his love of War on Terror-era narratives, which remain as unwelcome here as they were in <em>Star Trek: Into Darkness</em>. Sadly, <em>Section 31</em> is Star Trek in its <a href=\"https://www.engadget.com/star-trek-picard-season-3-paramount-plus-preview-review-080010710.html\"><ins>face-punching, forced-interrogation, cheek-stabbing, eye-gouging thoughtless grimdark register</ins></a>. Fundamentally, it’s not a fun thing to sit down and watch, beyond its numerous deficiencies as a piece of cinema.</p>\n<p>The biggest tell that <em>Section 31</em> wasn’t going to be a winner was when Rob Kasinsky, who plays Section 31's Zeph, started getting his excuses in early. He said (via <a href=\"https://screenrant.com/star-trek-section-31-movie-rob-kazinsky-reception-fear/\"><em><ins>ScreenRant</ins></em></a>) he was worried the film would be received poorly given all the fans want is “just 1,000 more episodes of <em>TNG</em>.” I’ll admit, there is a chunk of fandom who do just want to be fed a conveyor belt of ‘memberberries. These are the people who thought season three of <a href=\"https://www.engadget.com/star-trek-picard-season-3-paramount-plus-preview-review-080010710.html\"><em>Picard</em></a> was good and are clamoring for <em>Star Trek: Legacy</em>. I, and a lot of other people, just want something that’s halfway thoughtful, entertaining and well-made, and this is none of those things.</p>\n<p>I keep checking my notes for anything positive and the best I can manage is that the costumes, co-created with Balenciaga, are quite nice. They’re a bit too <em>Star Wars</em>, but I like the focus on texture and tailoring in a way that’s better than Trek’s current athleisure trend. Oh, and the CGI is competent and doesn’t slip below the standards set down by <em>Strange New Worlds</em>. There you go, two things that are good about <em>Section 31</em>.</p>\n<p>Fundamentally, I don’t know who this is for. It’s too braindead for the people who want Star Trek in any sort of thoughtful register. It’s not shot through with the fan-service onanism that would <del>pander to</del> please the <em>Star Trek: Legacy </em>crowd. It’s not quite shamelessly brutal enough for the gang who want Star Trek to turn into <em>24</em>. And it’s not high camp enough for the folks who’d like to coo over Michelle Yeoh in a variety of gorgeous costumes. Remember how Warner Bros. <a href=\"https://www.theguardian.com/film/2023/nov/09/warner-bros-coyote-vs-acme-movie-john-cena\"><ins>junked several movies for the tax break?</ins></a> I wish Paramount’s accountants had been as ruthless here.</p>This article originally appeared on Engadget at https://www.engadget.com/entertainment/streaming/star-trek-section-31-review-an-embarrassment-from-start-to-end-150051501.html?src=rss",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "03b8e9a4-c65e-4ce2-ab0d-35850e890608"
+      },
+      {
+        "date": "2025-01-14T12:30:00",
+        "source": "https://theverge.com/rss/index.xml",
+        "title": "Wyze cameras will use AI to describe what they see",
+        "summary": "<figure>\n      <img alt=\"Wyze Descriptive Alerts, describing three babies trying to escape their cribs.\" src=\"https://cdn.vox-cdn.com/thumbor/aVFHuejrJ76EBHDBxwnSzByMLbU=/0x0:2040x1360/1310x873/cdn.vox-cdn.com/uploads/chorus_image/image/73846379/Wyze_Descriptive_Alerts.0.jpg\" />\n        <figcaption><em>For those moments when you don’t have time to check your camera footage.</em> | Image: Wyze</figcaption>\n    </figure>\n\n  <p id=\"qGdC9y\">Wyze’s latest AI feature aims to reduce how often you need to manually check security footage by instead just describing what the camera has seen. The new Descriptive Alerts will send notifications that “accurately summarize motion events” with more contextual detail than simply telling users that the camera has detected movement or an object, according to Wyze.</p>\n<p id=\"z1qhC0\">An example alert provided by the company is “a delivery driver wearing a blue hat leaves a package on the doorstep, then leaves. A green SUV is parked in the street.” Rival smart home security companies like <a href=\"https://www.theverge.com/2024/10/2/24259779/ring-24-7-continuous-recording-smart-security-cameras#:~:text=Video%20preview%20alerts%3A%20This%20sends%20a%20rich%20notification%20when%20a%20camera%20is%20triggered%20that%20includes%20a%20video%20clip%2C%20giving%20more%20detail%20about%20what%E2%80%99s%20happening%20before%20you%20have%20to%20open%20the%20app.%20Previously%2C%20it%20would%20just%20send%20a%20snapshot\">Ring</a>, <a href=\"https://www.theverge.com/2024/8/6/24213639/google-gemini-intelligence-ai-google-home-nest-aware#:~:text=A%20young%20person%20in%20casual%20clothing%2C%20standing%20next%20to%20a%20parked%20black%20SUV.%20They%20are%20carrying%20grocery%20bags.%20The%20car%20is%20partially%20in%20the%20garage%20and%20the%20area%20appears%20peaceful.\">Google’s Nest</a>, and <a href=\"https://www.theverge.com/2024/9/24/24252584/arlo-secure-5-cameras-recognize-people-vehicles\">(to some extent) Arlo</a> provide similar AI summarization features for their own cameras, but Wyze’s video-to-text alerts seem to be the only service that specifies detail like color in its descriptions.</p>\n<p id=\"g1Zb9s\"> </p>\n<figure class=\"e-image\">\n        <img alt=\"A screenshot of a Wyze Camera recording, with a Descriptive Alert notification about a delivery driver dropping packages onto the doorstep.\" src=\"https://cdn.vox-cdn.com/thumbor/iU2lWJxrX1lM-WKqP-4ox6aa7kI=/400x0/filters:no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/25830871/Wyze_Descriptive_Alert_example.jpg\" />\n      <cite>Image: Wyze</cite>\n      <figcaption><em>Here’s an example showing the new alert alongside the footage that’s being described.</em></figcaption>\n  </figure>\n<p id=\"SKnxXm\">Wyze’s Descriptive Alerts are available to <a href=\"https://go.redirectingat.com?id=66960X1514734&amp;xs=1&amp;url=https%3A%2F%2Fwww.wyze.com%2Fproducts%2Fcam-unlimited-pro&amp;referrer=theverge.com&amp;sref=https%3A%2F%2Fwww.theverge.com%2F2025%2F1%2F14%2F24343388%2Fwyze-security-cameras-ai-descriptive-alerts-cam-unlimited-pro\" rel=\"sponsored nofollow noopener\" target=\"_blank\">Cam Unlimited Pro members</a> — a new $19.99 per month (or $199.99 per year) subscription that bundles other features like facial recognition, <a href=\"https://www.theverge.com/2024/8/29/24231371/wyze-ai-search-camera-footage\">searching videos using descriptive keywords</a>, and simultaneously viewing live feeds from multiple Wyze cameras. The Cam Unlimited Pro subscription will also include 60 days of cloud storage, though Wyze says this won’t be available until “Spring 2025.” </p>\n<p id=\"8mtc31\">Just remember, Wyze cameras have suffered from <a href=\"https://www.theverge.com/2024/2/16/24075369/wyze-security-camera-stranger-feeds-glitch\">serious security and privacy issues</a> in the past. Choose wisely.</p>",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "6d8c21f2-b79a-40ee-a8d8-39f82e3a2f2a"
+      },
+      {
+        "date": "2025-01-19T08:00:00",
+        "source": "https://theverge.com/rss/index.xml",
+        "title": "The tech to build the holodeck",
+        "summary": "<figure>\n      <img alt=\"Digital photo illustration of Gaussian splats creating a bouquet of tulips in a 3D space.\" src=\"https://cdn.vox-cdn.com/thumbor/tLAGQRApBQvw1xSUlR4JCFWQy-w=/0x0:2040x1360/1310x873/cdn.vox-cdn.com/uploads/chorus_image/image/73855942/257473_Gaussian_splats__CVirginia.0.jpg\" />\n        <figcaption>Image: Cath Virginia / The Verge, Getty Images</figcaption>\n    </figure>\n\n\n  <p>Gaussian splatting, a new way of capturing 3D content, is taking the AR / VR industry by storm — and could one day allow anyone to create photorealistic 3D worlds.</p>\n  <p><a href=\"https://www.theverge.com/2025/1/19/24345491/gaussian-splats-3d-scanning-scaniverse-niantic\">Read the full story at The Verge.</a></p>",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "67204193-9193-4a2d-bd88-f6fcf6399eb5"
+      },
+      {
+        "date": "2025-01-21T09:45:52",
+        "source": "https://theverge.com/rss/index.xml",
+        "title": "A24’s Opus blurs the line between fandom and faith in first trailer",
+        "summary": "<figure>\n      <img alt=\"A woman in a gray sweater sitting in a dinner room and looking suspiciously over her left shoulder.\" src=\"https://cdn.vox-cdn.com/thumbor/jwGX4rUdZmHpLPqf4ggbDspzuCM=/371x0:2927x1704/1310x873/cdn.vox-cdn.com/uploads/chorus_image/image/73858966/https___cdn.sanity.io_images_xq1bjtf4_production_5cf1779e79582552b3934d78d2a4bc8e0b6ceaed_3840x1704.0.jpg\" />\n        <figcaption>A24</figcaption>\n    </figure>\n\n  <p id=\"DgF4Ij\">While intimate meet and greets with music stars can feel almost like spiritual experiences, the first trailer for <a href=\"https://www.theverge.com/2024/12/12/24319691/a24-to-the-max\">A24</a>’s <em>Opus </em>is a reminder to never meet your heroes.</p>\n<p id=\"kzuc8I\">From writer / director Mark Anthony Green, <em>Opus </em>follows music journalist Ariel Ecton (Ayo Edebiri) hunt down the story of a lifetime. Ariel is as shocked as anyone when she hears that eclectic super star Alfred Moretti (John Malkovich) has emerged from his compound for the first time in three decades to share new music with a select group of celebrities like sex symbol Clara (Juliette Lewis) and seasoned entertainment media folks like Stan (Murray Bartlett). </p>\n<p id=\"IYLu1s\">Because she’s a younger writer, Ariel assumes that she’ll be hearing Moretti’s latest once it’s released to the general public. But when Ariel directly receives an invitation to spend the weekend at Moretti’s, it’s clear that he very much wants her specifically to get a taste of what he’s been working on.</p>\n<p id=\"QKLT75\">Though everyone expects to see some peculiar things on Moretti’s property, Ariel is understandably taken aback in <em>Opus</em>’ new trailer as she sees things that definitely make it seem like one of her idols has been running a cult with himself as its figurehead. Between the trailer’s shots of Moretti’s confused / alarmed house guests and Ariel running in terror, <em>Opus </em>sort of looks like it might be a musical answer to <a href=\"https://www.polygon.com/reviews/23373306/the-menu-review-ralph-fiennes-anya-taylor-joy\">Mark Mylod’s <em>The Menu</em></a><em>.</em></p>\n<p id=\"PfQLxH\">And it feels like the movie might be one of 2025’s first disturbing thrillers when <em>Opus </em>hits theaters on March 14th.</p>",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "f4a5a777-0c06-4168-9352-b74c057e9b03"
+      },
+      {
+        "date": "2025-01-21T17:44:23",
+        "source": "https://theverge.com/rss/index.xml",
+        "title": "Meta’s next smart glasses may be with Oakley",
+        "summary": "<figure>\n      <img alt=\"Washington Nationals v Miami Marlins\" src=\"https://cdn.vox-cdn.com/thumbor/ye7uhCHLcXd3_HohN7K6sD8LYHs=/4x0:4636x3088/1310x873/cdn.vox-cdn.com/uploads/chorus_image/image/73859901/1208819003.0.jpg\" />\n        <figcaption><em>Oakleys are considered stylish and popular with athletes — which is probably why Meta’s keen to partner.</em> | Photo by Mark Brown/Getty Images</figcaption>\n    </figure>\n\n  <p id=\"PUH1ia\">Meta may be releasing new Oakley-branded smart glasses later this year, according to a new <a href=\"https://www.bloomberg.com/news/articles/2025-01-21/meta-hardware-plans-oakley-and-ar-like-glasses-apple-watch-and-airpods-rivals\"><em>Bloomberg</em></a> report. </p>\n<p id=\"FPWp5B\">The Oakley-branded glasses, internally referred to as “Supernova 2”, would be based on the brand’s <a href=\"https://go.redirectingat.com?id=66960X1514734&amp;xs=1&amp;url=https%3A%2F%2Fwww.oakley.com%2Fen-us%2Fproduct%2FW0OO9403&amp;referrer=theverge.com&amp;sref=https%3A%2F%2Fwww.theverge.com%2F2025%2F1%2F21%2F24348949%2Fmetas-next-smart-glasses-may-be-with-oakley\" rel=\"sponsored nofollow noopener\" target=\"_blank\">Sphaera</a> glasses. Instead of housing the cameras on the side, the Supernova 2 would shift the camera to the center of the frame. The idea is to appeal to cyclists and other outdoor athletes. The report didn’t detail any other potential features, though the Oakley glasses would ostensibly have similar features to the current <a href=\"https://www.theverge.com/23922425/ray-ban-meta-smart-glasses-review\">Ray-Ban Meta glasses</a>. </p>\n<div class=\"c-float-left c-float-hang\"><aside id=\"G69z00\"><div></div></aside></div>\n<p id=\"fUVV4M\">Oakley, like Ray-Bans, are a subsidiary of eyewear giant EssilorLuxottica. The move to expand Meta’s tech to other brands under EssilorLuxottica’s umbrella is a savvy one. While the Ray-Ban Meta smart glasses are good for discreet, everyday wear, they’re a bit heavy for endurance sports and lack certain features like polarized lenses for better visibility. Oakleys are also considered stylish and popular among professional athletes. Conceptually, they’re similar to the now discontinued <a href=\"https://www.theverge.com/22351451/bose-frames-tempo-audio-sunglasses-review-features\">Bose Frames Tempo</a>, which allowed athletes to have open-ear audio with polarized lenses in a relatively light form factor. That said, if the goal is to appeal to athletes, Meta and Oakley will likely have to address factors like weight, sweat resistance, and battery life. </p>\n<p id=\"KqCoNM\">The report also notes that Meta plans on launching a higher-end version of its current Ray-Ban glasses that include a display capable of delivering notifications, running simple apps, and previewing photos.</p>",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "2ecb92e6-2fb6-4fb8-9744-25e4cc1cc992"
+      },
+      {
+        "date": "2025-01-24T18:44:05",
+        "source": "https://theverge.com/rss/index.xml",
+        "title": "Apple makes a change to its AI team and plans Siri upgrades",
+        "summary": "<figure>\n      <img alt=\"Vector illustration of the Apple logo.\" src=\"https://cdn.vox-cdn.com/thumbor/1Kht1vImsFQkmv_2YdixSoJQFyQ=/0x0:2040x1360/1310x873/cdn.vox-cdn.com/uploads/chorus_image/image/73866757/STK071_APPLE_E.0.jpg\" />\n        <figcaption>Image: Cath Virginia / The Verge</figcaption>\n    </figure>\n\n  <p id=\"NjLWh8\">Apple is making an executive change to try and improve its AI efforts and Siri. Kim Vorrath, who recently helped get the Vision Pro software out the door and has been at Apple for 36 years, has been brought over to Apple’s artificial intelligence and machine learning division and will serve as a “top deputy” to AI boss John Giannandrea, <a href=\"https://www.bloomberg.com/news/articles/2025-01-24/apple-enlists-company-veteran-kim-vorrath-to-help-fix-ai-and-siri?srnd=undefined\"><em>Bloomberg</em> reports</a>.</p>\n<p id=\"V3tdY9\">The company made a big splash about its AI / Apple Intelligence efforts at WWDC last year, but they haven’t had the same impact as things like OpenAI’s ChatGPT or Google’s Gemini. Apple has also been slowly <a href=\"https://www.theverge.com/2024/10/28/24279804/apple-intelligence-ios-18-1-siri-ai\">rolling</a> <a href=\"https://www.theverge.com/2024/12/12/24318840/ios-18-2-apple-intelligence-chatgpt-genmoji-image-playground\">out</a> what it announced, and a big Siri upgrade that <a href=\"https://www.theverge.com/2024/6/10/24175405/wwdc-apple-ai-news-features-ios-18-macos-15-iphone-ipad-mac\">lets it understand</a> what’s happening on your screen and take action <a href=\"https://www.theverge.com/2024/7/7/24193619/apple-intelligence-better-siri-ios-18-4-spring-public-launch\">may not arrive until iOS 18.4</a>. And the company’s AI-powered news notification summaries will be <a href=\"https://www.theverge.com/2025/1/6/24337681/apple-intelligence-summary-bbc-news-luigi-mangione-response\">put on pause with iOS 18.3</a> after criticism that <a href=\"https://www.theverge.com/2025/1/6/24337681/apple-intelligence-summary-bbc-news-luigi-mangione-response\">the summaries were incorrect</a>.</p>\n<p id=\"CMYpsO\">By bringing on Vorrath, whose resume at Apple includes work on the original iPhone software group, over to the AI team, it appears Apple wants to bring more rigor to Apple’s AI development. It also indicates that Apple may see AI as a bigger deal for its future <a href=\"https://www.theverge.com/24303262/apple-vision-pro-vr-mainstream-meta-glasses\">than the Vision Pro</a>.</p>\n<p id=\"XYKDTP\"><em>Bloomberg</em> also reports that “the artificial intelligence group is focused on revamping the underlying infrastructure of Siri and improving the company’s in-house AI models” this year, per a memo from Giannandrea.</p>",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "5272a87c-b921-4040-924a-d7c47983c0f2"
+      },
+      {
+        "date": "2025-01-26T08:00:00",
+        "source": "https://theverge.com/rss/index.xml",
+        "title": "Live AI on Meta’s smart glasses is a solution looking for a problem",
+        "summary": "<figure>\n      <img alt=\"Close-up of Ray-Ban Meta smart glasses on an illuminated surface\" src=\"https://cdn.vox-cdn.com/thumbor/vxgsEBV6OQHtykcXlZigWWfML_o=/0x0:2040x1360/1310x873/cdn.vox-cdn.com/uploads/chorus_image/image/73868676/236834_Ray_Ban_Meta_Smart_Glasses_AKrales_0818.0.jpg\" />\n        <figcaption><em>It can feel magical when it works, but often Live AI feels more like Captain Obvious.</em> | Photo by Amelia Holowaty Krales / The Verge</figcaption>\n    </figure>\n\n\n  <p>Live AI is neat, but the problem is knowing when (and <em>why</em>) you’d want to use it.</p>\n  <p><a href=\"https://www.theverge.com/2025/1/26/24351264/live-ai-ray-ban-meta-smart-glasses-wearables\">Read the full story at The Verge.</a></p>",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "a0d6633d-af6f-48a7-92da-454c46cd6206"
+      },
+      {
+        "date": "2025-01-26T08:00:00",
+        "source": "https://theverge.com/rss/index.xml",
+        "title": "Live AI on Meta’s smart glasses is a solution looking for a problem",
+        "summary": "<figure>\n      <img alt=\"Close-up of Ray-Ban Meta smart glasses on an illuminated surface\" src=\"https://cdn.vox-cdn.com/thumbor/vxgsEBV6OQHtykcXlZigWWfML_o=/0x0:2040x1360/1310x873/cdn.vox-cdn.com/uploads/chorus_image/image/73868676/236834_Ray_Ban_Meta_Smart_Glasses_AKrales_0818.0.jpg\" />\n        <figcaption><em>It can feel magical when it works, but often Live AI feels more like Captain Obvious.</em> | Photo by Amelia Holowaty Krales / The Verge</figcaption>\n    </figure>\n\n\n  <p>Live AI is neat, but the problem is knowing when (and <em>why</em>) you’d want to use it.</p>\n  <p><a href=\"https://www.theverge.com/2025/1/26/24351264/live-ai-ray-ban-meta-smart-glasses-wearables\">Read the full story at The Verge.</a></p>",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "ab04e878-6541-496f-895e-84a32f130b56"
+      },
+      {
+        "date": "2025-01-14T10:39:30",
+        "source": "https://asiatimes.com/feed",
+        "title": "Surveillance tech is changing our behavior – and our brains",
+        "summary": "<figure><img alt=\"\" class=\"attachment-rss-image-size size-rss-image-size wp-post-image\" height=\"681\" src=\"https://i0.wp.com/asiatimes.com/wp-content/uploads/2025/01/Surveillance-Technology-Big-Brother-AI.jpg?fit=1024%2C681&amp;quality=89&amp;ssl=1\" width=\"1024\" /></figure>\n<p>From self-service checkouts to public streets to stadiums – surveillance technology is everywhere. This pervasive monitoring is often justified in the name of safety and security. But our recent study, published in Neuroscience of Consciousness, reveals a disturbing side effect. Surveillance isn’t just changing our behavior – it’s altering how our brains process information, operating [&#8230;]</p>\n<p>The post <a href=\"https://asiatimes.com/2025/01/surveillance-tech-is-changing-our-behavior-and-our-brains/\">Surveillance tech is changing our behavior – and our brains</a> appeared first on <a href=\"https://asiatimes.com\">Asia Times</a>.</p>",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "144aace9-ddaf-4979-9584-d6e85eae8e07"
+      },
+      {
+        "date": "2025-01-14T10:39:30",
+        "source": "https://asiatimes.com/feed",
+        "title": "Surveillance tech is changing our behavior – and our brains",
+        "summary": "<figure><img alt=\"\" class=\"attachment-rss-image-size size-rss-image-size wp-post-image\" height=\"681\" src=\"https://i0.wp.com/asiatimes.com/wp-content/uploads/2025/01/Surveillance-Technology-Big-Brother-AI.jpg?fit=1024%2C681&amp;quality=89&amp;ssl=1\" width=\"1024\" /></figure>\n<p>From self-service checkouts to public streets to stadiums – surveillance technology is everywhere. This pervasive monitoring is often justified in the name of safety and security. But our recent study, published in Neuroscience of Consciousness, reveals a disturbing side effect. Surveillance isn’t just changing our behavior – it’s altering how our brains process information, operating [&#8230;]</p>\n<p>The post <a href=\"https://asiatimes.com/2025/01/surveillance-tech-is-changing-our-behavior-and-our-brains/\">Surveillance tech is changing our behavior – and our brains</a> appeared first on <a href=\"https://asiatimes.com\">Asia Times</a>.</p>",
+        "read": [],
+        "label": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a",
+        "id": "6cbcfad0-c47d-4a91-8da9-4e09f3599aad"
+      }
+    ],
+    "id": "2a42dc43-2200-431c-adc8-ce9e2b2c8d4a"
+  },
+  {
+    "label_title": "TikTok Exit Threatens Creator Economy",
+    "label_summary": "Potential removal or decline of TikTok is prompting creators and influencers to warn of lost income and audience reach, with many skeptical that Meta or other incumbents can replicate TikTok’s discovery and monetization dynamics. Startups (e.g., Tilted) are already raising funds to capture displaced creators, while influencers resist moving to Meta, underscoring a likely short- to medium-term shakeup in creator revenue streams and where attention (and ad dollars) flows.\nWhy it matters: shifts in platform availability or audience distribution can reallocate advertising spend, change marketing effectiveness for brands, and modestly alter demand for digital infrastructure and services that underpin large-scale video and streaming platforms.",
+    "read": [],
+    "urgency": 6,
+    "relevancy_port1": 2,
+    "relevancy_port2": 5,
+    "relevancy_port3": 3,
+    "reasoning_portfolios": {
+      "port_1": "Low relevance: NVDA/SMCI/VRT provide infrastructure for compute and data centers, but a TikTok exit primarily redistributes social traffic rather than materially reducing long-term infrastructure demand; choose lower score absent clear shutdown of major platform-level compute workloads.",
+      "port_2": "Moderate relevance: MSFT/AMZN/GOOGL operate or could benefit from alternative video/social/ad channels (YouTube/Prime-related properties, cloud services, advertising platforms); user and ad-share shifts could affect revenue and strategic positioning.",
+      "port_3": "Low-moderate relevance: KO and PG rely on social platforms for marketing and short-form trends that can drive demand, so changes matter for ad strategy and brand engagement; WM (waste services) is essentially unrelated, pulling the portfolio relevance down."
+    },
+    "count": 8,
+    "children": [
+      {
+        "date": "2025-01-19T04:19:41",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/technology.xml",
+        "title": "What if No One Misses TikTok?",
+        "summary": "TikTok’s cultural footprint in America is huge. Why is its disappearance being met with a shrug?",
+        "read": [],
+        "label": "c84f734d-4b3c-48da-afd9-76fa1de0f1de",
+        "id": "4e20c68d-b5fe-4e31-a0a2-491cbf01becd"
+      },
+      {
+        "date": "2025-01-17T21:09:47",
+        "source": "https://www.cbsnews.com/latest/rss/moneywatch",
+        "title": "If TikTok goes, so will livelihoods: \"We'd have to completely rebuild\"",
+        "summary": "Experts say no other app offers the same financial opportunities as TikTok, while creators fear loss of income if it disappears.",
+        "read": [],
+        "label": "c84f734d-4b3c-48da-afd9-76fa1de0f1de",
+        "id": "94625f1a-99ee-4e8e-af11-e7b70b872d60"
+      },
+      {
+        "date": "2025-01-17T21:09:47",
+        "source": "https://www.cbsnews.com/latest/rss/moneywatch",
+        "title": "If TikTok goes, so will livelihoods: \"We'd have to completely rebuild\"",
+        "summary": "Experts say no other app offers the same financial opportunities as TikTok, while creators fear loss of income if it disappears.",
+        "read": [],
+        "label": "c84f734d-4b3c-48da-afd9-76fa1de0f1de",
+        "id": "62c11ed0-48ce-4391-8195-f2438ac38c13"
+      },
+      {
+        "date": "2025-01-17T21:09:47",
+        "source": "https://www.cbsnews.com/latest/rss/moneywatch",
+        "title": "If TikTok goes, so will livelihoods: \"We'd have to completely rebuild\"",
+        "summary": "Experts say no other app offers the same financial opportunities as TikTok, while creators fear loss of income if it disappears.",
+        "read": [],
+        "label": "c84f734d-4b3c-48da-afd9-76fa1de0f1de",
+        "id": "eef21eb2-95e8-442e-a057-4bc86ba41dd2"
+      },
+      {
+        "date": "2025-01-17T21:09:47",
+        "source": "https://www.cbsnews.com/latest/rss/moneywatch",
+        "title": "If TikTok goes, so will livelihoods: \"We'd have to completely rebuild\"",
+        "summary": "Experts say no other app offers the same financial opportunities as TikTok, while creators fear loss of income if it disappears.",
+        "read": [],
+        "label": "c84f734d-4b3c-48da-afd9-76fa1de0f1de",
+        "id": "7c70fdcf-eaf7-4c1c-9bad-4ac00e801f51"
+      },
+      {
+        "date": "2025-01-17T21:09:47",
+        "source": "https://www.cbsnews.com/latest/rss/moneywatch",
+        "title": "If TikTok goes, so will livelihoods: \"We'd have to completely rebuild\"",
+        "summary": "Experts say no other app offers the same financial opportunities as TikTok, while creators fear loss of income if it disappears.",
+        "read": [],
+        "label": "c84f734d-4b3c-48da-afd9-76fa1de0f1de",
+        "id": "8cd12a78-0c71-423f-8068-592376e87d49"
+      },
+      {
+        "date": "2025-01-16T20:06:44",
+        "source": "https://fortune.com/feed/",
+        "title": "TikTok influencers resist a move to Meta under the app’s looming ban. ‘The vibes are not the same’",
+        "summary": "There’s some apprehension about audience-building and monetization options on Meta.",
+        "read": [],
+        "label": "c84f734d-4b3c-48da-afd9-76fa1de0f1de",
+        "id": "1d2ea63e-9b3d-40f2-9113-f3a467d15caa"
+      },
+      {
+        "date": "2025-01-17T18:00:00",
+        "source": "https://venturebeat.com/feed/",
+        "title": "Gamer-focused Tilted social app raises $1.3M to save TikTok’s creator economy",
+        "summary": "TikTok might be going away soon, but Tilted hopes to launch a gamer-focused social app on iOS to help save the creator economy in the U.S.",
+        "read": [],
+        "label": "c84f734d-4b3c-48da-afd9-76fa1de0f1de",
+        "id": "4c5cf53c-98b0-4ce8-b971-7978e6a4aab7"
+      }
+    ],
+    "id": "c84f734d-4b3c-48da-afd9-76fa1de0f1de"
+  },
+  {
+    "label_title": "Trump's Crypto Executive Order",
+    "label_summary": "Multiple outlets report President Trump signed an executive order and set up a working group to promote digital assets, evaluate a possible federal crypto/Bitcoin stockpile, and appoint a crypto/AI czar (David Sacks). The news has already coincided with price moves (e.g., XRP surge) and signals a clear pro-crypto pivot from the administration.\n\nWhy it matters: federal-level support and a formal regulatory working group can drive regulatory clarity, onshore business activity, and higher trading volumes — boosting exchanges, market-makers, cloud and infrastructure demand — while also creating short-term volatility and reputational/policy risks for the industry.",
+    "read": [],
+    "urgency": 8,
+    "relevancy_port1": 5,
+    "relevancy_port2": 5,
+    "relevancy_port3": 1,
+    "reasoning_portfolios": {
+      "port_1": "Moderate relevance: VRT (market-maker) stands to benefit from increased crypto trading volumes and volatility; NVDA and SMCI could see incremental demand for GPUs/servers if crypto firms expand infrastructure, but that is uncertain (assume limited mining-driven GPU demand).",
+      "port_2": "Moderate relevance: MSFT, AMZN, GOOGL could gain cloud/custody/service opportunities if crypto activity and onshoring increase, but impacts are indirect and dependent on implementation and enterprise uptake.",
+      "port_3": "Negligible relevance: Consumer staples (KO, PG) and waste management (WM) are largely unrelated to crypto policy; minimal direct business impact."
+    },
+    "count": 23,
+    "children": [
+      {
+        "date": "2025-01-23T23:43:15",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/business.xml",
+        "title": "Trump Issues Executive Order to Boost Cryptocurrency Industry",
+        "summary": "The order signaled that the president intends to promote an industry that faced scrutiny during the Biden administration — and that he has a personal stake in.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "4c392a67-c4d5-4220-95a3-16f1e637d4fd"
+      },
+      {
+        "date": "2025-01-24T21:34:52",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/business.xml",
+        "title": "How to Invest During a Presidency With a Deep Devotion to Profits",
+        "summary": "Big business has an inside track in the second Trump presidency, and people with a stake in those businesses have reason to rejoice, our columnist writes.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "08e01fad-dab4-4221-808d-b6e5adb35815"
+      },
+      {
+        "date": "2025-01-23T23:43:15",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/business.xml",
+        "title": "Trump Issues Executive Order to Boost Cryptocurrency Industry",
+        "summary": "The order signaled that the president intends to promote an industry that faced scrutiny during the Biden administration — and that he has a personal stake in.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "43f4da66-776f-4bb0-91cc-4ea945bf0a6d"
+      },
+      {
+        "date": "2025-01-25T17:26:01",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/business.xml",
+        "title": "Trump’s Crypto Venture Divides the Industry He Aims to Support",
+        "summary": "The president’s promotion of a speculative digital coin left some crypto investors feeling blindsided, while others saw it as a gimmick that undermined the industry’s credibility.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "927feb39-e38d-4f1e-aa8e-705b33d9414a"
+      },
+      {
+        "date": "2025-01-24T21:34:52",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/business.xml",
+        "title": "How to Invest During a Presidency With a Deep Devotion to Profits",
+        "summary": "Big business has an inside track in the second Trump presidency, and people with a stake in those businesses have reason to rejoice, our columnist writes.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "82773273-6540-4988-92df-7e2b77e79dae"
+      },
+      {
+        "date": "2025-01-23T23:43:15",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/business.xml",
+        "title": "Trump Issues Executive Order to Boost Cryptocurrency Industry",
+        "summary": "The order signaled that the president intends to promote an industry that faced scrutiny during the Biden administration — and that he has a personal stake in.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "4b762d6d-c168-422b-a426-3258f60e93ef"
+      },
+      {
+        "date": "2025-01-16T16:14:27",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/dealbook.xml",
+        "title": "A First-Day Trump Order: A Federal Stockpile of Bitcoin?",
+        "summary": "The cryptocurrency industry has pushed President-elect Donald J. Trump to establish one, creating real political momentum behind the plan.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "f8f8e10a-1ff8-4258-8f6c-6f665d1045c9"
+      },
+      {
+        "date": "2025-01-23T23:43:15",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/technology.xml",
+        "title": "Trump Issues Executive Order to Boost Cryptocurrency Industry",
+        "summary": "The order signaled that the president intends to promote an industry that faced scrutiny during the Biden administration — and that he has a personal stake in.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "5530d8a9-834d-4b25-80a5-157d261a9051"
+      },
+      {
+        "date": "2025-01-20T16:24:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Breaking down Trump's expected economic impact",
+        "summary": "President Trump's economic impact could be determined by his take on big tech, immigration policies and cryptocurrencies. CBS MoneyWatch correspondent Kelly O'Grady reports.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "284af3c5-5cc9-46ea-9c31-e476a0c99628"
+      },
+      {
+        "date": "2025-01-24T18:57:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Anthony Scaramucci discusses Trump's cryptocurrency push",
+        "summary": "Anthony Scaramucci's time as White House communications director for the first Trump administration was short yet memorable, becoming a vocal critic of the president in the years since. Scaramucci joins \"America Decides\" to discuss cryptocurrency, Elon Musk and all things Trump.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "4091becf-48a3-4d22-b567-8405a98bc00c"
+      },
+      {
+        "date": "2025-01-24T20:23:49",
+        "source": "https://moxie.foxbusiness.com/google-publisher/latest.xml",
+        "title": "Trump week one: Bank of America diss; AI, crypto boost; and stock records",
+        "summary": "Trump hit the ground running in the first few days of his term, lighting up the energy, crypto and artificial intelligence industries. He also lit a fire under federal workers.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "721332d8-b5d3-4b4f-ade1-67209531cbcc"
+      },
+      {
+        "date": "2025-01-23T20:02:38",
+        "source": "https://moxie.foxbusiness.com/google-publisher/latest.xml",
+        "title": "Trump crypto czar David Sacks touts president's executive order, says Biden drove industry offshore",
+        "summary": "David Sacks hails President Donald Trump&apos;s executive order on crypto while slamming the Biden administration&apos;s &quot;prosecution and persecution&quot; of the industry.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "bc26a813-f548-42cd-a8a0-c3f52c55e32e"
+      },
+      {
+        "date": "2025-01-23T22:01:35",
+        "source": "https://techcrunch.com/feed/",
+        "title": "Trump orders formation of working group to evaluate crypto stockpile",
+        "summary": "<p>President Donald Trump on Thursday ordered the formation of a working group to propose federal regulations for &#8220;digital assets&#8221; &#8212; including cryptocurrencies, digital tokens, and stablecoins &#8212; and evaluate a national crypto stockpile. Ex-PayPal COO and founder of VC firm Craft Ventures David Sacks, Trump&#8217;s pick for crypto an AI &#8220;czar,&#8221; will lead the working [&#8230;]</p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "c66f6633-467e-4f52-bc43-b2a04688c070"
+      },
+      {
+        "date": "2025-01-16T21:57:23",
+        "source": "https://fortune.com/feed/",
+        "title": "Ripple’s XRP breaks $3 for first time since 2018, nears all-time high",
+        "summary": "XRP surged 12% on speculation that Trump’s administration will support Ripple and the crypto industry.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "dc585271-e7e1-4478-bff3-3c8c269f544f"
+      },
+      {
+        "date": "2025-01-16T11:00:00",
+        "source": "https://www.wired.com/feed/rss",
+        "title": "The First Bitcoin President? Tracing Trump’s Crypto Connections",
+        "summary": "Crypto execs funneled millions in donations to swing this election, and now their man is in charge. Here’s how Donald Trump’s “crypto cabinet” could shape the next four years.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "55f94f2f-f798-482c-9a85-28dd48b95edd"
+      },
+      {
+        "date": "2025-01-16T11:00:00",
+        "source": "https://www.wired.com/feed/rss",
+        "title": "The First Bitcoin President? Tracing Trump’s Crypto Connections",
+        "summary": "Crypto execs funneled millions in donations to swing this election, and now their man is in charge. Here’s how Donald Trump’s “crypto cabinet” could shape the next four years.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "3cd6dd92-6916-4b95-b0be-88f61bd4d6b3"
+      },
+      {
+        "date": "2025-01-16T11:00:00",
+        "source": "https://www.wired.com/feed/rss",
+        "title": "The First Bitcoin President? Tracing Trump’s Crypto Connections",
+        "summary": "Crypto execs funneled millions in donations to swing this election, and now their man is in charge. Here’s how Donald Trump’s “crypto cabinet” could shape the next four years.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "ce1c61b2-c12c-4384-93d2-edd6ae44eb0f"
+      },
+      {
+        "date": "2025-01-23T22:11:38",
+        "source": "https://www.wired.com/feed/rss",
+        "title": "The Trump Cryptonaissance Is Here",
+        "summary": "US President Donald Trump has wasted no time in demonstrating his fealty to the cryptocurrency industry that backed his 2024 election ambitions. The alliance could herald a golden dawn for crypto, industry figures believe.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "bb870b92-4f49-4d78-b656-514ede399b12"
+      },
+      {
+        "date": "2025-01-23T22:11:38",
+        "source": "https://www.wired.com/feed/rss",
+        "title": "The Trump Cryptonaissance Is Here",
+        "summary": "US President Donald Trump has wasted no time in demonstrating his fealty to the cryptocurrency industry that backed his 2024 election ambitions. The alliance could herald a golden dawn for crypto, industry figures believe.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "34a7c4e6-bf97-480d-a16f-cc21bc8c016b"
+      },
+      {
+        "date": "2025-01-23T22:11:38",
+        "source": "https://www.wired.com/feed/rss",
+        "title": "The Trump Cryptonaissance Is Here",
+        "summary": "US President Donald Trump has wasted no time in demonstrating his fealty to the cryptocurrency industry that backed his 2024 election ambitions. The alliance could herald a golden dawn for crypto, industry figures believe.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "2dd65064-cf40-4429-b79f-1dc648f73c49"
+      },
+      {
+        "date": "2025-01-23T22:11:38",
+        "source": "https://www.wired.com/feed/rss",
+        "title": "The Trump Cryptonaissance Is Here",
+        "summary": "US President Donald Trump has wasted no time in demonstrating his fealty to the cryptocurrency industry that backed his 2024 election ambitions. The alliance could herald a golden dawn for crypto, industry figures believe.",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "eaf37ab4-ca79-421a-93b8-5eca6f2f9acf"
+      },
+      {
+        "date": "2025-01-25T04:35:13",
+        "source": "https://feeds.feedburner.com/CoinDesk",
+        "title": "State of Crypto: Trump's Second First Week",
+        "summary": "(Tabrez Syed/Unsplash)",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "89c107b6-2bae-480e-acb2-39f26b45ad29"
+      },
+      {
+        "date": "2025-01-23T20:34:03",
+        "source": "https://feeds.feedburner.com/CoinDesk",
+        "title": "Trump Issues Crypto Executive Order to Pave U.S. Digital Assets Path",
+        "summary": "Donald Trump",
+        "read": [],
+        "label": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6",
+        "id": "4dbc6d70-d90f-4b96-94bc-786bf3505980"
+      }
+    ],
+    "id": "a0e3aef4-580a-48d8-a1c2-3b8318e24de6"
+  },
+  {
+    "label_title": "Sports, Media, and Tech Deals",
+    "label_summary": "A cluster of stories highlights shifting commercial and cultural dynamics in sports: Victor Wembanyama emerging as a franchise NBA face, Saudi-linked investors nearing a >$1B stake in streaming platform DAZN, and Tom Brady’s Autograph merging with digital fitness company Future — alongside several human-interest pieces boosting sports media engagement. \n\nWhy it matters: large capital flows and strategic tie-ups (sovereign-backed investment in DAZN; athlete-driven NFT/fitness merger) signal growing monetization and tech integration in sports media and fan engagement. That has knock-on implications for streaming rights, cloud infrastructure, advertising and brand sponsorships even as cultural stories drive audience attention.",
+    "read": [],
+    "urgency": 6,
+    "relevancy_port1": 2,
+    "relevancy_port2": 5,
+    "relevancy_port3": 2,
+    "reasoning_portfolios": {
+      "port_1": "NVDA, SMCI, VRT are providers of hardware and infrastructure that could indirectly benefit from increased streaming/AI workloads, but none of the items indicate direct contracts or immediate demand changes. Lower score chosen assuming no confirmed vendor deals.",
+      "port_2": "MSFT, AMZN, GOOGL operate cloud, streaming and ad platforms that could compete for DAZN infrastructure or partner with new sports-tech ventures (Autograph/Future). Moderate relevance because potential revenue/opportunity exists, but no announced cloud deals—score reflects assumed uncertainty.",
+      "port_3": "KO, PG, WM are consumer staples/utility-oriented; sports popularity can affect marketing and sponsorship opportunities for beverage and consumer brands but these articles are mostly media/ownership and human-interest stories with limited near-term impact. Waste management (WM) is largely unrelated."
+    },
+    "count": 9,
+    "children": [
+      {
+        "date": "2025-01-23T15:12:31",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/business.xml",
+        "title": "Victor Wembanyama Prepares to Become ‘Genuine’ Face of the N.B.A.",
+        "summary": "As the league confronts a fast-approaching time without LeBron James, Stephen Curry and Kevin Durant, Victor Wembanyama has embraced the idea that he is the future.",
+        "read": [],
+        "label": "dd9394b1-e8dc-4219-a351-4029838cef13",
+        "id": "aa524a03-7abb-4e4a-8c61-977c0cc7d379"
+      },
+      {
+        "date": "2025-01-23T15:12:31",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/business.xml",
+        "title": "Victor Wembanyama Prepares to Become ‘Genuine’ Face of the N.B.A.",
+        "summary": "As the league confronts a fast-approaching time without LeBron James, Stephen Curry and Kevin Durant, Victor Wembanyama has embraced the idea that he is the future.",
+        "read": [],
+        "label": "dd9394b1-e8dc-4219-a351-4029838cef13",
+        "id": "367cfd9c-26ae-44e5-89d1-2f63fa719614"
+      },
+      {
+        "date": "2025-01-23T15:12:31",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/business.xml",
+        "title": "Victor Wembanyama Prepares to Become ‘Genuine’ Face of the N.B.A.",
+        "summary": "As the league confronts a fast-approaching time without LeBron James, Stephen Curry and Kevin Durant, Victor Wembanyama has embraced the idea that he is the future.",
+        "read": [],
+        "label": "dd9394b1-e8dc-4219-a351-4029838cef13",
+        "id": "4358fb11-97ff-41ea-a9a3-6df708238b31"
+      },
+      {
+        "date": "2025-01-14T23:28:31",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/dealbook.xml",
+        "title": "Saudi Arabia and Sports Network DAZN Close to Deal",
+        "summary": "A unit of the kingdom’s sovereign wealth fund would pay more than $1 billion to buy into DAZN, in the latest sign of its sports ambitions.",
+        "read": [],
+        "label": "dd9394b1-e8dc-4219-a351-4029838cef13",
+        "id": "d66457e1-17f2-43c5-b8f2-7ac5288f344d"
+      },
+      {
+        "date": "2025-01-15T20:00:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "\"Inner Excellence\" author on Eagles player going viral for reading his book on sidelines",
+        "summary": "Philadelphia Eagles wide receiver A.J. Brown went viral after reading \"Inner Excellence\" on the sidelines during last Sunday's playoff game. Now, the lifestyle book itself has taken off online as well. Author Jim Murphy joins \"The Daily Report\" to describe its sudden spike in popularity and what inspired him.",
+        "read": [],
+        "label": "dd9394b1-e8dc-4219-a351-4029838cef13",
+        "id": "2cb901b9-34a2-44a3-9d35-3215a9506502"
+      },
+      {
+        "date": "2025-01-17T19:48:48",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "How a blind college student became a radio broadcaster for an NBA G League team",
+        "summary": "Allan Wylie, a freshman sports communication major at Rowan University in New Jersey, is a color commentator for the Delaware Blue Coats of the NBA G League.",
+        "read": [],
+        "label": "dd9394b1-e8dc-4219-a351-4029838cef13",
+        "id": "446dbda3-6c13-4b6d-9a74-f19d32642b4b"
+      },
+      {
+        "date": "2025-01-17T19:39:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Blind college student chosen as color commentator for NBA G League team",
+        "summary": "At a basketball game for the Delaware Blue Coats of the NBA G League, alongside the radio play-by-play announcer, color commentator Allan Wylie calls them as he sees them -- even though he never sees them. Steve Hartman goes \"On the Road\" for a story about a young man who can teach us the difference between having sight and having vision.",
+        "read": [],
+        "label": "dd9394b1-e8dc-4219-a351-4029838cef13",
+        "id": "f6bbbb14-5141-4b1d-8b7e-6e06076a7c76"
+      },
+      {
+        "date": "2025-01-24T16:50:17",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Book excerpt: \"Paradise Bronx: The Life and Times of New York's Greatest Borough\"",
+        "summary": "New Yorker writer Ian Frazier takes readers on a twisty and entertaining tour of the Bronx's rich history, landscape and people.",
+        "read": [],
+        "label": "dd9394b1-e8dc-4219-a351-4029838cef13",
+        "id": "3398b3d6-9975-4055-9146-b675d273c9a7"
+      },
+      {
+        "date": "2025-01-23T20:06:50",
+        "source": "https://techcrunch.com/feed/",
+        "title": "Tom Brady’s Autograph merges with digital fitness company Future",
+        "summary": "<p>Autograph, the NFT company co-founded by Tom Brady, is merging with the digital fitness company Future. As part of the merger, Brady will join the board of directors of Future and serve as co-chair of the company.  Brady co-founded Autograph in 2021 to find ways to connect athletes and artists with fans, ultimately launching an [&#8230;]</p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "dd9394b1-e8dc-4219-a351-4029838cef13",
+        "id": "486131b1-7cfa-4480-b203-c4c6bc4e692b"
+      }
+    ],
+    "id": "dd9394b1-e8dc-4219-a351-4029838cef13"
+  },
+  {
+    "label_title": "AI Partnerships Reshape News Ecosystem",
+    "label_summary": "A wave of AI-industry deals and product moves — OpenAI funding Axios’ local expansion, Google partnering with The Associated Press to feed Gemini with real-time news, Anthropic adding source 'Citations', startups (Nexos.ai) targeting LLM production, and scrutiny over benchmarking and AI content mills — signal consolidation of AI firms into media, content licensing, and enterprise deployment. This matters because it accelerates demand for cloud and datacenter compute, raises licensing and regulatory risks around news/data usage, and surfaces reputational and ad-placement risks for publishers and advertisers.\n\nMarket impact is sectoral rather than systemic: platform/cloud providers and infrastructure vendors stand to gain from increased model deployment and data licensing, while publishers face revenue/ethics trade-offs and potential scrutiny. Expect greater commercial licensing activity, tighter scrutiny of AI funding relationships, and incremental demand for enterprise tooling that moves pilots into production.",
+    "read": [],
+    "urgency": 7,
+    "relevancy_port1": 8,
+    "relevancy_port2": 9,
+    "relevancy_port3": 2,
+    "reasoning_portfolios": {
+      "port_1": "High relevance: NVDA (GPU demand) and data-center vendors like SMCI and VRT benefit from increased AI model deployment, enterprise orchestration (Nexos.ai) and more production workloads. Assumes AI–media deals and new features drive sustained compute demand rather than short-lived experiments.",
+      "port_2": "Very high relevance: GOOGL directly (Gemini + AP, Google Cloud use cases), MSFT and AMZN exposed via AI product competition, cloud services, and content/licensing dynamics (OpenAI partnerships/legal spillovers). These moves shape platform data access and model competitiveness.",
+      "port_3": "Low relevance: Consumer staples (KO, PG) and WM have limited direct exposure. Indirect impacts possible via advertising placement risks or brand safety from AI-generated content, but material effects are unlikely in the near term. Choosing a conservative low score given uncertainty."
+    },
+    "count": 14,
+    "children": [
+      {
+        "date": "2025-01-26T17:01:23",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Aquarium welcomes baby shark after mystery pregnancy",
+        "summary": "The pup hatched in a tank housing two female sharks who hadn't been around any male sharks in over three years.",
+        "read": [],
+        "label": "cd03ee8a-891b-47a5-9257-f61d67fb8217",
+        "id": "5fef9d76-a6e1-4c38-b2c5-3627aebd15b7"
+      },
+      {
+        "date": "2025-01-15T19:33:59",
+        "source": "https://techcrunch.com/feed/",
+        "title": "OpenAI is bankrolling Axios’ expansion into four new markets",
+        "summary": "<p>OpenAI is getting into the local news game. Newsletter-based media organization Axios announced a partnership with OpenAI on Wednesday. As part of this three-year deal, the AI giant will fund Axios&#8217; expansion of its local newsletters into four new cities: Pittsburgh, Pennsylvania; Kansas City, Missouri; Boulder, Colorado; and Huntsville, Alabama. While OpenAI has inked content-sharing [&#8230;]</p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "cd03ee8a-891b-47a5-9257-f61d67fb8217",
+        "id": "f6457a5a-1c93-4513-893d-cd44c6a2ac21"
+      },
+      {
+        "date": "2025-01-15T16:57:48",
+        "source": "https://techcrunch.com/feed/",
+        "title": "Google inks deal with The Associated Press to bring more real-time info to Gemini",
+        "summary": "<p>In a bid to make its Gemini chatbot app more of a one-stop shop, Google says it&#8217;s working with The Associated Press to build &#8220;a feed of real-time information&#8221; in Gemini. Jaffer Zaidi, Google&#8217;s VP of global news partnerships, said that the goal is to &#8220;further enhance the usefulness of results&#8221; in the Gemini experience. [&#8230;]</p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "cd03ee8a-891b-47a5-9257-f61d67fb8217",
+        "id": "4308c795-37e5-4ea1-a0f1-63ae5057fe0c"
+      },
+      {
+        "date": "2025-01-15T19:33:59",
+        "source": "https://techcrunch.com/feed/",
+        "title": "OpenAI is bankrolling Axios’ expansion into four new markets",
+        "summary": "<p>OpenAI is getting into the local news game. Newsletter-based media organization Axios announced a partnership with OpenAI on Wednesday. As part of this three-year deal, the AI giant will fund Axios&#8217; expansion of its local newsletters into four new cities: Pittsburgh, Pennsylvania; Kansas City, Missouri; Boulder, Colorado; and Huntsville, Alabama. While OpenAI has inked content-sharing [&#8230;]</p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "cd03ee8a-891b-47a5-9257-f61d67fb8217",
+        "id": "5395451b-2c13-4ffb-b780-f883bc17cb6b"
+      },
+      {
+        "date": "2025-01-17T09:58:00",
+        "source": "https://techcrunch.com/feed/",
+        "title": "Nord Security founders launch Nexos.ai to help enterprises take AI projects from pilot to production",
+        "summary": "<p>A new AI orchestration startup from the founders of Lithuanian unicorn Nord Security is setting out to help enterprises put their AI projects into production, with an initial focus on bringing greater visibility, security and adaptability to large language models (LLMs). Nexos.ai, as the startup is called, is the handiwork of Tomas Okmanas (pictured above) [&#8230;]</p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "cd03ee8a-891b-47a5-9257-f61d67fb8217",
+        "id": "41157f12-1ad1-4f7a-b20b-edd602299241"
+      },
+      {
+        "date": "2025-01-19T19:58:27",
+        "source": "https://techcrunch.com/feed/",
+        "title": "AI benchmarking organization criticized for waiting to disclose funding from OpenAI",
+        "summary": "<p>An organization developing math benchmarks for AI didn&#8217;t disclose that it had received funding from OpenAI until relatively recently, drawing allegations of impropriety from some in the AI community. Epoch AI, a nonprofit primarily funded by Open Philanthropy, a research and grantmaking foundation, revealed on December 20 that OpenAI had supported the creation of FrontierMath. [&#8230;]</p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "cd03ee8a-891b-47a5-9257-f61d67fb8217",
+        "id": "59e873af-446c-4f57-b078-cb516ff0f3c6"
+      },
+      {
+        "date": "2025-01-23T20:53:35",
+        "source": "https://techcrunch.com/feed/",
+        "title": "Anthropic’s new Citations feature aims to reduce AI errors",
+        "summary": "<p>In an announcement perhaps timed to divert attention away from OpenAI&#8217;s Operator, Anthropic Thursday unveiled a new feature for its developer API called Citations, which lets devs &#8220;ground&#8221; answers from its Claude family of AI in source documents such as emails. Anthropic says Citations allows its AI models to provide detailed references to &#8220;the exact [&#8230;]</p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "cd03ee8a-891b-47a5-9257-f61d67fb8217",
+        "id": "8d5b47a5-889a-4339-a3f1-7929b24ee3b8"
+      },
+      {
+        "date": "2025-01-21T14:30:00",
+        "source": "https://venturebeat.com/feed/",
+        "title": "X Games will test AI from Google Cloud for judging snowboarding competitions",
+        "summary": "<p>Making its debut in Aspen, X Games will leverage AI technology from Google Cloud to enhance objectivity in subjectively judged sports. The aim is to deepen fan engagement, and provide valuable insights that resonate with both fans and athletes, said Jeremy Bloom, CEO of X Games and a veteran of the sports business, in an&#160;[&#8230;]\n</p>",
+        "read": [],
+        "label": "cd03ee8a-891b-47a5-9257-f61d67fb8217",
+        "id": "65a0c994-d4b6-419f-80b9-026bb44ef2dc"
+      },
+      {
+        "date": "2025-01-15T12:00:00",
+        "source": "https://www.wired.com/feed/rss",
+        "title": "That Sports News Story You Clicked on Could Be AI Slop",
+        "summary": "A new report, shared exclusively with WIRED, shows how an AI content mill with hundreds of sites managed to pull big-name advertisers into their schemes.",
+        "read": [],
+        "label": "cd03ee8a-891b-47a5-9257-f61d67fb8217",
+        "id": "c97a8b63-7d6b-47e7-9dc3-45e07ba88148"
+      },
+      {
+        "date": "2025-01-15T12:00:00",
+        "source": "https://www.wired.com/feed/rss",
+        "title": "That Sports News Story You Clicked on Could Be AI Slop",
+        "summary": "A new report, shared exclusively with WIRED, shows how an AI content mill with hundreds of sites managed to pull big-name advertisers into their schemes.",
+        "read": [],
+        "label": "cd03ee8a-891b-47a5-9257-f61d67fb8217",
+        "id": "37115254-dd55-4ca3-8b8e-371ccd377614"
+      },
+      {
+        "date": "2025-01-15T12:00:00",
+        "source": "https://www.wired.com/feed/rss",
+        "title": "That Sports News Story You Clicked on Could Be AI Slop",
+        "summary": "A new report, shared exclusively with WIRED, shows how an AI content mill with hundreds of sites managed to pull big-name advertisers into their schemes.",
+        "read": [],
+        "label": "cd03ee8a-891b-47a5-9257-f61d67fb8217",
+        "id": "087ea1c5-f740-450c-af36-99c28b2d4371"
+      },
+      {
+        "date": "2025-01-15T19:03:19",
+        "source": "https://www.engadget.com/rss.xml",
+        "title": "Google brings real-time information from The Associated Press to Gemini",
+        "summary": "<p>Google is partnering with The Associated Press to bring real-time information from the news agency to its Gemini app, the search giant <a href=\"https://blog.google/products/news/associated-press-gemini-app/\">announced on Wednesday</a>. The financial terms of the agreement were not disclosed. The deal builds on an existing partnership Google had with The Associated Press to source real-time information for its search engine. “This will be particularly helpful to [Gemini app] users looking for up-to-date information,” Google says of the deal.</p>\n<p>“AP and Google’s longstanding relationship is based on working together to provide timely, accurate news and information to global audiences,” said Kristin Heitmann, The Associated Press senior vice president and chief revenue officer.  “We are pleased Google recognizes the value of AP's journalism as well as our commitment to nonpartisan reporting, in the development of its generative AI products.”</p>\n<span id=\"end-legacy-contents\"></span><p>In 2023, The Associated Press was among the first news publishers to <a href=\"https://www.engadget.com/ap-and-openai-enter-into-two-year-partnership-to-help-train-algorithmic-models-183007344.html\">forge a partnership with an AI firm</a>, signing a two-year deal with OpenAI that gave the company access to select news content dating back to 1985. Since then, many other publishers have followed suit with their own agreements. In fact, just earlier today, Axios <a href=\"https://www.engadget.com/ai/axios-partners-with-openai-forgetting-the-scorpion-stung-the-frog-144242204.html\">announced</a> a three-year deal with OpenAI that will see the AI startup fund four new local newsrooms. Last year, OpenAI partnered with <em>People</em> publisher Dotdash Meredith, a deal that has since been reported to be worth at least <a href=\"https://www.engadget.com/ai/openai-will-pay-dotdash-meredith-at-least-16-million-per-year-to-license-its-content-191756662.html\">$16 million annually</a>.</p>\n<p><strong>Correction 6:23PM ET</strong>: A previous version of this article incorrectly stated that The Associated Press was following other publishers in signing agreements with AI firms. We regret the error.&nbsp;</p>This article originally appeared on Engadget at https://www.engadget.com/ai/google-brings-real-time-information-from-the-associated-press-to-gemini-190317150.html?src=rss",
+        "read": [],
+        "label": "cd03ee8a-891b-47a5-9257-f61d67fb8217",
+        "id": "ee699384-ce42-4655-a776-e3da685972e6"
+      },
+      {
+        "date": "2025-01-15T14:42:42",
+        "source": "https://www.engadget.com/rss.xml",
+        "title": "Axios partners with OpenAI, forgetting the scorpion stung the frog",
+        "summary": "<p><em>Axios</em> is <a href=\"https://www.axios.com/2025/01/15/open-ai-axios-local-newsrooms-funding-deal\">expanding its local newsletter presence</a> from 30 to 34 cities. The catch? OpenAI is funding it. In its continued pretense of benefiting newsrooms, <a href=\"https://openai.com/index/partnering-with-axios-expands-openai-work-with-the-news-industry/\">OpenAI has partnered with <em>Axios</em></a><em>&nbsp;</em>in a three-year deal to cover Pittsburgh, Pennsylvania; Kansas City, Missouri; Boulder, Colorado; and Huntsville, Alabama. What does OpenAI get in exchange for its funding? Oh, just the ability to use <em>Axios </em>content to answer users' questions.</p>\n<p>Like the close to 20 newsrooms that OpenAI has already partnered with, <em>Axios </em>seems to have forgotten that the scorpion did end up stinging the frog. Instead, we have this starry-eyed statement from <em>Axios </em>co-founder and CEO Jim VandeHei: &quot;We launched <em>Axios Local</em> nearly four years ago with the bold goal of bringing local news to communities across the country. OpenAI’s investment allows us to continue our expansion and aid us in bringing essential local news to deserving audiences.&quot;&nbsp;</p>\n<span id=\"end-legacy-contents\"></span><p><em>Axios </em>will be able to use OpenAI's technology to create its own AI-powered systems and products. However, VandeHei issued a memo to employees stating the aforementioned technology won't be used for reporting stories (sure, because no one has been laid off in favor of AI before — <a href=\"https://www.engadget.com/eating-disorder-helpline-takes-down-chatbot-after-it-dispenses-dangerous-advice-173424523.html\">oh wait</a>, <a href=\"https://www.engadget.com/duolingo-lays-off-contractors-as-it-starts-relying-more-on-ai-060331602.html\">wait some more</a> and <a href=\"https://www.engadget.com/microsoft-msn-news-jobs-cuts-due-to-ai-230620807.html\">the list continues</a>). The <em>Axios</em> announcement<em>&nbsp;</em>does, however, point out that <a href=\"https://www.engadget.com/ai/the-new-york-times-says-openai-deleted-evidence-in-its-copyright-lawsuit-231805285.html\"><em>The New York Times </em>is currently suing both OpenAI and Microsoft</a> for copyright infringement, so maybe there's some awareness of what its entering into.&nbsp;</p>This article originally appeared on Engadget at https://www.engadget.com/ai/axios-partners-with-openai-forgetting-the-scorpion-stung-the-frog-144242204.html?src=rss",
+        "read": [],
+        "label": "cd03ee8a-891b-47a5-9257-f61d67fb8217",
+        "id": "e0efe91c-a2f6-488d-a375-a8ad00771301"
+      },
+      {
+        "date": "2025-01-24T16:41:07",
+        "source": "https://feeds.feedburner.com/CoinDesk",
+        "title": "EasyA Wants to Attract More Than Just ‘Bounty Hunters’ to Its Hackathons",
+        "summary": "Easy A co-founders Phil (left) and Dominic Kwok",
+        "read": [],
+        "label": "cd03ee8a-891b-47a5-9257-f61d67fb8217",
+        "id": "be5283d9-5487-4bb9-949c-29e2349fa906"
+      }
+    ],
+    "id": "cd03ee8a-891b-47a5-9257-f61d67fb8217"
+  },
+  {
+    "label_title": "South Korea: President Detained, Zinc Fight",
+    "label_summary": "A protracted corporate-control battle at Korea Zinc — the world’s largest zinc producer — has erupted into an eventful shareholder clash between founding families, challenging entrenched conglomerate (chaebol) governance norms. Separately, a deepening political crisis in South Korea has seen President Yoon detained after an extended investigation, courtroom storms and pro‑Yoon rioters attacking a courthouse; the ruling party still polls strongly, adding political unpredictability.\n\nWhy it matters: the twin developments raise geopolitical and market risks. Korea Zinc’s governance fight could affect zinc supply, price and investor confidence in resource companies; the president’s detention and related unrest increase policy and operational uncertainty in South Korea, with potential knock‑on effects for supply chains (memory chips, semiconductors, hardware components) and investor sentiment in Asia-Pacific markets.",
+    "read": [],
+    "urgency": 7,
+    "relevancy_port1": 4,
+    "relevancy_port2": 3,
+    "relevancy_port3": 1,
+    "reasoning_portfolios": {
+      "port_1": "Moderate relevance: NVDA, SMCI and VRT depend on Asia supply chains (memory, components, manufacturing). Political instability in South Korea and disruption to metals (zinc) markets could indirectly affect component availability and costs; impact is uncertain so scored conservatively.",
+      "port_2": "Low-moderate relevance: MSFT, AMZN and GOOGL have large cloud/hardware footprints that rely on global supply chains including Korean suppliers (Samsung). Short-term political disruption or commodity-price moves could create supply or cost pressure, but direct impact is limited.",
+      "port_3": "Negligible relevance: KO, PG and WM are consumer staples/retail-focused with minimal direct exposure to Korean politics or zinc supply; any effects on packaging or industrial inputs are likely marginal and slow-moving."
+    },
+    "count": 18,
+    "children": [
+      {
+        "date": "2025-01-23T12:39:49",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/business.xml",
+        "title": "Korea Zinc Shareholder Meeting Takes a Dramatic Turn",
+        "summary": "An eventful shareholder meeting provided the latest twist in the dispute between the families whose deceased patriarchs founded the company 50 years ago.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "8941e084-95ea-47e2-bf3a-de3eef8bf9a9"
+      },
+      {
+        "date": "2025-01-22T06:04:14",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/business.xml",
+        "title": "2 Families, in Business 50 Years, Fight for Control of Korea Zinc",
+        "summary": "Control of Korea Zinc, the world’s largest producer of zinc, is at stake in a battle challenging the country’s entrenched chaebol system of powerful conglomerates.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "08c270d0-0ffc-4022-bc6c-036d4ddc1ae5"
+      },
+      {
+        "date": "2025-01-23T12:39:49",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/business.xml",
+        "title": "Korea Zinc Shareholder Meeting Takes a Dramatic Turn",
+        "summary": "An eventful shareholder meeting provided the latest twist in the dispute between the families whose deceased patriarchs founded the company 50 years ago.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "dbae99aa-e44e-45e8-9daf-563fdff2c85e"
+      },
+      {
+        "date": "2025-01-23T12:39:49",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/business.xml",
+        "title": "Korea Zinc Shareholder Meeting Takes a Dramatic Turn",
+        "summary": "An eventful shareholder meeting provided the latest twist in the dispute between the families whose deceased patriarchs founded the company 50 years ago.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "9d07fcd7-2b70-4e2f-b1ab-693039e8fcd2"
+      },
+      {
+        "date": "2025-01-18T15:05:01",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "South Korean court orders formal arrest of impeached President Yoon",
+        "summary": "Yoon's lawyers could also file a petition to challenge the court's arrest warrant.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "1000a1d6-a1db-428d-abe9-0b3c324e86d0"
+      },
+      {
+        "date": "2025-01-19T00:44:51",
+        "source": "https://www.ft.com/rss/home/uk",
+        "title": "Yoon supporters storm Seoul courthouse after judge extends detention",
+        "summary": "South Korea’s political crisis worsens following Yoon Suk Yeol’s failed attempt to impose martial law last month",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "fc007a42-0c07-4ce7-94be-2888c18624dd"
+      },
+      {
+        "date": "2025-01-16T23:27:00",
+        "source": "https://thediplomat.com/feed",
+        "title": "South Koreans Separate Support on PPP and President Yoon",
+        "summary": "Despite the public’s support for impeaching the South Korean president, the ruling People Power Party just outpolled the main opposition Democratic Party.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "1a8aa7c6-df46-4d68-9401-b10e7c585aac"
+      },
+      {
+        "date": "2025-01-15T22:26:00",
+        "source": "https://thediplomat.com/feed",
+        "title": "South Korea’s President Yoon Suk-yeol Detained on 2nd Attempt",
+        "summary": "Over 3,000 police came to bring in Yoon for questioning after a much smaller initial attempt was blocked by presidential security.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "e6cb44af-7684-4566-bcde-9f3a3624b329"
+      },
+      {
+        "date": "2025-01-16T23:27:00",
+        "source": "https://thediplomat.com/feed",
+        "title": "South Koreans Separate Support on PPP and President Yoon",
+        "summary": "Despite the public’s support for impeaching the South Korean president, the ruling People Power Party just outpolled the main opposition Democratic Party.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "fa22435f-0e57-4ab3-9630-bba6d4b9ec78"
+      },
+      {
+        "date": "2025-01-15T22:26:00",
+        "source": "https://thediplomat.com/feed",
+        "title": "South Korea’s President Yoon Suk-yeol Detained on 2nd Attempt",
+        "summary": "Over 3,000 police came to bring in Yoon for questioning after a much smaller initial attempt was blocked by presidential security.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "221d4a97-5a62-401f-9242-d21d6d8c721e"
+      },
+      {
+        "date": "2025-01-22T00:20:00",
+        "source": "https://thediplomat.com/feed",
+        "title": "South Korean President Attends Impeachment Trial",
+        "summary": "Despite his refusal to appear for questioning in the CIO's investigation, Yoon Suk-yeol attended the impeachment trial held by the Constitutional Court on Tuesday.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "1b270985-cfa0-4289-b1cd-17960aa54c82"
+      },
+      {
+        "date": "2025-01-20T21:56:00",
+        "source": "https://thediplomat.com/feed",
+        "title": "Pro-Yoon Rioters Attack Courthouse After New Arrest Warrant Against the President",
+        "summary": "In the wake of the court’s decision to extend the detention of Yoon Suk-yeol, his supporters used violence against the police and stormed the courthouse.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "dbfe727d-cb6c-4bc5-943b-42a0131cb6e8"
+      },
+      {
+        "date": "2025-01-16T23:27:00",
+        "source": "https://thediplomat.com/feed",
+        "title": "South Koreans Separate Support on PPP and President Yoon",
+        "summary": "Despite the public’s support for impeaching the South Korean president, the ruling People Power Party just outpolled the main opposition Democratic Party.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "e21bf4ae-ddda-4596-84b3-aa0c265c1e49"
+      },
+      {
+        "date": "2025-01-15T22:26:00",
+        "source": "https://thediplomat.com/feed",
+        "title": "South Korea’s President Yoon Suk-yeol Detained on 2nd Attempt",
+        "summary": "Over 3,000 police came to bring in Yoon for questioning after a much smaller initial attempt was blocked by presidential security.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "5a80cb43-8753-48d1-bb80-4333939d7ea6"
+      },
+      {
+        "date": "2025-01-22T00:20:00",
+        "source": "https://thediplomat.com/feed",
+        "title": "South Korean President Attends Impeachment Trial",
+        "summary": "Despite his refusal to appear for questioning in the CIO's investigation, Yoon Suk-yeol attended the impeachment trial held by the Constitutional Court on Tuesday.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "6376af02-6024-4e50-9368-34a98264de90"
+      },
+      {
+        "date": "2025-01-20T21:56:00",
+        "source": "https://thediplomat.com/feed",
+        "title": "Pro-Yoon Rioters Attack Courthouse After New Arrest Warrant Against the President",
+        "summary": "In the wake of the court’s decision to extend the detention of Yoon Suk-yeol, his supporters used violence against the police and stormed the courthouse.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "b4467e18-35ad-4036-b495-d05499804c3b"
+      },
+      {
+        "date": "2025-01-16T23:27:00",
+        "source": "https://thediplomat.com/feed",
+        "title": "South Koreans Separate Support on PPP and President Yoon",
+        "summary": "Despite the public’s support for impeaching the South Korean president, the ruling People Power Party just outpolled the main opposition Democratic Party.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "6171d4e3-2b5d-4b71-9c73-6b38fe66d504"
+      },
+      {
+        "date": "2025-01-15T22:26:00",
+        "source": "https://thediplomat.com/feed",
+        "title": "South Korea’s President Yoon Suk-yeol Detained on 2nd Attempt",
+        "summary": "Over 3,000 police came to bring in Yoon for questioning after a much smaller initial attempt was blocked by presidential security.",
+        "read": [],
+        "label": "00080128-a671-4ed5-bbd6-ea9347cfc839",
+        "id": "65ddd55c-26a9-44d3-9f9e-775724c02b70"
+      }
+    ],
+    "id": "00080128-a671-4ed5-bbd6-ea9347cfc839"
+  },
+  {
+    "label_title": "Trump Delays TikTok Ban 75 Days",
+    "label_summary": "President Trump signed an executive order pausing enforcement of a law that would force TikTok to find a U.S. buyer or shut down, instructing the Justice Department not to take action for 75 days while agencies seek a national-security-safe resolution. The order buys time for ByteDance to demonstrate progress on a sale and for potential bidders to prepare offers.\n\nWhy it matters: The delay reshapes the near-term M&A and regulatory timeline for a major social app, affecting potential acquirers, cloud providers, advertisers and investor sentiment in U.S. tech. It also signals executive willingness to intervene in tech-national security disputes, which could influence future policy and deal risk assessments.",
+    "read": [],
+    "urgency": 6,
+    "relevancy_port1": 3,
+    "relevancy_port2": 7,
+    "relevancy_port3": 1,
+    "reasoning_portfolios": {
+      "port_1": "Low-to-moderate relevance. NVDA/SMCI could see indirect demand implications if TikTok's continued operation increases spending on GPUs/servers, but no immediate material impact expected; VRT has no clear exposure. Choosing a conservative lower score given uncertainty.",
+      "port_2": "High relevance. MSFT has previously been linked to acquisition discussions; AMZN and GOOGL are major cloud/ad players that could be bidders or service providers—this order directly affects M&A timing, hosting contracts and ad inventory dynamics.",
+      "port_3": "Negligible relevance. Coca-Cola, P&G and Waste Management have minimal direct exposure; any impact would be indirect (advertising reach shifts) and likely immaterial to core operations."
+    },
+    "count": 11,
+    "children": [
+      {
+        "date": "2025-01-16T21:45:03",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/dealbook.xml",
+        "title": "Trump Is Said to Consider Executive Order to Circumvent TikTok Ban",
+        "summary": "The move is under discussion as the Chinese-owned app faces a Sunday deadline to find a new buyer or shut down in the United States.",
+        "read": [],
+        "label": "fa91f6eb-3376-4741-8ae9-6373b8fb7123",
+        "id": "422fc63c-2ca9-4926-9bee-149e564cf680"
+      },
+      {
+        "date": "2025-01-23T11:53:57",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/technology.xml",
+        "title": "Trump Signs Executive Order in Attempt to Delay TikTok Ban",
+        "summary": "Shortly after taking office Monday, the president issued the order to delay the app’s ban for 75 days. The law went into effect on Sunday.",
+        "read": [],
+        "label": "fa91f6eb-3376-4741-8ae9-6373b8fb7123",
+        "id": "505968b5-313e-4848-8aac-65c216622b12"
+      },
+      {
+        "date": "2025-01-20T21:09:13",
+        "source": "https://www.cbsnews.com/latest/rss/moneywatch",
+        "title": "Trump orders Justice Department to not enforce TikTok ban",
+        "summary": "The order directs the Justice Department not to take action or impose penalties against \"any entity for any noncompliance\" with the law.",
+        "read": [],
+        "label": "fa91f6eb-3376-4741-8ae9-6373b8fb7123",
+        "id": "0ff80bb8-b45d-4da6-9ba6-ed6ab41c261d"
+      },
+      {
+        "date": "2025-01-20T21:09:13",
+        "source": "https://www.cbsnews.com/latest/rss/moneywatch",
+        "title": "Trump orders Justice Department to not enforce TikTok ban",
+        "summary": "The order directs the Justice Department not to take action or impose penalties against \"any entity for any noncompliance\" with the law.",
+        "read": [],
+        "label": "fa91f6eb-3376-4741-8ae9-6373b8fb7123",
+        "id": "945a6bd4-b6f0-4943-9fb4-b729dd5ab466"
+      },
+      {
+        "date": "2025-01-20T21:09:13",
+        "source": "https://www.cbsnews.com/latest/rss/moneywatch",
+        "title": "Trump orders Justice Department to not enforce TikTok ban",
+        "summary": "The order directs the Justice Department not to take action or impose penalties against \"any entity for any noncompliance\" with the law.",
+        "read": [],
+        "label": "fa91f6eb-3376-4741-8ae9-6373b8fb7123",
+        "id": "8870f71e-e8bf-418f-a665-ac150c87822a"
+      },
+      {
+        "date": "2025-01-20T21:09:13",
+        "source": "https://www.cbsnews.com/latest/rss/moneywatch",
+        "title": "Trump orders Justice Department to not enforce TikTok ban",
+        "summary": "The order directs the Justice Department not to take action or impose penalties against \"any entity for any noncompliance\" with the law.",
+        "read": [],
+        "label": "fa91f6eb-3376-4741-8ae9-6373b8fb7123",
+        "id": "4808da1d-c22e-4e22-9e73-f1664c923a08"
+      },
+      {
+        "date": "2025-01-21T01:32:22",
+        "source": "https://techcrunch.com/feed/",
+        "title": "Trump signs exec order delaying TikTok enforcement action for 75 days",
+        "summary": "<p>President Donald Trump has signed an executive order aimed at restoring TikTok service in the U.S. The order instructs relevant government agencies to &#8220;pursue a resolution&#8221; that &#8220;protects national security&#8221; while &#8220;saving [TikTok.]&#8221; Via the order, Trump is instructing the U.S. Attorney General not to take any action for 75 days to enforce the Protecting Americans [&#8230;]</p>\n<p>© 2024 TechCrunch. All rights reserved. For personal use only.</p>",
+        "read": [],
+        "label": "fa91f6eb-3376-4741-8ae9-6373b8fb7123",
+        "id": "469e7652-6b95-40b8-b8f5-f6ab8b8cf865"
+      },
+      {
+        "date": "2025-01-21T01:57:55",
+        "source": "https://www.wired.com/feed/rss",
+        "title": "Trump Signs Executive Order Saving TikTok for 75 Days",
+        "summary": "ByteDance now has to show that it’s making significant progress on a deal to sell TikTok to a US-based company.",
+        "read": [],
+        "label": "fa91f6eb-3376-4741-8ae9-6373b8fb7123",
+        "id": "f8c9bbaa-8767-43a0-87e9-51412cdb4576"
+      },
+      {
+        "date": "2025-01-21T01:57:55",
+        "source": "https://www.wired.com/feed/rss",
+        "title": "Trump Signs Executive Order Saving TikTok for 75 Days",
+        "summary": "ByteDance now has to show that it’s making significant progress on a deal to sell TikTok to a US-based company.",
+        "read": [],
+        "label": "fa91f6eb-3376-4741-8ae9-6373b8fb7123",
+        "id": "85f4ad90-c077-4617-8dce-b86d4b961e1c"
+      },
+      {
+        "date": "2025-01-21T01:57:55",
+        "source": "https://www.wired.com/feed/rss",
+        "title": "Trump Signs Executive Order Saving TikTok for 75 Days",
+        "summary": "ByteDance now has to show that it’s making significant progress on a deal to sell TikTok to a US-based company.",
+        "read": [],
+        "label": "fa91f6eb-3376-4741-8ae9-6373b8fb7123",
+        "id": "31a32818-1282-42e7-8b74-07a44e1ffb56"
+      },
+      {
+        "date": "2025-01-21T01:57:55",
+        "source": "https://www.wired.com/feed/rss",
+        "title": "Trump Signs Executive Order Saving TikTok for 75 Days",
+        "summary": "ByteDance now has to show that it’s making significant progress on a deal to sell TikTok to a US-based company.",
+        "read": [],
+        "label": "fa91f6eb-3376-4741-8ae9-6373b8fb7123",
+        "id": "e2596a88-bc2a-4ded-9ae1-4e424815336d"
+      }
+    ],
+    "id": "fa91f6eb-3376-4741-8ae9-6373b8fb7123"
+  },
+  {
+    "label_title": "Hegseth Confirmation Under Fire",
+    "label_summary": "Pete Hegseth, President Trump's nominee for Secretary of Defense, faces intense Senate scrutiny amid new allegations of sexual misconduct, reports he paid a $50,000 settlement to an accuser, and has at least two Republican senators publicly opposing him — meaning his confirmation could pass by the smallest margin for the post in decades. The contentious hearing highlighted questions about his qualifications, past behavior, and how he would respond to presidential orders that might conflict with the Constitution.\n\nWhy it matters: a controversial, narrowly decided Defense Secretary pick could affect Pentagon leadership continuity, defense policy direction, morale, and procurement priorities. It raises political risk and uncertainty around national security decision-making and could influence defense contractors and tech firms that rely on stable DoD relationships and policy guidance.",
+    "read": [],
+    "urgency": 6,
+    "relevancy_port1": 1,
+    "relevancy_port2": 3,
+    "relevancy_port3": 1,
+    "reasoning_portfolios": {
+      "port_1": "Contains NVDA, SMCI, VRT (commercial tech/hardware). This is primarily a political/DoD staffing story with limited direct impact on these companies; scored low for caution.",
+      "port_2": "MSFT, AMZN, GOOGL have DoD/cloud/AI contract exposure and would watch Pentagon leadership and policy shifts; the story is relevant but impact is uncertain, so given uncertainty a conservative low-moderate score was chosen.",
+      "port_3": "Consumer staples/waste management names (KO, PG, WM) have negligible direct ties to DoD leadership changes; scored minimal relevancy."
+    },
+    "count": 22,
+    "children": [
+      {
+        "date": "2025-01-24T21:20:06",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/politics.xml",
+        "title": "Senate to Vote on Pete Hegseth’s Confirmation, With Outcome Uncertain",
+        "summary": "With two G.O.P. senators opposed, Pete Hegseth, President Trump’s pick for defense secretary, can afford to lose only one more. If he is confirmed, it is likely to be by the smallest margin for that post in modern times.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "9dca1c7d-11f8-4dc4-a947-4e3178f5ccaa"
+      },
+      {
+        "date": "2025-01-24T20:48:03",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/politics.xml",
+        "title": "Samantha Hegseth Is Bound by a Nondisparagement Clause",
+        "summary": "Samantha Hegseth is contractually obligated not to speak ill of him, according to the terms of their divorce. A former sister-in-law has said Pete Hegseth was threatening and abusive toward Samantha Hegseth.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "1d7fa210-cf73-49a5-9b53-fd1f0bf8b0be"
+      },
+      {
+        "date": "2025-01-24T20:17:55",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/politics.xml",
+        "title": "Hegseth Could Be Confirmed With Smallest Margin of Any Defense Secretary",
+        "summary": "For the last 50 years, almost every nominee to lead the Pentagon has been a consensus pick who drew lopsided margins of support in the Senate. Pete Hegseth’s nomination has been a notable exception.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "aca2ad2a-4fbd-4e69-b555-dc4b501e0b92"
+      },
+      {
+        "date": "2025-01-24T16:46:34",
+        "source": "https://rss.nytimes.com/services/xml/rss/nyt/politics.xml",
+        "title": "Hegseth Paid Woman Who Accused Him of Rape $50,000, Senator Says",
+        "summary": "The settlement’s existence after a 2017 accusation had been documented before the defense secretary nominee’s confirmation hearing this month, but the amount had not been known publicly.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "9ffd911e-0fbd-4da6-bd99-1fa4956a914e"
+      },
+      {
+        "date": "2025-01-13T20:53:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Hegseth likely to face tough confirmation hearing for defense secretary role",
+        "summary": "It will be a busy week on Capitol Hill as Senate confirmation hearings begin for more than a dozen of President-elect Donald Trump's Cabinet picks. The first hearing is Tuesday morning for Pete Hegseth, Trump's controversial choice to lead the Department of Defense. CBS News chief election and campaign correspondent Robert Costa reports.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "b7064a45-2bb3-4c35-821d-114b31df27c4"
+      },
+      {
+        "date": "2025-01-13T19:59:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Pete Hegseth faces Senate confirmation hearing",
+        "summary": "Pete Hegseth, President-elect Donald Trump's embattled pick to serve as secretary of defense, will face a Senate confirmation hearing Tuesday. Despite a Republican majority, he still faces a bumpy road to confirmation. Nancy Cordes reports.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "eaf674e0-16ba-448b-a182-b89724ff037c"
+      },
+      {
+        "date": "2025-01-14T19:00:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Hegseth dismisses misconduct allegations as \"smear campaign\"",
+        "summary": "Senators grilled secretary of defense nominee Pete Hegseth over sexual assault and misconduct allegations at his confirmation hearing Tuesday. Evan McMorris-Santoro, reporter for NOTUS, and Andrew Desiderio, senior congressional reporter for Punchbowl News, join \"America Decides\" to further discuss the hearing and more.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "6b85eab5-8685-4e73-b51d-1d0b2961a950"
+      },
+      {
+        "date": "2025-01-14T18:56:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Key takeaways from Pete Hegseth's confirmation hearing",
+        "summary": "Pete Hegseth, President-elect Donald Trump's pick for defense secretary, faced senators and protesters in a high-stakes confirmation hearing Tuesday. CBS News' Nikole Killion, Katrina Kaufman and Fin Gómez break down the contentious proceedings.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "48d31853-64f6-4e70-8b55-d074049194ed"
+      },
+      {
+        "date": "2025-01-14T15:35:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Trump allies reacting to Hegseth's Senate confirmation hearing",
+        "summary": "President-elect Donald Trump's allies are reacting favorably to Pete Hegseth's performance during his Senate confirmation hearing for the secretary of defense Cabinet role. CBS News' Olivia Rinaldi reports.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "e6906035-e0e5-41e0-9d72-7eed799aad85"
+      },
+      {
+        "date": "2025-01-14T15:30:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Breaking down Pete Hegseth's Senate confirmation hearing",
+        "summary": "Several female senators and former members of the armed forces grilled Pete Hegseth at his Senate confirmation hearing on past comments he made about women serving in combat roles. CBS News' Taurean Small breaks down the top moments from the hearing surrounding the secretary of defense post.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "66ca3821-9ae0-4447-ab3b-b27234d5a0bb"
+      },
+      {
+        "date": "2025-01-14T14:45:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Sen. Wicker reacts to Hegseth's Senate hearing testimony",
+        "summary": "Senate Armed Services Committee Chairman Roger Wicker (R-Mississippi) appeared satisfied with Pete Hegseth's testimony at his confirmation hearing for the secretary of defense post. Wicker chaired a bombastic meeting where senators highlighted accusations against Hegseth for sexual misconduct, financial mismanagement and drinking on the job. CBS News' Nikole Killion reports.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "1d4a9b39-3d1d-46d0-8676-a72edabccea0"
+      },
+      {
+        "date": "2025-01-14T14:30:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Behind Pete Hegseth's explosive Senate confirmation hearing",
+        "summary": "Pete Hegseth faced intense questioning from the Senate Armed Services Committee as he vies for the secretary of defense post in President-elect Donald Trump's Cabinet. CBS News' Taurean Small and Nikole Killion report.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "69a08839-b2f5-4117-a7b6-405f7b86914f"
+      },
+      {
+        "date": "2025-01-14T14:24:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Sen. Slotkin asks Hegseth about defying a Trump order if unconstitutional",
+        "summary": "Sen. Elissa Slotkin (D-Michigan) pressed Pete Hegseth about his future response as secretary of defense to President-elect Donald Trump's orders if they violate the Constitution. Slotkin used an example from Defense Secretary Mark Esper's time in Trump's term in the White House to argue the potential scenario.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "73db952f-a8ac-4f41-a59a-11035bb34751"
+      },
+      {
+        "date": "2025-01-15T18:22:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Senators spar over Pete Hegseth's qualifications for defense secretary",
+        "summary": "Democratic and Republican senators sparred over whether Pete Hegseth is qualified for secretary of defense during his confirmation hearing on Tuesday. Barbara Starr, senior fellow at the USC Annenberg Center on Communication Leadership and Policy, joins \"America Decides\" to take a closer look at Hegseth's credentials.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "2b17079a-fb29-4d9f-bbea-e6c05b86e6a9"
+      },
+      {
+        "date": "2025-01-19T13:34:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Democratic Sen. Tim Kaine says Pete Hegseth would be a \"very dangerous Secretary of Defense\"",
+        "summary": "Democratic Sen. Tim Kaine, who was one of the senators on the Armed Services Committee who questioned Trump's pick for Defense Secretary Pete Hegseth closely, tells \"Face the Nation with Margaret Brennan\" that he believes Hegseth would be a \"very dangerous Secretary of Defense.\"",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "189af03b-2ba6-4305-9cbc-949ca72bf693"
+      },
+      {
+        "date": "2025-01-21T19:37:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "New Hegseth allegations emerge",
+        "summary": "Peter Hegseth, President Donald Trump's Defense secretary pick, is facing new allegations, this time from his former sister-in-law, who claims the former Fox News host made his second wife fear for her safety. Hegseth's lawyer has denied the allegations. Nikole Killion has the details.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "ffa96058-617a-4fec-813d-c45556454425"
+      },
+      {
+        "date": "2025-01-21T19:12:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Senators receive affidavit with new allegations about Pete Hegseth",
+        "summary": "Pete Hegseth, President Trump's nominee to lead the Department of Defense, is facing new allegations in an affidavit reviewed by senators. In the document, Hegseth's former sister-in-law alleges he caused his second wife to fear for her safety, a claim he denies. CBS News political reporter Taurean Small has more.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "aeebd931-f935-4898-8588-0581c196e22d"
+      },
+      {
+        "date": "2025-01-23T20:11:59",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Pete Hegseth told Elizabeth Warren he paid $50,000 to accuser",
+        "summary": "Pete Hegseth, President Trump's nominee to lead the Defense Department, is on track to be confirmed as soon as Friday night if his support holds.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "65d19753-3ffc-44a1-8f02-cc990bc5eec1"
+      },
+      {
+        "date": "2025-01-23T19:49:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Hegseth told senator he paid $50,000 to woman who accused him of sexual assault, sources say",
+        "summary": "Pete Hegseth, President Trump's pick for defense secretary, told Sen. Elizabeth Warren that he paid a woman $50,000 who had accused him of sexual assault in 2017, two sources confirmed to CBS News.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "a972f04f-b619-42bb-bd16-6dbb5c267c85"
+      },
+      {
+        "date": "2025-01-23T18:45:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Murkowski, Collins say they will vote against Hegseth",
+        "summary": "Sens. Lisa Murkowski and Susan Collins on Thursday became the first Republicans to say they won't vote to confirm Pete Hegseth as defense secretary. Plus, a federal judge in Seattle temporarily stalled President Trump's plans to end birthright citizenship, calling the executive order \"blatantly unconstitutional.\" CBS News' Scott MacFarlane and Olivia Rinaldi have the latest.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "8e537125-35fb-4985-b65a-c783659c475d"
+      },
+      {
+        "date": "2025-01-24T16:06:00",
+        "source": "https://www.cbsnews.com/latest/rss/main",
+        "title": "Will Hegseth survive full Senate vote for confirmation?",
+        "summary": "A full Senate vote on Pete Hegseth's confirmation to be President Trump's secretary of defense is expected. Two Republicans have already said they plan to vote \"no.\" CBS News Caitlin Huey-Burns reports.",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "ae375b45-3633-4bbf-891b-ef91dc8ed127"
+      },
+      {
+        "date": "2025-01-13T17:42:06",
+        "source": "https://moxie.foxbusiness.com/google-publisher/latest.xml",
+        "title": "LARRY KUDLOW: President Trump needs 'true warrior' Pete Hegseth by his side",
+        "summary": "FOX Business host Larry Kudlow reveals why Trump defense secretary nominee Pete Hegseth must be by the incoming president&apos;s side on &quot;Kudlow.&quot;",
+        "read": [],
+        "label": "22d569ca-0b02-45c4-8281-1cb88a64305e",
+        "id": "70a6babb-d744-46d5-841c-8366526e6fa6"
+      }
+    ],
+    "id": "22d569ca-0b02-45c4-8281-1cb88a64305e"
+  }
+]

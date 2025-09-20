@@ -66,6 +66,34 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       }
     };
 
+    // Helper function to check if text fits in circle and wrap if needed
+    const processTextForCircle = (text, maxWidth, fontSize = 10, maxLines = 3) => {
+      const words = text.split(' ');
+      const lines = [];
+      let currentLine = words[0];
+
+      for (let i = 1; i < words.length; i++) {
+        const testLine = currentLine + ' ' + words[i];
+        // Approximate text width calculation (rough estimate: 0.6 * fontSize per character)
+        const testWidth = testLine.length * fontSize * 0.6;
+        
+        if (testWidth < maxWidth) {
+          currentLine = testLine;
+        } else {
+          lines.push(currentLine);
+          currentLine = words[i];
+        }
+      }
+      lines.push(currentLine);
+      
+      // If text has more than maxLines, it's too long
+      if (lines.length > maxLines) {
+        return { lines: [], tooLong: true };
+      }
+      
+      return { lines, tooLong: false };
+    };
+
     // Filter data based on selected date (selected date and 7 days back)
     const filterDataByDate = (node, selectedDate) => {
       const selectedDateTime = new Date(selectedDate);
@@ -155,8 +183,33 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
           ` : ''}
           ${nodeData.value ? `
             <div class="info-section">
-              <h4>Relevance Score</h4>
-              <p>${nodeData.value}%</p>
+              <h4>Urgency Score</h4>
+              <p>${nodeData.value}/10</p>
+            </div>
+          ` : ''}
+          ${nodeData.relevancy ? `
+            <div class="info-section">
+              <h4>Relevancy Score</h4>
+              <p>${nodeData.relevancy}/10</p>
+            </div>
+          ` : ''}
+          ${nodeData.count ? `
+            <div class="info-section">
+              <h4>Article Count</h4>
+              <p>${nodeData.count} articles</p>
+            </div>
+          ` : ''}
+          ${nodeData.reasoning ? `
+            <div class="info-section">
+              <h4>Portfolio Reasoning</h4>
+              <div class="reasoning-content">
+                ${Object.entries(nodeData.reasoning).map(([portfolio, reasoning]) => `
+                  <div class="reasoning-item">
+                    <strong>${portfolio.replace('port_', 'Portfolio ')}:</strong>
+                    <p>${reasoning}</p>
+                  </div>
+                `).join('')}
+              </div>
             </div>
           ` : ''}
           <div class="reading-controls">
@@ -221,6 +274,21 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       .attr("width", "100%")
       .attr("height", "100%")
       .attr("style", `display: block; background: #F1F1F2; cursor: pointer;`);
+
+    // Create tooltip
+    const tooltip = d3.select("body").append("div")
+      .attr("class", "circle-tooltip")
+      .style("position", "absolute")
+      .style("padding", "8px 12px")
+      .style("background", "rgba(0, 0, 0, 0.8)")
+      .style("color", "white")
+      .style("border-radius", "4px")
+      .style("font-size", "12px")
+      .style("pointer-events", "none")
+      .style("opacity", 0)
+      .style("z-index", "1000")
+      .style("max-width", "300px")
+      .style("word-wrap", "break-word");
 
     // Append the nodes with smooth transitions
     const node = svg.append("g")
@@ -298,6 +366,17 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
         d3.select(this).transition()
           .duration(200)
           .attr("stroke-width", 3);
+        
+        // Show tooltip if text is too long
+        const maxWidth = d.r * 1.8;
+        const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+        if (textResult.tooLong) {
+          tooltip
+            .style("opacity", 1)
+            .html(d.data.name)
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px");
+        }
       })
       .on("mouseout", function(event, d) { 
         const strokeWidth = d.data.isSummary ? 2 :
@@ -306,6 +385,19 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
         d3.select(this).transition()
           .duration(200)
           .attr("stroke-width", strokeWidth);
+        
+        // Hide tooltip
+        tooltip.style("opacity", 0);
+      })
+      .on("mousemove", function(event, d) {
+        // Update tooltip position on mouse move
+        const maxWidth = d.r * 1.8;
+        const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+        if (textResult.tooLong) {
+          tooltip
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px");
+        }
       })
       .on("click", (event, d) => {
         event.stopPropagation();
@@ -325,25 +417,98 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       .selectAll("text")
       .data(root.descendants(), d => d.data.name) // Use name as key for proper tracking
       .join(
-        enter => enter.append("text")
-          .text(d => d.data.name)
-          .style("fill-opacity", 0)
-          .attr("transform", d => `translate(${d.x},${d.y})`)
-          .call(enter => enter.transition()
+        enter => {
+          const textGroup = enter.append("text")
+            .style("fill-opacity", 0)
+            .style("fill", "#000000")
+            .style("stroke", "#ffffff")
+            .style("stroke-width", "3px")
+            .style("paint-order", "stroke fill")
+            .attr("transform", d => `translate(${d.x},${d.y})`);
+          
+          // Add wrapped text lines or hide if too long
+          textGroup.each(function(d) {
+            const textElement = d3.select(this);
+            const maxWidth = d.r * 1.8; // Use 90% of circle diameter
+            const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+            
+            if (!textResult.tooLong && textResult.lines.length > 0) {
+              const lineHeight = 12;
+              const startY = -(textResult.lines.length - 1) * lineHeight / 2;
+              
+              textResult.lines.forEach((line, i) => {
+                textElement.append("tspan")
+                  .text(line)
+                  .attr("x", 0)
+                  .attr("y", startY + i * lineHeight);
+              });
+            } else {
+              // Hide text if too long
+              textElement.style("display", "none");
+            }
+          });
+          
+          return textGroup.call(enter => enter.transition()
             .duration(800)
             .delay(200)
             .ease(d3.easeCubicInOut)
-            .style("fill-opacity", d => d.parent === root ? 1 : 0)
-            .style("display", d => d.parent === root ? "inline" : "none")
-          ),
-        update => update
-          .call(update => update.transition()
+            .style("fill-opacity", d => {
+              if (d.parent !== root) return 0;
+              const maxWidth = d.r * 1.8;
+              const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+              return textResult.tooLong ? 0 : 1;
+            })
+            .style("display", d => {
+              if (d.parent !== root) return "none";
+              const maxWidth = d.r * 1.8;
+              const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+              return textResult.tooLong ? "none" : "inline";
+            })
+          );
+        },
+        update => {
+          // Clear existing tspans and recreate
+          update.selectAll("tspan").remove();
+          
+          update.each(function(d) {
+            const textElement = d3.select(this);
+            const maxWidth = d.r * 1.8; // Use 90% of circle diameter
+            const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+            
+            if (!textResult.tooLong && textResult.lines.length > 0) {
+              const lineHeight = 12;
+              const startY = -(textResult.lines.length - 1) * lineHeight / 2;
+              
+              textResult.lines.forEach((line, i) => {
+                textElement.append("tspan")
+                  .text(line)
+                  .attr("x", 0)
+                  .attr("y", startY + i * lineHeight);
+              });
+            } else {
+              // Hide text if too long
+              textElement.style("display", "none");
+            }
+          });
+          
+          return update.call(update => update.transition()
             .duration(600)
             .ease(d3.easeCubicInOut)
             .attr("transform", d => `translate(${d.x},${d.y})`)
-            .style("fill-opacity", d => d.parent === root ? 1 : 0)
-            .style("display", d => d.parent === root ? "inline" : "none")
-          ),
+            .style("fill-opacity", d => {
+              if (d.parent !== root) return 0;
+              const maxWidth = d.r * 1.8;
+              const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+              return textResult.tooLong ? 0 : 1;
+            })
+            .style("display", d => {
+              if (d.parent !== root) return "none";
+              const maxWidth = d.r * 1.8;
+              const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+              return textResult.tooLong ? "none" : "inline";
+            })
+          );
+        },
         exit => exit
           .call(exit => exit.transition()
             .duration(400)
@@ -384,7 +549,35 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       label
         .transition(transition)
         .style("fill-opacity", d => d.parent === root ? 1 : 0)
-        .on("start", function(d) { if (d.parent === root) this.style.display = "inline"; })
+        .style("fill", "#000000")
+        .style("stroke", "#ffffff")
+        .style("stroke-width", "3px")
+        .style("paint-order", "stroke fill")
+        .on("start", function(d) { 
+          if (d.parent === root) {
+            this.style.display = "inline";
+            // Recreate wrapped text for visible labels
+            const textElement = d3.select(this);
+            textElement.selectAll("tspan").remove();
+            const maxWidth = d.r * 1.8;
+            const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+            
+            if (!textResult.tooLong && textResult.lines.length > 0) {
+              const lineHeight = 12;
+              const startY = -(textResult.lines.length - 1) * lineHeight / 2;
+              
+              textResult.lines.forEach((line, i) => {
+                textElement.append("tspan")
+                  .text(line)
+                  .attr("x", 0)
+                  .attr("y", startY + i * lineHeight);
+              });
+            } else {
+              // Hide text if too long
+              textElement.style("display", "none");
+            }
+          }
+        })
         .on("end", function(d) { if (d.parent !== root) this.style.display = "none"; });
     }
 
@@ -429,7 +622,35 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
         .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
         .transition(transition)
         .style("fill-opacity", d => d.parent === focus ? 1 : 0)
-        .on("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
+        .style("fill", "#000000")
+        .style("stroke", "#ffffff")
+        .style("stroke-width", "3px")
+        .style("paint-order", "stroke fill")
+        .on("start", function(d) { 
+          if (d.parent === focus) {
+            this.style.display = "inline";
+            // Recreate wrapped text for visible labels
+            const textElement = d3.select(this);
+            textElement.selectAll("tspan").remove();
+            const maxWidth = d.r * 1.8;
+            const textResult = processTextForCircle(d.data.name, maxWidth, 10, 3);
+            
+            if (!textResult.tooLong && textResult.lines.length > 0) {
+              const lineHeight = 12;
+              const startY = -(textResult.lines.length - 1) * lineHeight / 2;
+              
+              textResult.lines.forEach((line, i) => {
+                textElement.append("tspan")
+                  .text(line)
+                  .attr("x", 0)
+                  .attr("y", startY + i * lineHeight);
+              });
+            } else {
+              // Hide text if too long
+              textElement.style("display", "none");
+            }
+          }
+        })
         .on("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
     }
 
@@ -487,6 +708,7 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
     return () => {
       window.removeEventListener('resize', handleResize);
       svg.selectAll("*").remove();
+      tooltip.remove();
     };
   }, [data, selectedDate, currentUserId]);
 

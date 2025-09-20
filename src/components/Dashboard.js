@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } from 'recharts';
 import CirclePacking from './CirclePacking';
 import BlindSpotDashboard from './BlindSpotDashboard';
-import newsData from '../data/newsData.json';
+import outputData from '../output_with_ids.json';
 import './Dashboard.css';
 
 const Dashboard = ({ onLogout }) => {
@@ -62,8 +62,46 @@ const Dashboard = ({ onLogout }) => {
     }
   ];
 
-  // Use the imported news data for circle packing
-  const circlePackingData = newsData;
+  // Transform the new data structure for circle packing
+  const transformDataForCirclePacking = (data) => {
+    if (!Array.isArray(data)) return { name: "News Portfolio", children: [] };
+    
+    return {
+      name: "News Portfolio",
+      children: data.map((item, index) => {
+        // Calculate average relevancy across portfolios
+        const avgRelevancy = item.relevancy_port1 && item.relevancy_port2 && item.relevancy_port3 
+          ? Math.round((item.relevancy_port1 + item.relevancy_port2 + item.relevancy_port3) / 3)
+          : 50;
+        
+        return {
+          name: item.label_title || `News Group ${index + 1}`,
+          value: item.urgency || 50,
+          description: item.label_summary || "No summary available",
+          timestamp: new Date().toISOString(),
+          lastUpdated: new Date().toISOString(),
+          readBy: item.read || [],
+          urgency: item.urgency,
+          relevancy: avgRelevancy,
+          reasoning: item.reasoning_portfolios,
+          count: item.count || 0,
+          children: item.children ? item.children.map((child, childIndex) => ({
+            name: child.title || `Article ${childIndex + 1}`,
+            value: Math.floor(Math.random() * 100), // Random value for now
+            description: child.summary || "No summary available",
+            timestamp: child.date || new Date().toISOString(),
+            lastUpdated: child.date || new Date().toISOString(),
+            readBy: child.read || [],
+            id: child.id || `article-${childIndex}`,
+            label: child.label || `label-${childIndex}`,
+            source: child.source || "Unknown source"
+          })) : []
+        };
+      })
+    };
+  };
+
+  const circlePackingData = transformDataForCirclePacking(outputData);
 
   return (
     <div className="dashboard">
