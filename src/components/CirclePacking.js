@@ -199,7 +199,7 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
         <div class="summary-content">
           <div class="info-section">
             <h4>Description</h4>
-            <div class="description-content">${nodeData.description || 'No description available'}</div>
+            <div class="description-content">${nodeData.description || (nodeData.children ? `This group contains ${nodeData.children.length} items` : 'No description available')}</div>
           </div>
           ${nodeData.source ? `
             <div class="info-section">
@@ -233,6 +233,19 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
             <div class="info-section">
               <h4>Article Count</h4>
               <p>${nodeData.count} articles</p>
+            </div>
+          ` : ''}
+          ${nodeData.children && nodeData.children.length > 0 ? `
+            <div class="info-section">
+              <h4>Contents</h4>
+              <div class="children-list">
+                ${nodeData.children.map(child => `
+                  <div class="child-item ${child.isSummary ? 'summary-item' : ''}">
+                    <span class="child-name">${child.name}</span>
+                    ${child.isSummary ? '<span class="child-type">Summary</span>' : ''}
+                  </div>
+                `).join('')}
+              </div>
             </div>
           ` : ''}
           ${nodeData.reasoning ? `
@@ -437,11 +450,9 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       })
       .on("click", (event, d) => {
         event.stopPropagation();
-        if (d.data.isSummary || (!d.children && d.data.description)) {
+        if (d.data.isSummary || (!d.children && d.data.description) || (d.children && !d.data.isSummary)) {
+          // Show summary panel for summaries, articles with descriptions, or groupings
           showSummaryPanel(d.data);
-        } else if (focus !== d && d.children && !d.data.isSummary) {
-          hideSummaryPanel();
-          zoom(event, d);
         }
       });
 
