@@ -179,7 +179,7 @@ const CirclePacking = ({ data, selectedDate }) => {
         }
       });
 
-    // Append the text labels
+    // Append the text labels with background highlights
     const label = svg.append("g")
       .style("font", "10px sans-serif")
       .attr("pointer-events", "none")
@@ -189,6 +189,8 @@ const CirclePacking = ({ data, selectedDate }) => {
       .join("text")
       .style("fill-opacity", d => d.parent === root ? 1 : 0)
       .style("display", d => d.parent === root ? "inline" : "none")
+      .style("fill", "#333")
+      .style("filter", "drop-shadow(1px 1px 2px rgba(255, 255, 255, 0.8))")
       .text(d => d.data.name);
 
     // Create the zoom behavior and set initial view to show all circles
@@ -222,6 +224,8 @@ const CirclePacking = ({ data, selectedDate }) => {
       label
         .transition(transition)
         .style("fill-opacity", d => d.parent === root ? 1 : 0)
+        .style("fill", "#333")
+        .style("filter", "drop-shadow(1px 1px 2px rgba(255, 255, 255, 0.8))")
         .on("start", function(d) { if (d.parent === root) this.style.display = "inline"; })
         .on("end", function(d) { if (d.parent !== root) this.style.display = "none"; });
     }
@@ -267,6 +271,8 @@ const CirclePacking = ({ data, selectedDate }) => {
         .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
         .transition(transition)
         .style("fill-opacity", d => d.parent === focus ? 1 : 0)
+        .style("fill", "#333")
+        .style("filter", "drop-shadow(1px 1px 2px rgba(255, 255, 255, 0.8))")
         .on("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
         .on("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
     }
@@ -311,7 +317,9 @@ const CirclePacking = ({ data, selectedDate }) => {
         .transition()
         .duration(1500)
         .ease(d3.easeCubicInOut)
-        .attr("transform", d => `translate(${d.x},${d.y})`);
+        .attr("transform", d => `translate(${d.x},${d.y})`)
+        .style("fill", "#333")
+        .style("filter", "drop-shadow(1px 1px 2px rgba(255, 255, 255, 0.8))");
       
       // Update focus and view to show all circles
       focus = newRoot;
