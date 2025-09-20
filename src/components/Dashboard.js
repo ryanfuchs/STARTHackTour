@@ -77,13 +77,20 @@ const Dashboard = ({ onLogout }) => {
         <div className="dashboard-grid">
           {/* Pulse Insights Card */}
           <div className="card pulse-insights-card">
-            <h3 className="card-title">News Categories</h3>
+            <h3 className="card-title">Pulse Insights</h3>
             <div className="pulse-insights-content">
               <p className="pulse-insights-description">
                 Interactive news categorization with hierarchical topic breakdown
               </p>
-              <div className="circle-packing-wrapper">
-                <CirclePacking data={circlePackingData} />
+              <div className="pulse-insights-main full-width">
+                <div className="circle-packing-wrapper">
+                  <CirclePacking data={circlePackingData} />
+                </div>
+                <div id="pulse-summary-panel" className="pulse-summary-panel">
+                  <div className="summary-placeholder">
+                    <p>Click on a summary or article to view details</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

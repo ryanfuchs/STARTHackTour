@@ -19,9 +19,83 @@ const CirclePacking = ({ data }) => {
 
     // Create the color scale using chart colors
     const chartColors = ["#748BB8", "#9EAECE", "#D6DDEA", "#B0926D", "#8EA4B7"];
+    const summaryColor = "#D8C9B6"; // Beige tone for summary bubbles
     const color = d3.scaleOrdinal()
       .domain([0, 1, 2, 3, 4])
       .range(chartColors);
+
+    // Use the data directly since summaries are now part of the JSON structure
+    const dataWithSummaries = data;
+
+    // Summary panel functionality
+    const showSummaryPanel = (nodeData) => {
+      // Find the summary panel and main container
+      const summaryPanel = document.getElementById('pulse-summary-panel');
+      const mainContainer = summaryPanel?.closest('.pulse-insights-main');
+      if (!summaryPanel || !mainContainer) return;
+
+      // Update layout class
+      mainContainer.classList.remove('full-width');
+      mainContainer.classList.add('with-panel');
+
+      // Populate panel content first
+      summaryPanel.innerHTML = `
+        <div class="summary-header">
+          <h3>${nodeData.name}</h3>
+        </div>
+        <div class="summary-content">
+          <div class="info-section">
+            <h4>Description</h4>
+            <p>${nodeData.description || 'No description available'}</p>
+          </div>
+          ${nodeData.timestamp ? `
+            <div class="info-section">
+              <h4>Published</h4>
+              <p>${new Date(nodeData.timestamp).toLocaleDateString()}</p>
+            </div>
+          ` : ''}
+          ${nodeData.lastUpdated ? `
+            <div class="info-section">
+              <h4>Last Updated</h4>
+              <p>${new Date(nodeData.lastUpdated).toLocaleDateString()}</p>
+            </div>
+          ` : ''}
+          ${nodeData.value ? `
+            <div class="info-section">
+              <h4>Relevance Score</h4>
+              <p>${nodeData.value}%</p>
+            </div>
+          ` : ''}
+        </div>
+      `;
+
+      // Trigger animation after a small delay to ensure content is rendered
+      setTimeout(() => {
+        summaryPanel.classList.add('visible');
+      }, 10);
+    };
+
+    const hideSummaryPanel = () => {
+      const summaryPanel = document.getElementById('pulse-summary-panel');
+      const mainContainer = summaryPanel?.closest('.pulse-insights-main');
+      if (!summaryPanel || !mainContainer) return;
+
+      // Remove visible class to trigger hide animation
+      summaryPanel.classList.remove('visible');
+      
+      // Update layout class
+      mainContainer.classList.remove('with-panel');
+      mainContainer.classList.add('full-width');
+      
+      // Reset content after animation completes
+      setTimeout(() => {
+        summaryPanel.innerHTML = `
+          <div class="summary-placeholder">
+            <p>Click on a summary or article to view details</p>
+          </div>
+        `;
+      }, 400); // Match the CSS transition duration
+    };
 
     // Compute the layout with horizontal arrangement
     const pack = data => d3.pack()
@@ -31,7 +105,7 @@ const CirclePacking = ({ data }) => {
         .sum(d => d.value)
         .sort((a, b) => a.value - b.value)); // Reverse sort for horizontal arrangement
     
-    const root = pack(data);
+    const root = pack(dataWithSummaries);
 
     // Create the SVG container
     const svg = d3.select(svgRef.current)
@@ -45,13 +119,26 @@ const CirclePacking = ({ data }) => {
       .selectAll("circle")
       .data(root.descendants().slice(1))
       .join("circle")
-      .attr("fill", d => d.children ? color(d.depth % 5) : "white")
-      .attr("pointer-events", d => !d.children ? "none" : null)
+      .attr("fill", d => {
+        if (d.data.isSummary) {
+          return summaryColor;
+        } else if (d.children) {
+          return color(d.depth % 5);
+        } else {
+          return "white";
+        }
+      })
+      .attr("pointer-events", d => (!d.children && !d.data.description) ? "none" : null)
       .on("mouseover", function() { d3.select(this).attr("stroke", "#000"); })
       .on("mouseout", function() { d3.select(this).attr("stroke", null); })
       .on("click", (event, d) => {
         event.stopPropagation();
-        if (focus !== d) {
+        if (d.data.isSummary || (!d.children && d.data.description)) {
+          // Show summary panel only for summaries or leaf nodes (nodes with no children)
+          showSummaryPanel(d.data);
+        } else if (focus !== d && d.children && !d.data.isSummary) {
+          // Zoom only for parent nodes with children and hide summary panel
+          hideSummaryPanel();
           zoom(event, d);
         }
       });
@@ -73,6 +160,7 @@ const CirclePacking = ({ data }) => {
       // If clicking on empty space (not on a circle), return to initial view
       const target = event.target;
       if (target === svg.node()) {
+        hideSummaryPanel();
         resetToInitialView();
       }
     });
@@ -167,7 +255,7 @@ const CirclePacking = ({ data }) => {
           .sum(d => d.value)
           .sort((a, b) => a.value - b.value)); // Reverse sort for horizontal arrangement
       
-      const newRoot = newPack(data);
+      const newRoot = newPack(dataWithSummaries);
       
       // Update nodes and labels with new positions
       const newNodes = svg.select("g").selectAll("circle")
