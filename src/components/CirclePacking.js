@@ -107,11 +107,9 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       return { lines, tooLong: false };
     };
 
-    // Filter data based on selected date (selected date and 7 days back)
+    // Filter data based on selected date (exact date match)
     const filterDataByDate = (node, selectedDate) => {
-      const selectedDateTime = new Date(selectedDate);
-      const sevenDaysAgo = new Date(selectedDateTime);
-      sevenDaysAgo.setDate(selectedDateTime.getDate() - 7);
+      const selectedDateStr = selectedDate; // Format: YYYY-MM-DD
       
       // Create a filtered copy of the node
       const filteredNode = { ...node };
@@ -126,10 +124,11 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
               return true; // Keep parent nodes that have filtered children
             }
             
-            // For leaf nodes, check if they have a timestamp within the date range
+            // For leaf nodes, check if they have a timestamp matching the selected date
             if (child.timestamp) {
               const nodeDate = new Date(child.timestamp);
-              return nodeDate >= sevenDaysAgo && nodeDate <= selectedDateTime;
+              const nodeDateStr = nodeDate.toISOString().split('T')[0]; // Convert to YYYY-MM-DD format
+              return nodeDateStr === selectedDateStr;
             }
             
             return false; // Remove nodes that don't match criteria
@@ -140,7 +139,8 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
           if (child.isSummary) return false; // Skip summary nodes
           if (child.timestamp) {
             const nodeDate = new Date(child.timestamp);
-            return nodeDate >= sevenDaysAgo && nodeDate <= selectedDateTime;
+            const nodeDateStr = nodeDate.toISOString().split('T')[0]; // Convert to YYYY-MM-DD format
+            return nodeDateStr === selectedDateStr;
           }
           return false;
         });
