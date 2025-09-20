@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import CirclePacking from './CirclePacking';
-import BlindSpotDashboard from './BlindSpotDashboard';
 import './Dashboard.css';
 
 const Dashboard = ({ onLogout }) => {
@@ -61,33 +60,6 @@ const Dashboard = ({ onLogout }) => {
     { name: 'Commodities', value: 10, color: '#B0926D' },
   ];
 
-  const performanceData = [
-    { name: 'Q1', performance: 12.5 },
-    { name: 'Q2', performance: 8.3 },
-    { name: 'Q3', performance: 15.2 },
-    { name: 'Q4', performance: 11.8 },
-  ];
-
-  const aiInsights = [
-    {
-      title: "Market Trend Analysis",
-      description: "AI predicts 15% growth potential in tech stocks over next quarter",
-      confidence: 87,
-      type: "bullish"
-    },
-    {
-      title: "Risk Assessment",
-      description: "Portfolio diversification suggests moderate risk exposure",
-      confidence: 92,
-      type: "neutral"
-    },
-    {
-      title: "Investment Opportunity",
-      description: "Emerging markets showing strong fundamentals",
-      confidence: 78,
-      type: "opportunity"
-    }
-  ];
 
   // Transform the new data structure for circle packing
   const transformDataForCirclePacking = (data) => {
@@ -230,46 +202,6 @@ const Dashboard = ({ onLogout }) => {
 
       <main className="dashboard-main">
         <div className="dashboard-grid">
-          {/* Pulse Insights Card */}
-          <div className="card pulse-insights-card">
-            <div className="pulse-insights-header">
-              <h3 className="card-title">Pulse Insights</h3>
-            </div>
-            <div className="pulse-insights-content">
-              <div className="pulse-insights-main full-width">
-                {loading ? (
-                  <div className="loading-container">
-                    <div className="loading-spinner"></div>
-                    <p>Loading news data...</p>
-                  </div>
-                ) : error ? (
-                  <div className="error-container">
-                    <p>Error loading data: {error}</p>
-                    <button onClick={() => window.location.reload()} className="btn btn-primary">
-                      Retry
-                    </button>
-                  </div>
-                ) : (
-                  <>
-                    <div className="circle-packing-wrapper">
-                      <CirclePacking 
-                        data={circlePackingData} 
-                        selectedDate={selectedDate} 
-                        currentUserId={currentUserId}
-                        onDateChange={setSelectedDate}
-                      />
-                    </div>
-                    <div id="pulse-summary-panel" className="pulse-summary-panel">
-                      <div className="summary-placeholder">
-                        <p>Click on a summary or article to view details</p>
-                      </div>
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-
           {/* Portfolio Value Card */}
           <div className="card portfolio-card">
             <h3 className="card-title">Portfolio Value</h3>
@@ -345,50 +277,300 @@ const Dashboard = ({ onLogout }) => {
             </div>
           </div>
 
-          {/* Performance Card */}
-          <div className="card performance-card">
-            <h3 className="card-title">Quarterly Performance</h3>
-            <div className="performance-chart">
-              <ResponsiveContainer width="100%" height={200}>
-                <BarChart data={performanceData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#E5E5E6" />
-                  <XAxis dataKey="name" stroke="#6D6E70" />
-                  <YAxis stroke="#6D6E70" />
-                  <Tooltip 
-                    contentStyle={{
-                      backgroundColor: '#F1F1F2',
-                      border: '1px solid #E5E5E6',
-                      borderRadius: '8px'
-                    }}
-                  />
-                  <Bar dataKey="performance" fill="#D8C9B6" radius={[4, 4, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
+          {/* Pulse Insights Card */}
+          <div className="card pulse-insights-card">
+            <div className="pulse-insights-header">
+              <h3 className="card-title">Pulse Insights</h3>
             </div>
+            <div className="pulse-insights-content">
+              <div className="pulse-insights-main full-width">
+                {loading ? (
+                  <div className="loading-container">
+                    <div className="loading-spinner"></div>
+                    <p>Loading news data...</p>
           </div>
-
-          {/* AI Insights Card */}
-          <div className="card insights-card">
-            <h3 className="card-title">AI Insights</h3>
-            <div className="insights-list">
-              {aiInsights.map((insight, index) => (
-                <div key={index} className="insight-item">
-                  <div className="insight-header">
-                    <h4 className="insight-title">{insight.title}</h4>
-                    <span className={`confidence-badge ${insight.type}`}>
-                      {insight.confidence}%
-                    </span>
+                ) : error ? (
+                  <div className="error-container">
+                    <p>Error loading data: {error}</p>
+                    <button onClick={() => window.location.reload()} className="btn btn-primary">
+                      Retry
+                    </button>
                   </div>
-                  <p className="insight-description">{insight.description}</p>
+                ) : (
+                  <>
+                    <div className="circle-packing-wrapper">
+                      <CirclePacking 
+                        data={circlePackingData} 
+                        selectedDate={selectedDate} 
+                        currentUserId={currentUserId}
+                        onDateChange={setSelectedDate}
+                      />
+                    </div>
+                    <div id="pulse-summary-panel" className="pulse-summary-panel">
+                      <div className="summary-placeholder">
+                        <p>Click on a summary or article to view details</p>
+                      </div>
+                    </div>
+                  </>
+                )}
                 </div>
-              ))}
             </div>
           </div>
 
-          {/* Blind Spot Analysis Card */}
+          {/* Portfolio Relevancy Analysis */}
+          {outputData && (
+            <>
+              <div className="card relevancy-overview-card">
+                <h3 className="card-title">Portfolio Relevancy Overview</h3>
+                <div className="relevancy-stats">
+                  {(() => {
+                    const labelData = outputData[0]?.data?.labeldata;
+                    if (!labelData) return null;
+                    
+                    const allRelevancyScores = [];
+                    const processNode = (node) => {
+                      if (node.relevancy_port1 !== undefined) {
+                        allRelevancyScores.push({
+                          port1: node.relevancy_port1,
+                          port2: node.relevancy_port2,
+                          port3: node.relevancy_port3,
+                          title: node.label_title,
+                          urgency: node.urgency
+                        });
+                      }
+                      if (node.children) {
+                        node.children.forEach(processNode);
+                      }
+                    };
+                    labelData.forEach(processNode);
+                    
+                    const avgPort1 = allRelevancyScores.reduce((sum, item) => sum + item.port1, 0) / allRelevancyScores.length;
+                    const avgPort2 = allRelevancyScores.reduce((sum, item) => sum + item.port2, 0) / allRelevancyScores.length;
+                    const avgPort3 = allRelevancyScores.reduce((sum, item) => sum + item.port3, 0) / allRelevancyScores.length;
+                    const avgUrgency = allRelevancyScores.reduce((sum, item) => sum + item.urgency, 0) / allRelevancyScores.length;
+                    
+                    return (
+                      <div className="relevancy-grid">
+                        <div className="relevancy-item">
+                          <div className="relevancy-label">Portfolio 1 (Tech Infrastructure)</div>
+                          <div className="relevancy-score">{avgPort1.toFixed(1)}/10</div>
+                          <div className="relevancy-bar">
+                            <div className="relevancy-fill" style={{width: `${avgPort1 * 10}%`}}></div>
+                          </div>
+                        </div>
+                        <div className="relevancy-item">
+                          <div className="relevancy-label">Portfolio 2 (Cloud & Platforms)</div>
+                          <div className="relevancy-score">{avgPort2.toFixed(1)}/10</div>
+                          <div className="relevancy-bar">
+                            <div className="relevancy-fill" style={{width: `${avgPort2 * 10}%`}}></div>
+                          </div>
+                        </div>
+                        <div className="relevancy-item">
+                          <div className="relevancy-label">Portfolio 3 (Consumer Staples)</div>
+                          <div className="relevancy-score">{avgPort3.toFixed(1)}/10</div>
+                          <div className="relevancy-bar">
+                            <div className="relevancy-fill" style={{width: `${avgPort3 * 10}%`}}></div>
+                          </div>
+                        </div>
+                        <div className="relevancy-item">
+                          <div className="relevancy-label">Average Urgency</div>
+                          <div className="relevancy-score">{avgUrgency.toFixed(1)}/10</div>
+                          <div className="relevancy-bar">
+                            <div className="relevancy-fill urgency" style={{width: `${avgUrgency * 10}%`}}></div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+                </div>
+              </div>
+
+              <div className="card top-stories-card">
+                <h3 className="card-title">Top Relevancy Stories</h3>
+                <div className="stories-list">
+                  {(() => {
+                    const labelData = outputData[0]?.data?.labeldata;
+                    if (!labelData) return null;
+                    
+                    const allStories = [];
+                    const processNode = (node, level = 0) => {
+                      if (node.label_title && node.relevancy_port1 !== undefined) {
+                        const avgRelevancy = (node.relevancy_port1 + node.relevancy_port2 + node.relevancy_port3) / 3;
+                        allStories.push({
+                          title: node.label_title,
+                          relevancy: avgRelevancy,
+                          urgency: node.urgency,
+                          level: level,
+                          summary: node.label_summary
+                        });
+                      }
+                      if (node.children) {
+                        node.children.forEach(child => processNode(child, level + 1));
+                      }
+                    };
+                    labelData.forEach(node => processNode(node));
+                    
+                    const topStories = allStories
+                      .sort((a, b) => b.relevancy - a.relevancy)
+                      .slice(0, 5);
+                    
+                    return topStories.map((story, index) => (
+                      <div key={index} className="story-item">
+                        <div className="story-header">
+                          <h4 className="story-title">{story.title}</h4>
+                          <div className="story-scores">
+                            <span className="score relevancy">R: {story.relevancy.toFixed(1)}</span>
+                            <span className="score urgency">U: {story.urgency}</span>
+                          </div>
+                        </div>
+                        <p className="story-summary">{story.summary?.substring(0, 150)}...</p>
+                      </div>
+                    ));
+                  })()}
+                </div>
+              </div>
+
           <div className="card blind-spot-card">
-            <BlindSpotDashboard data={circlePackingData} currentUserId={currentUserId} />
+                <h3 className="card-title">Potential Blind Spots</h3>
+                <div className="blind-spot-analysis">
+                  {(() => {
+                    const labelData = outputData[0]?.data?.labeldata;
+                    if (!labelData) return null;
+                    
+                    // Analyze for potential blind spots
+                    const analysis = {
+                      lowRelevancy: [],
+                      highUrgency: [],
+                      highUrgencyLowRelevancy: []
+                    };
+                    
+                    const processNode = (node, level = 0) => {
+                      if (node.label_title && node.relevancy_port1 !== undefined) {
+                        const avgRelevancy = (node.relevancy_port1 + node.relevancy_port2 + node.relevancy_port3) / 3;
+                        const isRead = node.read && node.read.length > 0;
+                        
+                        // Low relevancy stories (potential blind spots)
+                        if (avgRelevancy < 4) {
+                          analysis.lowRelevancy.push({
+                            title: node.label_title,
+                            relevancy: avgRelevancy,
+                            urgency: node.urgency,
+                            level: level,
+                            summary: node.label_summary,
+                            isRead
+                          });
+                        }
+                        
+                        // High urgency stories
+                        if (node.urgency >= 7) {
+                          analysis.highUrgency.push({
+                            title: node.label_title,
+                            relevancy: avgRelevancy,
+                            urgency: node.urgency,
+                            level: level,
+                            summary: node.label_summary,
+                            isRead
+                          });
+                        }
+                        
+                        // High urgency but low relevancy (might be overlooked)
+                        if (node.urgency >= 7 && avgRelevancy < 5) {
+                          analysis.highUrgencyLowRelevancy.push({
+                            title: node.label_title,
+                            relevancy: avgRelevancy,
+                            urgency: node.urgency,
+                            level: level,
+                            summary: node.label_summary,
+                            isRead
+                          });
+                        }
+                      }
+                      
+                      if (node.children) {
+                        node.children.forEach(child => processNode(child, level + 1));
+                      }
+                    };
+                    
+                    labelData.forEach(node => processNode(node));
+                    
+                    return (
+                      <div className="blind-spot-grid">
+                        {/* High Urgency, Low Relevancy */}
+                        <div className="blind-spot-section">
+                          <h4 className="section-title">
+                            <span className="icon">⚠️</span>
+                            High Urgency, Low Relevancy
+                            <span className="count">({analysis.highUrgencyLowRelevancy.length})</span>
+                          </h4>
+                          <div className="blind-spot-items">
+                            {analysis.highUrgencyLowRelevancy.slice(0, 3).map((item, index) => (
+                              <div key={index} className="blind-spot-item high-urgency">
+                                <div className="item-header">
+                                  <span className="item-title">{item.title}</span>
+                                  <div className="item-scores">
+                                    <span className="score relevancy">R: {item.relevancy.toFixed(1)}</span>
+                                    <span className="score urgency">U: {item.urgency}</span>
+                                  </div>
+                                </div>
+                                <p className="item-summary">{item.summary?.substring(0, 100)}...</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        
+                        {/* High Urgency */}
+                        <div className="blind-spot-section">
+                          <h4 className="section-title">
+                            <span className="icon">🚨</span>
+                            High Urgency
+                            <span className="count">({analysis.highUrgency.length})</span>
+                          </h4>
+                          <div className="blind-spot-items">
+                            {analysis.highUrgency.slice(0, 3).map((item, index) => (
+                              <div key={index} className="blind-spot-item high-urgency">
+                                <div className="item-header">
+                                  <span className="item-title">{item.title}</span>
+                                  <div className="item-scores">
+                                    <span className="score relevancy">R: {item.relevancy.toFixed(1)}</span>
+                                    <span className="score urgency">U: {item.urgency}</span>
+                                  </div>
+                                </div>
+                                <p className="item-summary">{item.summary?.substring(0, 100)}...</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        
+                        {/* Low Relevancy */}
+                        <div className="blind-spot-section">
+                          <h4 className="section-title">
+                            <span className="icon">🔍</span>
+                            Low Relevancy
+                            <span className="count">({analysis.lowRelevancy.length})</span>
+                          </h4>
+                          <div className="blind-spot-items">
+                            {analysis.lowRelevancy.slice(0, 3).map((item, index) => (
+                              <div key={index} className="blind-spot-item low-relevancy">
+                                <div className="item-header">
+                                  <span className="item-title">{item.title}</span>
+                                  <div className="item-scores">
+                                    <span className="score relevancy">R: {item.relevancy.toFixed(1)}</span>
+                                    <span className="score urgency">U: {item.urgency}</span>
+                                  </div>
+                                </div>
+                                <p className="item-summary">{item.summary?.substring(0, 100)}...</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+                </div>
           </div>
+            </>
+          )}
+
         </div>
       </main>
     </div>
