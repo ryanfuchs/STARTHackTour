@@ -450,9 +450,15 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       })
       .on("click", (event, d) => {
         event.stopPropagation();
-        if (d.data.isSummary || (!d.children && d.data.description) || (d.children && !d.data.isSummary)) {
-          // Show summary panel for summaries, articles with descriptions, or groupings
+        if (d.data.isSummary || (!d.children && d.data.description)) {
+          // Show summary panel for summaries or articles with descriptions
           showSummaryPanel(d.data);
+        } else if (d.children && !d.data.isSummary) {
+          // For groupings, show summary panel AND zoom
+          showSummaryPanel(d.data);
+          if (focus !== d) {
+            zoom(event, d);
+          }
         }
       });
 
