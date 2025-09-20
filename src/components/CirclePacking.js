@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import './CirclePacking.css';
 
-const CirclePacking = ({ data }) => {
+const CirclePacking = ({ data, selectedDate }) => {
   const svgRef = useRef();
 
   useEffect(() => {
@@ -24,8 +24,44 @@ const CirclePacking = ({ data }) => {
       .domain([0, 1, 2, 3, 4])
       .range(chartColors);
 
-    // Use the data directly since summaries are now part of the JSON structure
-    const dataWithSummaries = data;
+    // Filter data based on selected date (selected date and 7 days back)
+    const filterDataByDate = (node, selectedDate) => {
+      const selectedDateTime = new Date(selectedDate);
+      const sevenDaysAgo = new Date(selectedDateTime);
+      sevenDaysAgo.setDate(selectedDateTime.getDate() - 7);
+      
+      // Create a filtered copy of the node
+      const filteredNode = { ...node };
+      
+      if (node.children) {
+        filteredNode.children = node.children
+          .map(child => filterDataByDate(child, selectedDate))
+          .filter(child => {
+            // Keep the node if it has children (parent nodes) or if it matches the date criteria
+            if (child.children && child.children.length > 0) {
+              return true; // Keep parent nodes that have filtered children
+            }
+            
+            // For leaf nodes, check if they have a timestamp within the date range
+            if (child.timestamp) {
+              const nodeDate = new Date(child.timestamp);
+              return nodeDate >= sevenDaysAgo && nodeDate <= selectedDateTime;
+            }
+            
+            // For summary nodes, keep them if they have filtered children
+            if (child.isSummary) {
+              return child.children && child.children.length > 0;
+            }
+            
+            return false; // Remove nodes that don't match criteria
+          });
+      }
+      
+      return filteredNode;
+    };
+
+    const filteredData = filterDataByDate(data, selectedDate);
+    const dataWithSummaries = filteredData;
 
     // Summary panel functionality
     const showSummaryPanel = (nodeData) => {
@@ -290,7 +326,7 @@ const CirclePacking = ({ data }) => {
       window.removeEventListener('resize', handleResize);
       svg.selectAll("*").remove();
     };
-  }, [data]);
+  }, [data, selectedDate]);
 
   return (
     <div className="circle-packing-container">
