@@ -124,10 +124,10 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
               return true; // Keep parent nodes that have filtered children
             }
             
-            // For leaf nodes, check if they have a timestamp matching the selected date
-            if (child.timestamp) {
-              const nodeDate = new Date(child.timestamp);
-              const nodeDateStr = nodeDate.toISOString().split('T')[0]; // Convert to YYYY-MM-DD format
+            // For leaf nodes, check if they have a published date matching the selected date
+            if (child.published) {
+              const nodeDate = new Date(child.published);
+              const nodeDateStr = nodeDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
               return nodeDateStr === selectedDateStr;
             }
             
@@ -137,9 +137,9 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
         // Check if any non-summary children (articles) match the date criteria
         const hasMatchingArticles = node.children.some(child => {
           if (child.isSummary) return false; // Skip summary nodes
-          if (child.timestamp) {
-            const nodeDate = new Date(child.timestamp);
-            const nodeDateStr = nodeDate.toISOString().split('T')[0]; // Convert to YYYY-MM-DD format
+          if (child.published) {
+            const nodeDate = new Date(child.published);
+            const nodeDateStr = nodeDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
             return nodeDateStr === selectedDateStr;
           }
           return false;
@@ -211,16 +211,10 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
               </div>
             </div>
           ` : ''}
-          ${nodeData.timestamp && !nodeData.isSummary ? `
+          ${nodeData.published && !nodeData.isSummary ? `
             <div class="info-section">
               <h4>Published</h4>
-              <p>${new Date(nodeData.timestamp).toLocaleDateString()}</p>
-            </div>
-          ` : ''}
-          ${nodeData.lastUpdated && !nodeData.isSummary ? `
-            <div class="info-section">
-              <h4>Last Updated</h4>
-              <p>${new Date(nodeData.lastUpdated).toLocaleDateString()}</p>
+              <p>${new Date(nodeData.published).toLocaleDateString()}</p>
             </div>
           ` : ''}
           ${nodeData.relevancy ? `
