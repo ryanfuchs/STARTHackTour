@@ -236,8 +236,7 @@ const CsvGraphView = () => {
                row.value > 30 ? '#D6DDEA' : 
                row.value > 0 ? '#B0926D' : 
                row.value > -30 ? '#8EA4B7' : '#D8C9B6',
-        // Smaller size based on absolute value
-        size: Math.max(3, Math.min(12, Math.abs(row.value) * 0.15)),
+        size: 2,
         // Add grouping information for better layout
         group: row.parent || 'root',
         groupIndex: groupIndex,
@@ -258,8 +257,8 @@ const CsvGraphView = () => {
             target: row.id,
             value: Math.abs(row.value),
             // Strengthen parent-child links for better grouping
-            strength: 0.8,
-            distance: 300
+            strength: 1.2,
+            distance: 200
           });
         }
       }
@@ -275,9 +274,9 @@ const CsvGraphView = () => {
             source: node1.id,
             target: node2.id,
             value: 1,
-            // Weaker links between siblings
-            strength: 0.3,
-            distance: 200,
+            // Weaker links between siblings but closer distance
+            strength: 0.6,
+            distance: 120,
             type: 'sibling'
           });
         }
@@ -319,18 +318,18 @@ const CsvGraphView = () => {
             linkWidth={1.5}
             linkColor="#9EAECE"
             backgroundColor="#FFFFFF"
-            spaceSize={12288}
-            simulationRepulsion={8.0}
-            simulationGravity={0.005}
-            simulationDecay={0.005}
-            simulationSpeed={0.2}
-            linkDistance={400}
+            spaceSize={16384}
+            simulationRepulsion={12.0}
+            simulationGravity={0.001}
+            simulationDecay={0.003}
+            simulationSpeed={0.15}
+            linkDistance={600}
             nodeTooltip={(d) => `
-              <div style="padding: 12px; background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(241,241,242,0.9) 100%); border-radius: 8px; box-shadow: 0 4px 16px rgba(116,139,184,0.2); border: 1px solid rgba(116,139,184,0.2); backdrop-filter: blur(10px);">
-                <strong style="color: #748BB8; font-size: 14px;">${d.title}</strong><br/>
-                <span style="color: #6D6E70; font-size: 12px;">Value: ${d.value}</span><br/>
-                <span style="color: #6D6E70; font-size: 12px;">Parent: ${d.parent || 'None'}</span><br/>
-                <span style="color: #6D6E70; font-size: 12px;">Timestamp: ${d.timestamp}</span>
+              <div style="padding: 12px; background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(241,241,242,0.9) 100%); border-radius: 8px; box-shadow: 0 4px 16px rgba(116,139,184,0.2); border: 1px solid rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px);">
+                <strong style="color: white; font-size: 14px;">${d.title}</strong><br/>
+                <span style="color: white; font-size: 12px;">Value: ${d.value}</span><br/>
+                <span style="color: white; font-size: 12px;">Parent: ${d.parent || 'None'}</span><br/>
+                <span style="color: white; font-size: 12px;">Timestamp: ${d.timestamp}</span>
               </div>
             `}
           />
