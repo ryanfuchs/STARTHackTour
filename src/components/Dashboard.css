@@ -292,6 +292,16 @@
   transform: translateY(-1px);
 }
 
+.btn-source {
+  background: #B0926D;
+  color: white;
+}
+
+.btn-source:hover {
+  background: #9A7A5A;
+  transform: translateY(-1px);
+}
+
 .btn.disabled {
   background: #E5E5E6;
   color: #9E9E9E;

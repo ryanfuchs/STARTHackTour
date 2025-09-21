@@ -215,6 +215,17 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
             >
               ${isRead ? 'Mark as Unread' : 'Mark as Read'}
             </button>
+            ${!nodeData.isSummary && nodeData.source ? `
+              <button 
+                class="btn btn-source"
+                onclick="window.open('${nodeData.source}', '_blank')"
+              >
+                Source
+              </button>
+            ` : ''}
+            ${!nodeData.isSummary && !nodeData.source ? `
+              <span style="color: #999; font-size: 12px;">No source available</span>
+            ` : ''}
           </div>
         </div>
       `;

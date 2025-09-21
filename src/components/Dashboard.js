@@ -193,15 +193,23 @@ const Dashboard = ({ onLogout }) => {
               };
             } else {
               // This is a leaf article
-              return {
+              const article = {
                 name: child.label_title || `Article ${childIndex + 1}`,
                 value: Math.floor(Math.random() * 100), // Random value for now
                 description: child.label_summary || "No summary available",
                 readBy: child.read || [],
                 id: child.id || `article-${parentIndex}-${childIndex}-${level}`,
                 label: child.label || `label-${parentIndex}-${childIndex}-${level}`,
+                source: child.source || null,
                 isSummary: false
               };
+              
+              // Debug: Log source data for leaf articles
+              if (child.source) {
+                console.log('Found source for article:', article.name, 'Source:', child.source);
+              }
+              
+              return article;
             }
           });
         };
@@ -692,6 +700,14 @@ const Dashboard = ({ onLogout }) => {
               <button className="btn btn-secondary" onClick={closeArticleDetail}>
                 Close
               </button>
+              {selectedArticle.source && (
+                <button 
+                  className="btn btn-source"
+                  onClick={() => window.open(selectedArticle.source, '_blank')}
+                >
+                  Source
+                </button>
+              )}
               {!selectedArticle.isRead && (
                 <div className="tooltip-container" data-tooltip="No qualification">
                   <button 

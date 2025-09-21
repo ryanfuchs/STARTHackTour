@@ -157,6 +157,9 @@
   margin-top: 16px;
   padding-top: 16px;
   border-top: 1px solid #E5E5E6;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .reading-controls .btn {
@@ -176,6 +179,11 @@
 .reading-controls .btn-secondary {
   background-color: #E5E5E6;
   color: #666;
+}
+
+.reading-controls .btn-source {
+  background-color: #B0926D;
+  color: white;
 }
 
 .reading-controls .btn:hover {
