@@ -66,13 +66,8 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       if (d.data.isSummary) {
         return hasUserRead(d.data) ? d3.color(summaryColor).brighter(0.3) : d3.color(summaryColor).darker(0.4);
       } else if (d.children) {
-        if (isGroupRead(d.data)) {
-          // Read groups: light blue fill (#D6DDEA)
-          return "#D6DDEA";
-        } else {
-          // Unread groups: medium blue fill (#9EAECE)
-          return "#9EAECE";
-        }
+        const baseColor = color(d.depth % 5);
+        return isGroupRead(d.data) ? d3.color(baseColor).brighter(0.4) : baseColor;
       } else {
         return hasUserRead(d.data) ? "#F0F0F0" : "white";
       }
@@ -112,55 +107,15 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       return { lines, tooLong: false };
     };
 
-    // Filter data based on selected date (past 7 days range)
+    // Since input.json doesn't have date fields, show all data
     const filterDataByDate = (node, selectedDate) => {
-      const selectedDateObj = new Date(selectedDate); // Format: YYYY-MM-DD
-      const sevenDaysAgo = new Date(selectedDateObj.getTime() - (7 * 24 * 60 * 60 * 1000));
-      
-      // Create a filtered copy of the node
+      // Create a copy of the node with all its children
       const filteredNode = { ...node };
       
       if (node.children) {
-        // First, filter all children
-        const filteredChildren = node.children
-          .map(child => filterDataByDate(child, selectedDate))
-          .filter(child => {
-            // Keep the node if it has children (parent nodes) or if it matches the date criteria
-            if (child.children && child.children.length > 0) {
-              return true; // Keep parent nodes that have filtered children
-            }
-            
-            // For leaf nodes, check if they have a published date within the past 7 days
-            if (child.published) {
-              const nodeDate = new Date(child.published);
-              return nodeDate >= sevenDaysAgo && nodeDate <= selectedDateObj;
-            }
-            
-            return false; // Remove nodes that don't match criteria
-          });
-        
-        // Check if any non-summary children (articles) match the date criteria
-        const hasMatchingArticles = node.children.some(child => {
-          if (child.isSummary) return false; // Skip summary nodes
-          if (child.published) {
-            const nodeDate = new Date(child.published);
-            return nodeDate >= sevenDaysAgo && nodeDate <= selectedDateObj;
-          }
-          return false;
-        });
-        
-        // Add summary nodes back if there are matching articles
-        const finalChildren = [...filteredChildren];
-        if (hasMatchingArticles) {
-          // Add summary nodes from the original children
-          node.children.forEach(child => {
-            if (child.isSummary && !finalChildren.some(fc => fc.id === child.id)) {
-              finalChildren.unshift(child); // Add summary at the beginning
-            }
-          });
-        }
-        
-        filteredNode.children = finalChildren;
+        // Process all children recursively (no date filtering)
+        const filteredChildren = node.children.map(child => filterDataByDate(child, selectedDate));
+        filteredNode.children = filteredChildren;
       }
       
       return filteredNode;
@@ -213,12 +168,6 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
                   ${nodeData.source}
                 </a>
               </div>
-            </div>
-          ` : ''}
-          ${nodeData.published && !nodeData.isSummary ? `
-            <div class="info-section">
-              <h4>Published</h4>
-              <p>${new Date(nodeData.published).toLocaleDateString()}</p>
             </div>
           ` : ''}
           ${nodeData.relevancy ? `
@@ -348,13 +297,8 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
             if (d.data.isSummary) {
               return hasUserRead(d.data) ? d3.color(summaryColor).brighter(0.2) : d3.color(summaryColor).darker(0.6);
             } else if (d.children) {
-              if (isGroupRead(d.data)) {
-                // Read groups: medium blue border (#9EAECE)
-                return "#9EAECE";
-              } else {
-                // Unread groups: dark blue border (#748BB8)
-                return "#748BB8";
-              }
+              const baseColor = color(d.depth % 5);
+              return isGroupRead(d.data) ? d3.color(baseColor).brighter(0.2) : d3.color(baseColor).darker(0.4);
             } else {
               return hasUserRead(d.data) ? "#8EA4B7" : "#748BB8";
             }
@@ -388,13 +332,8 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
               if (d.data.isSummary) {
                 return hasUserRead(d.data) ? d3.color(summaryColor).brighter(0.2) : d3.color(summaryColor).darker(0.6);
               } else if (d.children) {
-                if (isGroupRead(d.data)) {
-                  // Read groups: medium blue border (#9EAECE)
-                  return "#9EAECE";
-                } else {
-                  // Unread groups: dark blue border (#748BB8)
-                  return "#748BB8";
-                }
+                const baseColor = color(d.depth % 5);
+                return isGroupRead(d.data) ? d3.color(baseColor).brighter(0.2) : d3.color(baseColor).darker(0.4);
               } else {
                 return hasUserRead(d.data) ? "#8EA4B7" : "#748BB8";
               }

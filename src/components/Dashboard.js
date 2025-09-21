@@ -128,21 +128,18 @@ const Dashboard = ({ onLogout }) => {
                 readBy: child.read || [],
                 id: child.id || `subgroup-${parentIndex}-${childIndex}-${level}`,
                 label: child.label || `label-${parentIndex}-${childIndex}-${level}`,
-                source: null,
                 children: subGroupChildren,
                 isSummary: false
               };
             } else {
-              // This is a leaf article (only leaf nodes have published dates)
+              // This is a leaf article
               return {
                 name: child.label_title || `Article ${childIndex + 1}`,
                 value: Math.floor(Math.random() * 100), // Random value for now
                 description: child.label_summary || "No summary available",
-                published: child.published || null, // Only leaf nodes have published dates
                 readBy: child.read || [],
                 id: child.id || `article-${parentIndex}-${childIndex}-${level}`,
                 label: child.label || `label-${parentIndex}-${childIndex}-${level}`,
-                source: child.source || "Unknown source",
                 isSummary: false
               };
             }
@@ -162,8 +159,8 @@ const Dashboard = ({ onLogout }) => {
           reasoning: item.reasoning_portfolios,
           count: item.count || 0,
           children: children,
-          // Add source for the main group if available
-          source: item.source || null
+          id: item.id || `group-${index}`,
+          label: item.label || `label-${index}`
         };
       });
     
