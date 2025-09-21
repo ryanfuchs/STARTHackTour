@@ -80,6 +80,11 @@
   gap: 24px;
 }
 
+/* Full width components */
+.blind-spots-view {
+  grid-column: 1 / -1;
+}
+
 .card-title {
   font-size: 18px;
   font-weight: 600;

@@ -1,0 +1,447 @@
+.blind-spots-view {
+  width: 100%;
+  background: #F1F1F2;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 20px 0;
+}
+
+.blind-spots-header {
+  margin-bottom: 24px;
+}
+
+.blind-spots-header h2 {
+  color: #2C3E50;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.blind-spots-header p {
+  color: #6D6E70;
+  font-size: 14px;
+  margin: 0;
+}
+
+.blind-spots-content {
+  display: flex;
+  gap: 24px;
+  height: 600px;
+}
+
+/* Left Third - Analyst Carousel */
+.analyst-carousel {
+  flex: 1;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.analyst-carousel h3 {
+  color: #2C3E50;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+}
+
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: calc(100% - 60px);
+  overflow-y: auto;
+}
+
+.analyst-card {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border: 2px solid #E5E5E6;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  background: white;
+}
+
+.analyst-card:hover {
+  border-color: #8EA4B7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.analyst-card.active {
+  border-color: #748BB8;
+  background: #F8F9FA;
+  box-shadow: 0 4px 12px rgba(116, 139, 184, 0.2);
+}
+
+.analyst-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #748BB8, #9EAECE);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.analyst-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.analyst-info h4 {
+  color: #2C3E50;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.analyst-focus {
+  color: #6D6E70;
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.analyst-focus strong {
+  color: #2C3E50;
+  font-weight: 700;
+}
+
+.analyst-indicator {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.active-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #748BB8;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Middle + Right Third - Blind Spots */
+.blind-spots-panel {
+  flex: 2;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.blind-spots-header-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #E5E5E6;
+}
+
+.blind-spots-header-panel h3 {
+  color: #2C3E50;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.blind-spots-count {
+  background: #748BB8;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.blind-spots-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.blind-spot-item {
+  border: 2px solid #E5E5E6;
+  border-radius: 8px;
+  padding: 20px;
+  background: #FAFAFA;
+  transition: all 0.3s ease;
+}
+
+.blind-spot-item:hover {
+  border-color: #8EA4B7;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.blind-spot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.blind-spot-title-section {
+  flex: 1;
+  margin-right: 16px;
+}
+
+.blind-spot-title {
+  color: #2C3E50;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.blind-spot-category {
+  background: #D6DDEA;
+  color: #2C3E50;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.blind-spot-scores {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.score-badge {
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 32px;
+  text-align: center;
+}
+
+.blind-spot-description {
+  color: #6D6E70;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.blind-spot-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #E5E5E6;
+}
+
+.blind-spot-source {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.source-label {
+  color: #6D6E70;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.source-name {
+  color: #2C3E50;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.blind-spot-date {
+  color: #6D6E70;
+  font-size: 12px;
+}
+
+.blind-spot-impact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.impact-label {
+  color: #6D6E70;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.impact-value {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+.impact-value.high {
+  background: #FFEBEE;
+  color: #C62828;
+}
+
+.impact-value.medium {
+  background: #FFF3E0;
+  color: #EF6C00;
+}
+
+.blind-spot-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-mark-read {
+  background: #748BB8;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-mark-read:hover {
+  background: #5A6B8A;
+}
+
+.btn-view-source {
+  background: transparent;
+  color: #748BB8;
+  border: 2px solid #748BB8;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-view-source:hover {
+  background: #748BB8;
+  color: white;
+}
+
+.no-blind-spots {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  text-align: center;
+}
+
+.no-blind-spots-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #66BB6A;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.no-blind-spots h4 {
+  color: #2C3E50;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.no-blind-spots p {
+  color: #6D6E70;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .blind-spots-content {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .analyst-carousel {
+    flex: none;
+    height: 200px;
+  }
+  
+  .carousel-container {
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  
+  .analyst-card {
+    min-width: 300px;
+  }
+  
+  .blind-spots-panel {
+    flex: none;
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .blind-spots-view {
+    padding: 16px;
+  }
+  
+  .blind-spots-content {
+    gap: 16px;
+  }
+  
+  .blind-spot-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .blind-spot-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

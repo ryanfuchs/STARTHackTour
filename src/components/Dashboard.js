@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import CirclePacking from './CirclePacking';
+import BlindSpotsView from './BlindSpotsView';
 import './Dashboard.css';
 
 const Dashboard = ({ onLogout }) => {
@@ -92,8 +93,8 @@ const Dashboard = ({ onLogout }) => {
           });
         }
         
-        // Add individual articles - handle nested children structure
-        const processChildren = (childrenArray, parentIndex = 0) => {
+        // Add individual articles - handle nested children structure (up to 4 levels deep)
+        const processChildren = (childrenArray, parentIndex = 0, level = 0) => {
           if (!childrenArray) return [];
           
           return childrenArray.map((child, childIndex) => {
@@ -109,15 +110,16 @@ const Dashboard = ({ onLogout }) => {
                   value: 90,
                   description: child.label_summary,
                   readBy: child.read || [],
-                  id: `summary-${parentIndex}-${childIndex}`,
-                  label: `summary-${parentIndex}-${childIndex}`,
+                  id: `summary-${parentIndex}-${childIndex}-${level}`,
+                  label: `summary-${parentIndex}-${childIndex}-${level}`,
                   source: null,
                   isSummary: true
                 });
               }
               
               // Process nested children (articles) and add them to sub-group
-              const nestedChildren = processChildren(child.children, childIndex);
+              // Recursively process all levels
+              const nestedChildren = processChildren(child.children, childIndex, level + 1);
               subGroupChildren.push(...nestedChildren);
               
               // Return the sub-group with its children
@@ -126,22 +128,22 @@ const Dashboard = ({ onLogout }) => {
                 value: child.urgency || 50,
                 description: child.label_summary || "No summary available",
                 readBy: child.read || [],
-                id: child.id || `subgroup-${parentIndex}-${childIndex}`,
-                label: child.label || `label-${parentIndex}-${childIndex}`,
+                id: child.id || `subgroup-${parentIndex}-${childIndex}-${level}`,
+                label: child.label || `label-${parentIndex}-${childIndex}-${level}`,
                 source: null,
                 children: subGroupChildren,
                 isSummary: false
               };
             } else {
-              // This is a leaf article
+              // This is a leaf article (only leaf nodes have published dates)
               return {
                 name: child.label_title || `Article ${childIndex + 1}`,
                 value: Math.floor(Math.random() * 100), // Random value for now
                 description: child.label_summary || "No summary available",
-                published: child.published || null,
+                published: child.published || null, // Only leaf nodes have published dates
                 readBy: child.read || [],
-                id: child.id || `article-${parentIndex}-${childIndex}`,
-                label: child.label || `label-${parentIndex}-${childIndex}`,
+                id: child.id || `article-${parentIndex}-${childIndex}-${level}`,
+                label: child.label || `label-${parentIndex}-${childIndex}-${level}`,
                 source: child.source || "Unknown source",
                 isSummary: false
               };
@@ -149,7 +151,7 @@ const Dashboard = ({ onLogout }) => {
           });
         };
         
-        const processedChildren = processChildren(item.children, index);
+        const processedChildren = processChildren(item.children, index, 0);
         children.push(...processedChildren);
         
         return {
@@ -428,73 +430,76 @@ const Dashboard = ({ onLogout }) => {
                     const labelData = outputData[0]?.data?.labeldata;
                     if (!labelData) return null;
                     
-                    // Analyze for potential blind spots
-                    const analysis = {
-                      lowRelevancy: [],
-                      highUrgency: [],
-                      highUrgencyLowRelevancy: []
-                    };
-                    
-                    const processNode = (node, level = 0) => {
-                      if (node.label_title && node.relevancy_port1 !== undefined) {
-                        const avgRelevancy = (node.relevancy_port1 + node.relevancy_port2 + node.relevancy_port3) / 3;
-                        const isRead = node.read && node.read.length > 0;
-                        
-                        // Low relevancy stories (potential blind spots)
-                        if (avgRelevancy < 4) {
-                          analysis.lowRelevancy.push({
-                            title: node.label_title,
-                            relevancy: avgRelevancy,
-                            urgency: node.urgency,
-                            level: level,
-                            summary: node.label_summary,
-                            isRead
-                          });
-                        }
-                        
-                        // High urgency stories
-                        if (node.urgency >= 7) {
-                          analysis.highUrgency.push({
-                            title: node.label_title,
-                            relevancy: avgRelevancy,
-                            urgency: node.urgency,
-                            level: level,
-                            summary: node.label_summary,
-                            isRead
-                          });
-                        }
-                        
-                        // High urgency but low relevancy (might be overlooked)
-                        if (node.urgency >= 7 && avgRelevancy < 5) {
-                          analysis.highUrgencyLowRelevancy.push({
-                            title: node.label_title,
-                            relevancy: avgRelevancy,
-                            urgency: node.urgency,
-                            level: level,
-                            summary: node.label_summary,
-                            isRead
-                          });
-                        }
-                      }
-                      
-                      if (node.children) {
-                        node.children.forEach(child => processNode(child, level + 1));
-                      }
-                    };
-                    
-                    labelData.forEach(node => processNode(node));
+                     // Analyze for potential blind spots
+                     const analysis = {
+                       highRelevancy: [],
+                       highUrgency: [],
+                       highUrgencyHighRelevancy: []
+                     };
+                     
+                     const allArticles = [];
+                     
+                     const processNode = (node, level = 0) => {
+                       if (node.label_title && node.relevancy_port1 !== undefined) {
+                         const avgRelevancy = (node.relevancy_port1 + node.relevancy_port2 + node.relevancy_port3) / 3;
+                         const isRead = node.read && node.read.length > 0;
+                         
+                         // Collect all articles for sorting
+                         allArticles.push({
+                           title: node.label_title,
+                           relevancy: avgRelevancy,
+                           urgency: node.urgency,
+                           level: level,
+                           summary: node.label_summary,
+                           isRead
+                         });
+                         
+                         // High urgency stories
+                         if (node.urgency >= 7) {
+                           analysis.highUrgency.push({
+                             title: node.label_title,
+                             relevancy: avgRelevancy,
+                             urgency: node.urgency,
+                             level: level,
+                             summary: node.label_summary,
+                             isRead
+                           });
+                         }
+                       }
+                       
+                       if (node.children) {
+                         node.children.forEach(child => processNode(child, level + 1));
+                       }
+                     };
+                     
+                     labelData.forEach(node => processNode(node));
+                     
+                     // Sort all articles by relevancy and take top 3
+                     analysis.highRelevancy = allArticles
+                       .sort((a, b) => b.relevancy - a.relevancy)
+                       .slice(0, 3);
+                     
+                     // Sort all articles by urgency and take top 3
+                     analysis.highUrgency = allArticles
+                       .sort((a, b) => b.urgency - a.urgency)
+                       .slice(0, 3);
+                     
+                     // Sort all articles by combined urgency + relevancy and take top 3
+                     analysis.highUrgencyHighRelevancy = allArticles
+                       .sort((a, b) => (b.urgency + b.relevancy) - (a.urgency + a.relevancy))
+                       .slice(0, 3);
                     
                     return (
                       <div className="blind-spot-grid">
-                        {/* High Urgency, Low Relevancy */}
+                        {/* High Urgency, High Relevancy */}
                         <div className="blind-spot-section">
                           <h4 className="section-title">
-                            <span className="icon">⚠️</span>
-                            High Urgency, Low Relevancy
-                            <span className="count">({analysis.highUrgencyLowRelevancy.length})</span>
+                            <span className="icon">🔥</span>
+                            High Urgency, High Relevancy
+                            <span className="count">({analysis.highUrgencyHighRelevancy.length})</span>
                           </h4>
                           <div className="blind-spot-items">
-                            {analysis.highUrgencyLowRelevancy.slice(0, 3).map((item, index) => (
+                            {analysis.highUrgencyHighRelevancy.slice(0, 3).map((item, index) => (
                               <div key={index} className="blind-spot-item high-urgency">
                                 <div className="item-header">
                                   <span className="item-title">{item.title}</span>
@@ -532,16 +537,16 @@ const Dashboard = ({ onLogout }) => {
                           </div>
                         </div>
                         
-                        {/* Low Relevancy */}
-                        <div className="blind-spot-section">
-                          <h4 className="section-title">
-                            <span className="icon">🔍</span>
-                            Low Relevancy
-                            <span className="count">({analysis.lowRelevancy.length})</span>
-                          </h4>
-                          <div className="blind-spot-items">
-                            {analysis.lowRelevancy.slice(0, 3).map((item, index) => (
-                              <div key={index} className="blind-spot-item low-relevancy">
+                         {/* High Relevancy */}
+                         <div className="blind-spot-section">
+                           <h4 className="section-title">
+                             <span className="icon">⭐</span>
+                             High Relevancy
+                             <span className="count">({analysis.highRelevancy.length})</span>
+                           </h4>
+                           <div className="blind-spot-items">
+                             {analysis.highRelevancy.slice(0, 3).map((item, index) => (
+                               <div key={index} className="blind-spot-item high-relevancy">
                                 <div className="item-header">
                                   <span className="item-title">{item.title}</span>
                                   <div className="item-scores">
@@ -560,6 +565,14 @@ const Dashboard = ({ onLogout }) => {
                 </div>
           </div>
             </>
+          )}
+
+          {/* Blind Spots View - Full Width */}
+          {outputData && (
+            <BlindSpotsView 
+              data={outputData} 
+              currentUserId={currentUserId}
+            />
           )}
 
         </div>
