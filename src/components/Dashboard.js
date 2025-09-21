@@ -72,30 +72,26 @@ const Dashboard = ({ onLogout }) => {
     const labelData = data && data[0] && data[0].data && data[0].data.labeldata;
     if (!Array.isArray(labelData)) return { name: "News Portfolio", children: [] };
     
-    return {
-      name: "News Portfolio",
-      children: labelData.map((item, index) => {
+    // Create standalone summary node for the root level
+    const rootSummary = {
+      name: "Summary: News Portfolio",
+      value: 95, // High priority for root summary
+      description: "Overview of all news categories and their impact on portfolio performance",
+      readBy: [],
+      id: "root-summary",
+      label: "root-summary",
+      source: null,
+      isSummary: true
+    };
+    
+    const portfolioChildren = labelData.map((item, index) => {
         // Calculate average relevancy across portfolios
         const avgRelevancy = item.relevancy_port1 && item.relevancy_port2 && item.relevancy_port3 
           ? Math.round((item.relevancy_port1 + item.relevancy_port2 + item.relevancy_port3) / 3)
           : 50;
         
-        // Create children array with summary node and individual articles
+        // Create children array with individual articles (no summary node for portfolio groups)
         const children = [];
-        
-        // Add summary node as first child
-        if (item.label_summary) {
-          children.push({
-            name: `Summary: ${item.label_title || `News Group ${index + 1}`}`,
-            value: 90, // High priority for summary nodes
-            description: item.label_summary,
-            readBy: item.read || [],
-            id: `summary-${index}`,
-            label: `summary-${index}`,
-            source: null,
-            isSummary: true // Mark as summary node
-          });
-        }
         
         // Add individual articles - handle nested children structure (up to 4 levels deep)
         const processChildren = (childrenArray, parentIndex = 0, level = 0) => {
@@ -107,19 +103,17 @@ const Dashboard = ({ onLogout }) => {
               // This is a sub-group, process its children recursively
               const subGroupChildren = [];
               
-              // Add summary for sub-group if it exists
-              if (child.label_summary) {
-                subGroupChildren.push({
-                  name: `Summary: ${child.label_title || `Sub-group ${childIndex + 1}`}`,
-                  value: 90,
-                  description: child.label_summary,
-                  readBy: child.read || [],
-                  id: `summary-${parentIndex}-${childIndex}-${level}`,
-                  label: `summary-${parentIndex}-${childIndex}-${level}`,
-                  source: null,
-                  isSummary: true
-                });
-              }
+              // Add summary for sub-group (always create for parent nodes)
+              subGroupChildren.push({
+                name: `Summary: ${child.label_title || `Sub-group ${childIndex + 1}`}`,
+                value: 90,
+                description: child.label_summary || `Summary of ${child.label_title || `Sub-group ${childIndex + 1}`}`,
+                readBy: child.read || [],
+                id: `summary-${parentIndex}-${childIndex}-${level}`,
+                label: `summary-${parentIndex}-${childIndex}-${level}`,
+                source: null,
+                isSummary: true
+              });
               
               // Process nested children (articles) and add them to sub-group
               // Recursively process all levels
@@ -171,7 +165,11 @@ const Dashboard = ({ onLogout }) => {
           // Add source for the main group if available
           source: item.source || null
         };
-      })
+      });
+    
+    return {
+      name: "News Portfolio",
+      children: [rootSummary, ...portfolioChildren]
     };
   };
 

@@ -539,13 +539,13 @@
 }
 
 .legend-color.read-group {
-  background-color: #B8C7E8; /* #9EAECE brighter by 0.4 */
-  border-color: #C4D1F0; /* #9EAECE brighter by 0.2 */
+  background-color: #D6DDEA; /* Light blue fill for read groups */
+  border-color: #9EAECE; /* Medium blue border for read groups */
 }
 
 .legend-color.unread-group {
-  background-color: #9EAECE; /* Base color from chart */
-  border-color: #5A6B8A; /* #9EAECE darker by 0.4 */
+  background-color: #9EAECE; /* Medium blue fill for unread groups */
+  border-color: #748BB8; /* Dark blue border for unread groups */
 }
 
 .legend-item span {
