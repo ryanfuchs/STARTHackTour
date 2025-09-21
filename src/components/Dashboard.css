@@ -973,6 +973,16 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.story-item.clickable {
+  cursor: pointer;
+}
+
+.story-item.clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-left-color: #748BB8;
+}
+
 .story-header {
   display: flex;
   justify-content: space-between;

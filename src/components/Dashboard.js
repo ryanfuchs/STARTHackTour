@@ -484,7 +484,11 @@ const Dashboard = ({ onLogout }) => {
                           relevancy: avgRelevancy,
                           urgency: node.urgency,
                           level: level,
-                          summary: node.label_summary
+                          summary: node.label_summary,
+                          id: node.id,
+                          source: node.source,
+                          readBy: node.read || [],
+                          isSummary: false
                         });
                       }
                       if (node.children) {
@@ -498,7 +502,20 @@ const Dashboard = ({ onLogout }) => {
                       .slice(0, 5);
                     
                     return topStories.map((story, index) => (
-                      <div key={index} className="story-item">
+                      <div 
+                        key={index} 
+                        className="story-item clickable"
+                        onClick={() => openArticleDetail({
+                          title: story.title,
+                          summary: story.summary,
+                          relevancy: story.relevancy,
+                          urgency: story.urgency,
+                          source: story.source,
+                          id: story.id,
+                          readBy: story.readBy,
+                          isRead: story.readBy.includes(currentUserId)
+                        })}
+                      >
                         <div className="story-header">
                           <h4 className="story-title">{story.title}</h4>
                           <div className="story-scores">

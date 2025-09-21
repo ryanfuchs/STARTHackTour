@@ -252,9 +252,6 @@ const BlindSpotsView = ({ data, currentUserId = 'user1' }) => {
                       Mark as Read
                     </button>
                   </div>
-                  <button className="btn-view-source">
-                    View Source
-                  </button>
                 </div>
               </div>
             ))}

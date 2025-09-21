@@ -343,22 +343,6 @@
   background: #5A6B8A;
 }
 
-.btn-view-source {
-  background: transparent;
-  color: #748BB8;
-  border: 2px solid #748BB8;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-view-source:hover {
-  background: #748BB8;
-  color: white;
-}
 
 .btn-mark-read.disabled {
   background: #E5E5E6;
