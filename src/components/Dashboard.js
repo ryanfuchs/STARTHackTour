@@ -19,6 +19,10 @@ const Dashboard = ({ onLogout }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // State for article detail view
+  const [selectedArticle, setSelectedArticle] = useState(null);
+  const [showArticleDetail, setShowArticleDetail] = useState(false);
+
   // Fetch data from API
   useEffect(() => {
     const fetchData = async () => {
@@ -172,6 +176,24 @@ const Dashboard = ({ onLogout }) => {
   };
 
   const circlePackingData = outputData ? transformDataForCirclePacking(outputData) : { name: "News Portfolio", children: [] };
+
+  // Handle article detail view
+  const openArticleDetail = (article) => {
+    setSelectedArticle(article);
+    setShowArticleDetail(true);
+  };
+
+  const closeArticleDetail = () => {
+    setSelectedArticle(null);
+    setShowArticleDetail(false);
+  };
+
+  const markArticleAsRead = (article) => {
+    // In a real application, this would update the backend
+    // For now, we'll just close the detail view
+    console.log('Marking article as read:', article.title);
+    closeArticleDetail();
+  };
 
   return (
     <div className="dashboard">
@@ -500,7 +522,7 @@ const Dashboard = ({ onLogout }) => {
                           </h4>
                           <div className="blind-spot-items">
                             {analysis.highUrgencyHighRelevancy.slice(0, 3).map((item, index) => (
-                              <div key={index} className="blind-spot-item high-urgency">
+                              <div key={index} className="blind-spot-item high-urgency clickable" onClick={() => openArticleDetail(item)}>
                                 <div className="item-header">
                                   <span className="item-title">{item.title}</span>
                                   <div className="item-scores">
@@ -523,7 +545,7 @@ const Dashboard = ({ onLogout }) => {
                           </h4>
                           <div className="blind-spot-items">
                             {analysis.highUrgency.slice(0, 3).map((item, index) => (
-                              <div key={index} className="blind-spot-item high-urgency">
+                              <div key={index} className="blind-spot-item high-urgency clickable" onClick={() => openArticleDetail(item)}>
                                 <div className="item-header">
                                   <span className="item-title">{item.title}</span>
                                   <div className="item-scores">
@@ -546,7 +568,7 @@ const Dashboard = ({ onLogout }) => {
                            </h4>
                            <div className="blind-spot-items">
                              {analysis.highRelevancy.slice(0, 3).map((item, index) => (
-                               <div key={index} className="blind-spot-item high-relevancy">
+                               <div key={index} className="blind-spot-item high-relevancy clickable" onClick={() => openArticleDetail(item)}>
                                 <div className="item-header">
                                   <span className="item-title">{item.title}</span>
                                   <div className="item-scores">
@@ -577,6 +599,54 @@ const Dashboard = ({ onLogout }) => {
 
         </div>
       </main>
+
+      {/* Article Detail Modal */}
+      {showArticleDetail && selectedArticle && (
+        <div className="article-detail-modal">
+          <div className="modal-backdrop" onClick={closeArticleDetail}></div>
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2>{selectedArticle.title}</h2>
+              <button className="close-button" onClick={closeArticleDetail}>×</button>
+            </div>
+            <div className="modal-body">
+              <div className="article-meta">
+                <div className="article-scores">
+                  <span className="score relevancy">Relevancy: {selectedArticle.relevancy.toFixed(1)}</span>
+                  <span className="score urgency">Urgency: {selectedArticle.urgency}</span>
+                </div>
+                <div className="article-status">
+                  {selectedArticle.isRead ? (
+                    <span className="status read">✓ Read</span>
+                  ) : (
+                    <span className="status unread">Unread</span>
+                  )}
+                </div>
+              </div>
+              <div className="article-content">
+                <h3>Summary</h3>
+                <p>{selectedArticle.summary}</p>
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button className="btn btn-secondary" onClick={closeArticleDetail}>
+                Close
+              </button>
+              {!selectedArticle.isRead && (
+                <div className="tooltip-container" data-tooltip="No qualification">
+                  <button 
+                    className="btn btn-primary disabled" 
+                    onClick={() => markArticleAsRead(selectedArticle)}
+                    disabled
+                  >
+                    Mark as Read
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -247,9 +247,11 @@ const BlindSpotsView = ({ data, currentUserId = 'user1' }) => {
                 </div>
                 
                 <div className="blind-spot-actions">
-                  <button className="btn-mark-read">
-                    Mark as Read
-                  </button>
+                  <div className="tooltip-container" data-tooltip="No qualification">
+                    <button className="btn-mark-read disabled" disabled>
+                      Mark as Read
+                    </button>
+                  </div>
                   <button className="btn-view-source">
                     View Source
                   </button>
