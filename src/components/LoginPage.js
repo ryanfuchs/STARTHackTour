@@ -13,7 +13,7 @@ const LoginPage = ({ onLogin }) => {
     // Simulate login process
     setTimeout(() => {
       setIsLoading(false);
-      onLogin();
+      onLogin(email); // Pass the email to the parent component
     }, 1000);
   };
 
@@ -38,6 +38,11 @@ const LoginPage = ({ onLogin }) => {
           <h1 className="login-title">Pulse</h1>
           <p className="login-subtitle">by Wellershoff & Partners</p>
           <p className="login-description">Sign in to your account</p>
+          <div className="login-info">
+            <p className="info-text">
+              <strong>Demo Mode:</strong> You can use any email address and password to sign in
+            </p>
+          </div>
         </div>
         
         <form onSubmit={handleSubmit} className="login-form">
@@ -79,7 +84,7 @@ const LoginPage = ({ onLogin }) => {
         <div className="login-footer">
           <p className="text-secondary">
             Don't have an account? 
-            <a href="#" className="text-accent"> Sign up</a>
+            <span className="signup-disabled"> Sign up (Demo Mode)</span>
           </p>
         </div>
       </div>

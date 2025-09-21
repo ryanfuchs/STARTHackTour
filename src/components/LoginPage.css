@@ -272,7 +272,33 @@
 .login-description {
   font-size: 14px;
   color: #6D6E70;
+  margin-bottom: 16px;
+}
+
+.login-info {
+  background: rgba(142, 164, 183, 0.1);
+  border: 1px solid rgba(142, 164, 183, 0.2);
+  border-radius: 8px;
+  padding: 12px 16px;
   margin-bottom: 0;
+}
+
+.info-text {
+  font-size: 13px;
+  color: #2C3E50;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.info-text strong {
+  color: #8EA4B7;
+}
+
+.signup-disabled {
+  color: #9E9E9E;
+  font-style: italic;
+  cursor: not-allowed;
+  text-decoration: line-through;
 }
 
 .login-form {

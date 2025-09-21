@@ -4,7 +4,7 @@ import CirclePacking from './CirclePacking';
 import BlindSpotsView from './BlindSpotsView';
 import './Dashboard.css';
 
-const Dashboard = ({ onLogout }) => {
+const Dashboard = ({ onLogout, userEmail }) => {
   // Date state for Pulse Insights
   const [selectedDate, setSelectedDate] = useState(() => {
     const today = new Date();
@@ -310,7 +310,7 @@ const Dashboard = ({ onLogout }) => {
                   <span className="toggle-label">Subscribe to Alerts</span>
                 </label>
               </div>
-              <span className="user-info">Welcome back, John</span>
+              <span className="user-info">Welcome back, {userEmail || 'User'}</span>
               <button onClick={onLogout} className="btn btn-secondary">
                 Logout
               </button>
