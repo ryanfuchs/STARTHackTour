@@ -2,8 +2,6 @@
 
 A modern, interactive financial news detection and analysis dashboard built with React and D3.js for **Wellershoff & Partners** and **IBM**. This application automatically identifies, summarizes, and prepares financial news for human-in-the-loop review, addressing the critical challenge of monitoring global market-moving events.
 
-**🏆 Developed for STARTHack Tour 2025**
-
 ## 🎯 Problem Statement
 
 W&P analysts and strategists constantly scan global news for events that can move the markets and for news relevant to client portfolios. Upon significant developments, they must make strategic adjustments and communicate to clients. This process is resource-intensive and risks missing critical developments.
@@ -218,5 +216,4 @@ This project was developed as part of **STARTHack Tour 2025** in collaboration b
 
 ---
 
-**Built with ❤️ by for Wellershoff & Partners & IBM Development Team at STARTHack Tour 2025**
-**Boris Kantor, Filip Cybulski, Luka Wedegärtner, Ryan Fuchs**
+**Built with ❤️ by for Wellershoff & Partners & IBM Development Team at STARTHack Tour 2025 - Boris Kantor, Filip Cybulski, Luka Wedegärtner, Ryan Fuchs**
