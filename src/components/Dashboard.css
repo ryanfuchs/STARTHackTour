@@ -302,6 +302,238 @@
   transform: translateY(-1px);
 }
 
+.btn-weekly-review {
+  background: linear-gradient(135deg, #8EA4B7 0%, #B0926D 100%);
+  color: white;
+  font-weight: 600;
+  padding: 16px 24px;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.btn-weekly-review:hover {
+  background: linear-gradient(135deg, #748BB8 0%, #9A7A5A 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-linkedin {
+  background: #0077B5;
+  color: white;
+}
+
+.btn-linkedin:hover {
+  background: #005885;
+  transform: translateY(-1px);
+}
+
+.btn-twitter {
+  background: #1DA1F2;
+  color: white;
+}
+
+.btn-twitter:hover {
+  background: #0d8bd9;
+  transform: translateY(-1px);
+}
+
+.weekly-review-section {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #E5E5E6;
+}
+
+.weekly-review-content {
+  text-align: center;
+}
+
+.pdf-preview {
+  margin: 20px 0;
+  border: 1px solid #E5E5E6;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Alerts Subscription Styles */
+.alerts-subscription {
+  margin-right: 20px;
+}
+
+.alerts-toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.alerts-toggle input {
+  display: none;
+}
+
+.toggle-slider {
+  position: relative;
+  width: 50px;
+  height: 24px;
+  background-color: #E5E5E6;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.alerts-toggle input:checked + .toggle-slider {
+  background-color: #8EA4B7;
+}
+
+.alerts-toggle input:checked + .toggle-slider::before {
+  transform: translateX(26px);
+}
+
+.toggle-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2C3E50;
+}
+
+.alerts-modal .modal-content {
+  max-width: 500px;
+}
+
+.alerts-config {
+  padding: 20px 0;
+}
+
+.alert-option {
+  margin: 20px 0;
+  border: 1px solid #E5E5E6;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.alert-option:hover {
+  border-color: #8EA4B7;
+  box-shadow: 0 2px 8px rgba(142, 164, 183, 0.1);
+}
+
+.alert-option-label {
+  display: block;
+  cursor: pointer;
+  padding: 0;
+}
+
+.alert-option-label input {
+  display: none;
+}
+
+.alert-option-content {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.alert-icon {
+  font-size: 24px;
+  margin-right: 16px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: #F8F9FA;
+}
+
+.email-icon {
+  background-color: #E3F2FD;
+}
+
+.slack-icon {
+  background-color: #F3E5F5;
+  color: #4A154B;
+}
+
+.slack-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.alert-details {
+  flex: 1;
+}
+
+.alert-details h4 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2C3E50;
+}
+
+.alert-details p {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #6D6E70;
+  line-height: 1.4;
+}
+
+.alert-status {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #F8F9FA;
+  color: #6D6E70;
+}
+
+.alert-option:has(input:checked) {
+  border-color: #8EA4B7;
+  background-color: #F8F9FA;
+}
+
+.alert-option:has(input:checked) .alert-icon {
+  background-color: #8EA4B7;
+  color: white;
+}
+
+.alert-option:has(input:checked) .alert-status {
+  background-color: #E8F5E8;
+  color: #2E7D32;
+}
+
+.alert-preview {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #F8F9FA;
+  border-radius: 8px;
+  border-left: 4px solid #8EA4B7;
+}
+
+.alert-preview h4 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2C3E50;
+}
+
+.preview-message {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #2C3E50;
+}
+
 .btn.disabled {
   background: #E5E5E6;
   color: #9E9E9E;

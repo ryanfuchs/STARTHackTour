@@ -23,6 +23,15 @@ const Dashboard = ({ onLogout }) => {
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [showArticleDetail, setShowArticleDetail] = useState(false);
 
+  // State for weekly review modal
+  const [showWeeklyReview, setShowWeeklyReview] = useState(false);
+
+  // State for alerts subscription
+  const [alertsEnabled, setAlertsEnabled] = useState(false);
+  const [emailAlerts, setEmailAlerts] = useState(false);
+  const [slackAlerts, setSlackAlerts] = useState(false);
+  const [showAlertsModal, setShowAlertsModal] = useState(false);
+
   // Fetch data from API
   useEffect(() => {
     const fetchData = async () => {
@@ -258,6 +267,21 @@ const Dashboard = ({ onLogout }) => {
     closeArticleDetail();
   };
 
+  // Social sharing functions
+  const shareOnLinkedIn = () => {
+    const url = encodeURIComponent(window.location.origin + '/wpFinancialReview.pdf');
+    const text = encodeURIComponent('Check out our Weekly WP Financial Review - comprehensive insights on market trends and portfolio analysis.');
+    const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+    window.open(linkedinUrl, '_blank', 'width=600,height=400');
+  };
+
+  const shareOnTwitter = () => {
+    const url = encodeURIComponent(window.location.origin + '/wpFinancialReview.pdf');
+    const text = encodeURIComponent('📊 Weekly WP Financial Review is out! Key insights on market trends and portfolio analysis. #FinancialReview #MarketAnalysis');
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+    window.open(twitterUrl, '_blank', 'width=600,height=400');
+  };
+
   return (
     <div className="dashboard">
       <header className="dashboard-header">
@@ -268,13 +292,29 @@ const Dashboard = ({ onLogout }) => {
               <h1 className="dashboard-title">Pulse</h1>
               <span className="brand-subtitle">by Wellershoff & Partners</span>
             </div>
-          </div>
-          <div className="header-actions">
-            <span className="user-info">Welcome back, John</span>
-            <button onClick={onLogout} className="btn btn-secondary">
-              Logout
-            </button>
-          </div>
+            </div>
+            <div className="header-actions">
+              <div className="alerts-subscription">
+                <label className="alerts-toggle">
+                  <input
+                    type="checkbox"
+                    checked={alertsEnabled}
+                    onChange={(e) => {
+                      setAlertsEnabled(e.target.checked);
+                      if (e.target.checked) {
+                        setShowAlertsModal(true);
+                      }
+                    }}
+                  />
+                  <span className="toggle-slider"></span>
+                  <span className="toggle-label">Subscribe to Alerts</span>
+                </label>
+              </div>
+              <span className="user-info">Welcome back, John</span>
+              <button onClick={onLogout} className="btn btn-secondary">
+                Logout
+              </button>
+            </div>
         </div>
       </header>
 
@@ -528,6 +568,16 @@ const Dashboard = ({ onLogout }) => {
                     ));
                   })()}
                 </div>
+                
+                {/* Weekly WP Financial Review Section */}
+                <div className="weekly-review-section">
+                  <button 
+                    className="btn btn-weekly-review"
+                    onClick={() => setShowWeeklyReview(true)}
+                  >
+                    Create Weekly WP Financial Review
+                  </button>
+                </div>
               </div>
 
           <div className="card blind-spot-card">
@@ -736,6 +786,148 @@ const Dashboard = ({ onLogout }) => {
                   </button>
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Weekly WP Financial Review Modal */}
+      {showWeeklyReview && (
+        <div className="article-detail-modal">
+          <div className="modal-backdrop" onClick={() => setShowWeeklyReview(false)}></div>
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2>Weekly WP Financial Review</h2>
+              <button className="close-button" onClick={() => setShowWeeklyReview(false)}>×</button>
+            </div>
+            <div className="modal-body">
+              <div className="weekly-review-content">
+                <p>Your Weekly WP Financial Review is ready for sharing!</p>
+                <div className="pdf-preview">
+                  <embed 
+                    src="/wpFinancialReview.pdf" 
+                    type="application/pdf" 
+                    width="100%" 
+                    height="400px"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button className="btn btn-secondary" onClick={() => setShowWeeklyReview(false)}>
+                Close
+              </button>
+              <a 
+                href="/wpFinancialReview.pdf" 
+                download="Weekly-WP-Financial-Review.pdf"
+                className="btn btn-primary"
+              >
+                Download PDF
+              </a>
+              <button 
+                className="btn btn-linkedin"
+                onClick={() => shareOnLinkedIn()}
+              >
+                Share on LinkedIn
+              </button>
+              <button 
+                className="btn btn-twitter"
+                onClick={() => shareOnTwitter()}
+              >
+                Share on Twitter
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Alerts Subscription Modal */}
+      {showAlertsModal && (
+        <div className="article-detail-modal">
+          <div className="modal-backdrop" onClick={() => setShowAlertsModal(false)}></div>
+          <div className="modal-content alerts-modal">
+            <div className="modal-header">
+              <h2>Configure Alert Subscriptions</h2>
+              <button className="close-button" onClick={() => setShowAlertsModal(false)}>×</button>
+            </div>
+            <div className="modal-body">
+              <div className="alerts-config">
+                <p>Choose how you'd like to receive alerts for important news and market updates:</p>
+                
+                <div className="alert-option">
+                  <label className="alert-option-label">
+                    <input
+                      type="checkbox"
+                      checked={emailAlerts}
+                      onChange={(e) => setEmailAlerts(e.target.checked)}
+                    />
+                    <div className="alert-option-content">
+                      <div className="alert-icon email-icon">📧</div>
+                      <div className="alert-details">
+                        <h4>Email Alerts</h4>
+                        <p>Receive daily summaries and urgent news alerts via email</p>
+                        <span className="alert-status">
+                          {emailAlerts ? '✅ Enabled' : '❌ Disabled'}
+                        </span>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+
+                <div className="alert-option">
+                  <label className="alert-option-label">
+                    <input
+                      type="checkbox"
+                      checked={slackAlerts}
+                      onChange={(e) => setSlackAlerts(e.target.checked)}
+                    />
+                    <div className="alert-option-content">
+                      <div className="alert-icon slack-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52-2.523A2.528 2.528 0 0 1 5.042 10.12h2.52v2.522a2.528 2.528 0 0 1-2.52 2.523zm0-6.744A2.528 2.528 0 0 1 2.522 5.898a2.528 2.528 0 0 1 2.52-2.523A2.528 2.528 0 0 1 7.562 5.898v2.523H5.042zm6.744 0A2.528 2.528 0 0 1 9.266 5.898a2.528 2.528 0 0 1 2.52-2.523A2.528 2.528 0 0 1 14.306 5.898v2.523h-2.52zm0 6.744a2.528 2.528 0 0 1 2.52 2.523A2.528 2.528 0 0 1 11.786 20.102a2.528 2.528 0 0 1-2.52-2.523v-2.522h2.52zm6.744-6.744A2.528 2.528 0 0 1 22.302 5.898a2.528 2.528 0 0 1-2.52-2.523A2.528 2.528 0 0 1 17.262 5.898v2.523h2.52zm0 6.744a2.528 2.528 0 0 1 2.52 2.523A2.528 2.528 0 0 1 19.782 20.102a2.528 2.528 0 0 1-2.52-2.523v-2.522h2.52z"/>
+                        </svg>
+                      </div>
+                      <div className="alert-details">
+                        <h4>Slack Integration (Slackbot)</h4>
+                        <p>Get real-time notifications in your team Slack channel via Slackbot</p>
+                        <span className="alert-status">
+                          {slackAlerts ? '✅ Connected' : '❌ Not Connected'}
+                        </span>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+
+                <div className="alert-preview">
+                  <h4>Alert Preview:</h4>
+                  <div className="preview-message">
+                    <strong>🚨 High Priority Alert</strong><br/>
+                    AI Data-Center Expansion Surge - Urgency: 8, Relevancy: 9.1<br/>
+                    <em>Major coordinated moves — large hyperscaler capex...</em>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button className="btn btn-secondary" onClick={() => setShowAlertsModal(false)}>
+                Cancel
+              </button>
+              <button 
+                className="btn btn-primary"
+                onClick={() => {
+                  // Fake subscription logic
+                  if (emailAlerts || slackAlerts) {
+                    console.log('Subscribing to alerts:', { emailAlerts, slackAlerts });
+                    alert('Successfully subscribed to alerts! You will now receive notifications via your selected channels.');
+                  } else {
+                    alert('Please select at least one notification method.');
+                    return;
+                  }
+                  setShowAlertsModal(false);
+                }}
+              >
+                Save Preferences
+              </button>
             </div>
           </div>
         </div>

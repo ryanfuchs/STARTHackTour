@@ -223,9 +223,6 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
                 Source
               </button>
             ` : ''}
-            ${!nodeData.isSummary && !nodeData.source ? `
-              <span style="color: #999; font-size: 12px;">No source available</span>
-            ` : ''}
           </div>
         </div>
       `;
