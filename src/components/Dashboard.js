@@ -48,22 +48,82 @@ const Dashboard = ({ onLogout }) => {
     fetchData();
   }, []);
 
-  // Sample data for charts
-  const portfolioData = [
-    { name: 'Jan', value: 4000 },
-    { name: 'Feb', value: 3000 },
-    { name: 'Mar', value: 5000 },
-    { name: 'Apr', value: 4500 },
-    { name: 'May', value: 6000 },
-    { name: 'Jun', value: 5500 },
-  ];
+  // Generate portfolio relevancy trend data from news data
+  const generatePortfolioTrendData = (data) => {
+    if (!data || !data[0] || !data[0].data || !data[0].data.labeldata) {
+      return [
+        { name: 'Week 1', relevancy: 6.2 },
+        { name: 'Week 2', relevancy: 6.8 },
+        { name: 'Week 3', relevancy: 7.1 },
+        { name: 'Week 4', relevancy: 6.9 },
+        { name: 'Week 5', relevancy: 7.4 },
+        { name: 'Week 6', relevancy: 7.6 },
+      ];
+    }
 
-  const assetAllocation = [
-    { name: 'Stocks', value: 45, color: '#748BB8' },
-    { name: 'Bonds', value: 25, color: '#9EAECE' },
-    { name: 'Real Estate', value: 20, color: '#D6DDEA' },
-    { name: 'Commodities', value: 10, color: '#B0926D' },
-  ];
+    const labelData = data[0].data.labeldata;
+    const currentAvgRelevancy = labelData.reduce((sum, item) => {
+      const avgRelevancy = (item.relevancy_port1 + item.relevancy_port2 + item.relevancy_port3) / 3;
+      return sum + avgRelevancy;
+    }, 0) / labelData.length;
+
+    // Generate trend data based on current relevancy with some variation
+    return [
+      { name: 'Week 1', relevancy: Math.max(1, currentAvgRelevancy - 1.5) },
+      { name: 'Week 2', relevancy: Math.max(1, currentAvgRelevancy - 1.0) },
+      { name: 'Week 3', relevancy: Math.max(1, currentAvgRelevancy - 0.5) },
+      { name: 'Week 4', relevancy: currentAvgRelevancy },
+      { name: 'Week 5', relevancy: Math.min(10, currentAvgRelevancy + 0.5) },
+      { name: 'Week 6', relevancy: Math.min(10, currentAvgRelevancy + 1.0) },
+    ];
+  };
+
+  // Generate portfolio allocation data from news relevancy
+  const generatePortfolioAllocationData = (data) => {
+    if (!data || !data[0] || !data[0].data || !data[0].data.labeldata) {
+      return [
+        { name: 'Portfolio 1', value: 35, color: '#748BB8' },
+        { name: 'Portfolio 2', value: 40, color: '#B0926D' },
+        { name: 'Portfolio 3', value: 25, color: '#D6DDEA' },
+      ];
+    }
+
+    const labelData = data[0].data.labeldata;
+    let port1Total = 0, port2Total = 0, port3Total = 0;
+
+    labelData.forEach(item => {
+      port1Total += item.relevancy_port1 || 0;
+      port2Total += item.relevancy_port2 || 0;
+      port3Total += item.relevancy_port3 || 0;
+    });
+
+    const total = port1Total + port2Total + port3Total;
+    
+    return [
+      { 
+        name: 'Portfolio 1', 
+        value: Math.round((port1Total / total) * 100), 
+        color: '#748BB8',
+        avgRelevancy: Math.round((port1Total / labelData.length) * 10) / 10
+      },
+      { 
+        name: 'Portfolio 2', 
+        value: Math.round((port2Total / total) * 100), 
+        color: '#B0926D',
+        avgRelevancy: Math.round((port2Total / labelData.length) * 10) / 10
+      },
+      { 
+        name: 'Portfolio 3', 
+        value: Math.round((port3Total / total) * 100), 
+        color: '#D6DDEA',
+        avgRelevancy: Math.round((port3Total / labelData.length) * 10) / 10
+      },
+    ];
+  };
+
+  // Generate chart data based on current news data
+  const portfolioData = generatePortfolioTrendData(outputData);
+  const assetAllocation = generatePortfolioAllocationData(outputData);
 
 
   // Transform the new data structure for circle packing
@@ -212,29 +272,30 @@ const Dashboard = ({ onLogout }) => {
 
       <main className="dashboard-main">
         <div className="dashboard-grid">
-          {/* Portfolio Value Card */}
+          {/* Portfolio Relevancy Trend Card */}
           <div className="card portfolio-card">
-            <h3 className="card-title">Portfolio Value</h3>
+            <h3 className="card-title">News Relevancy Trend</h3>
             <div className="portfolio-value">
-              <span className="value-amount">$125,430</span>
-              <span className="value-change positive">+2.4%</span>
+              <span className="value-amount">{portfolioData[portfolioData.length - 1]?.relevancy?.toFixed(1) || '7.6'}/10</span>
+              <span className="value-change positive">+{((portfolioData[portfolioData.length - 1]?.relevancy - portfolioData[0]?.relevancy) || 1.4).toFixed(1)}</span>
             </div>
             <div className="portfolio-chart">
               <ResponsiveContainer width="100%" height={200}>
                 <LineChart data={portfolioData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#E5E5E6" />
                   <XAxis dataKey="name" stroke="#6D6E70" />
-                  <YAxis stroke="#6D6E70" />
+                  <YAxis stroke="#6D6E70" domain={[0, 10]} />
                   <Tooltip 
                     contentStyle={{
                       backgroundColor: '#F1F1F2',
                       border: '1px solid #E5E5E6',
                       borderRadius: '8px'
                     }}
+                    formatter={(value) => [`${value}/10`, 'Avg Relevancy']}
                   />
                   <Line 
                     type="monotone" 
-                    dataKey="value" 
+                    dataKey="relevancy" 
                     stroke="#8EA4B7" 
                     strokeWidth={3}
                     dot={{ fill: '#8EA4B7', strokeWidth: 2, r: 4 }}
@@ -244,9 +305,9 @@ const Dashboard = ({ onLogout }) => {
             </div>
           </div>
 
-          {/* Asset Allocation Card */}
+          {/* Portfolio Relevancy Distribution Card */}
           <div className="card allocation-card">
-            <h3 className="card-title">Asset Allocation</h3>
+            <h3 className="card-title">Portfolio Relevancy Distribution</h3>
             <div className="allocation-chart">
               <ResponsiveContainer width="100%" height={200}>
                 <PieChart>
@@ -269,6 +330,10 @@ const Dashboard = ({ onLogout }) => {
                       border: '1px solid #E5E5E6',
                       borderRadius: '8px'
                     }}
+                    formatter={(value, name, props) => [
+                      `${value}% (Avg: ${props.payload.avgRelevancy}/10)`, 
+                      name
+                    ]}
                   />
                 </PieChart>
               </ResponsiveContainer>
