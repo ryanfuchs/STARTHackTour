@@ -561,6 +561,68 @@
   font-size: 11px;
 }
 
+/* Tooltip styles */
+.tooltip-container {
+  display: inline-block;
+  position: relative;
+}
+
+.tooltip-container::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2C3E50;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 8px;
+}
+
+.tooltip-container::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #2C3E50;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  margin-bottom: 3px;
+}
+
+.tooltip-container:hover::before,
+.tooltip-container:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Disabled button styles */
+.btn.disabled {
+  background: #E5E5E6;
+  color: #9E9E9E;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn.disabled:hover {
+  background: #E5E5E6;
+  color: #9E9E9E;
+  transform: none;
+}
+
 /* Responsive legend */
 @media (max-width: 768px) {
   .date-controls-above-legend {

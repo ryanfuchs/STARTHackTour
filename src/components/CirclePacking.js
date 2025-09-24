@@ -241,12 +241,15 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
             </div>
           ` : ''}
           <div class="reading-controls">
-            <button 
-              class="btn ${isRead ? 'btn-secondary' : 'btn-primary'}"
-              onclick="toggleReadingStatus('${nodeData.name}', ${isRead})"
-            >
-              ${isRead ? 'Mark as Unread' : 'Mark as Read'}
-            </button>
+            <div class="tooltip-container" data-tooltip="No qualification">
+              <button 
+                class="btn ${isRead ? 'btn-secondary' : 'btn-primary'} disabled"
+                onclick="toggleReadingStatus('${nodeData.name}', ${isRead})"
+                disabled
+              >
+                ${isRead ? 'Mark as Unread' : 'Mark as Read'}
+              </button>
+            </div>
             ${!nodeData.isSummary && nodeData.source ? `
               <button 
                 class="btn btn-source"
