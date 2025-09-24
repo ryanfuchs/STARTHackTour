@@ -527,13 +527,13 @@
 }
 
 .legend-color.read-article {
-  background-color: #F0F0F0;
-  border-color: #8EA4B7;
+  background-color: #F5F5F5; /* Grayish background for read articles */
+  border-color: #CCCCCC; /* Gray outline for read articles */
 }
 
 .legend-color.unread-article {
-  background-color: white;
-  border-color: #748BB8;
+  background-color: white; /* White background for unread articles */
+  border-color: #748BB8; /* Blue outline for unread articles */
 }
 
 .legend-color.read-summary {
@@ -547,13 +547,13 @@
 }
 
 .legend-color.read-group {
-  background-color: #B8C7E8; /* #9EAECE brighter by 0.4 */
-  border-color: #C4D1F0; /* #9EAECE brighter by 0.2 */
+  background-color: #D6DDEA; /* Light blue background for read groups */
+  border-color: #C4D1E8; /* Light blue outline for read groups */
 }
 
 .legend-color.unread-group {
-  background-color: #9EAECE; /* Base color from chart */
-  border-color: #5A6B8A; /* #9EAECE darker by 0.4 */
+  background-color: #748BB8; /* Blue background for unread groups */
+  border-color: #4A6FA5; /* Darker blue outline for unread groups */
 }
 
 .legend-item span {

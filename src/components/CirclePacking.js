@@ -18,12 +18,16 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
     const width = containerRect.width;
     const height = containerRect.height;
 
-    // Create the color scale using chart colors
-    const chartColors = ["#748BB8", "#9EAECE", "#D6DDEA", "#B0926D", "#8EA4B7"];
+    // Define color scheme
+    const unreadArticleColor = "white"; // White background for unread articles
+    const readArticleColor = "#F5F5F5"; // Grayish background for read articles
+    const unreadGroupColor = "#748BB8"; // Blue background for unread groups
+    const readGroupColor = "#D6DDEA"; // Light blue background for read groups
     const summaryColor = "#D8C9B6"; // Beige tone for summary bubbles
-    const color = d3.scaleOrdinal()
-      .domain([0, 1, 2, 3, 4])
-      .range(chartColors);
+    const unreadArticleOutline = "#748BB8"; // Blue outline for unread articles
+    const readArticleOutline = "#CCCCCC"; // Gray outline for read articles
+    const unreadGroupOutline = "#4A6FA5"; // Darker blue outline for unread groups
+    const readGroupOutline = "#C4D1E8"; // Light blue outline for read groups
 
     // Helper function to check if a node has been read
     // Something is read if the readBy array is not empty
@@ -34,10 +38,22 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
     // Helper function to check if a group/category is read
     // A group is read if it has been marked as read in its readBy array
     // OR if its summary is read OR all its children are read
-    const isGroupRead = (nodeData) => {
+    // OR if any parent in the hierarchy is read (cascading read behavior)
+    const isGroupRead = (d3Node) => {
+      const nodeData = d3Node.data;
+      
       // First check if the group itself has been marked as read
       if (hasUserRead(nodeData)) {
         return true;
+      }
+      
+      // Check if any parent in the hierarchy is read (cascading read behavior)
+      let currentParent = d3Node.parent;
+      while (currentParent && currentParent.data) {
+        if (hasUserRead(currentParent.data)) {
+          return true;
+        }
+        currentParent = currentParent.parent;
       }
       
       if (!nodeData.children) return false;
@@ -54,7 +70,9 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       
       return nonSummaryChildren.every(child => {
         if (child.children) {
-          return isGroupRead(child); // Recursive check for nested groups
+          // For nested groups, we need to find the corresponding D3 node
+          // This is a simplified check - in practice, we'd need to traverse the D3 hierarchy
+          return isGroupRead({ data: child, parent: d3Node }); // Pass parent context
         } else {
           return hasUserRead(child); // Check leaf nodes
         }
@@ -66,10 +84,24 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       if (d.data.isSummary) {
         return hasUserRead(d.data) ? d3.color(summaryColor).brighter(0.3) : d3.color(summaryColor).darker(0.4);
       } else if (d.children) {
-        const baseColor = color(d.depth % 5);
-        return isGroupRead(d.data) ? d3.color(baseColor).brighter(0.4) : baseColor;
+        // For groups, use blue color scheme based on read status
+        return isGroupRead(d) ? readGroupColor : unreadGroupColor;
       } else {
-        return hasUserRead(d.data) ? "#F0F0F0" : "white";
+        // For individual articles, use white/gray color scheme based on read status
+        return hasUserRead(d.data) ? readArticleColor : unreadArticleColor;
+      }
+    };
+
+    // Helper function to get the appropriate stroke color based on reading status
+    const getNodeStrokeColor = (d) => {
+      if (d.data.isSummary) {
+        return hasUserRead(d.data) ? d3.color(summaryColor).brighter(0.2) : d3.color(summaryColor).darker(0.6);
+      } else if (d.children) {
+        // For groups, use blue outline scheme based on read status
+        return isGroupRead(d) ? readGroupOutline : unreadGroupOutline;
+      } else {
+        // For individual articles, use blue/gray outline scheme based on read status
+        return hasUserRead(d.data) ? readArticleOutline : unreadArticleOutline;
       }
     };
 
@@ -136,7 +168,7 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       mainContainer.classList.add('with-panel');
 
       const isRead = hasUserRead(nodeData);
-      const isGroupReadStatus = nodeData.children ? isGroupRead(nodeData) : false;
+      const isGroupReadStatus = nodeData.children ? isGroupRead({ data: nodeData, parent: null }) : false;
       const readCount = nodeData.readBy ? nodeData.readBy.length : 0;
 
       // Populate panel content first
@@ -301,21 +333,12 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       .join(
         enter => enter.append("circle")
           .attr("fill", d => getNodeColor(d))
-          .attr("stroke", d => {
-            if (d.data.isSummary) {
-              return hasUserRead(d.data) ? d3.color(summaryColor).brighter(0.2) : d3.color(summaryColor).darker(0.6);
-            } else if (d.children) {
-              const baseColor = color(d.depth % 5);
-              return isGroupRead(d.data) ? d3.color(baseColor).brighter(0.2) : d3.color(baseColor).darker(0.4);
-            } else {
-              return hasUserRead(d.data) ? "#8EA4B7" : "#748BB8";
-            }
-          })
+          .attr("stroke", d => getNodeStrokeColor(d))
           .attr("stroke-width", d => {
             if (d.data.isSummary) {
               return hasUserRead(d.data) ? 2 : 2;
             } else if (d.children) {
-              return isGroupRead(d.data) ? 2 : 3;
+              return isGroupRead(d) ? 2 : 3;
             } else {
               return hasUserRead(d.data) ? 2 : 1;
             }
@@ -336,21 +359,12 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
             .attr("transform", d => `translate(${d.x},${d.y})`)
             .attr("r", d => d.r)
             .attr("fill", d => getNodeColor(d))
-            .attr("stroke", d => {
-              if (d.data.isSummary) {
-                return hasUserRead(d.data) ? d3.color(summaryColor).brighter(0.2) : d3.color(summaryColor).darker(0.6);
-              } else if (d.children) {
-                const baseColor = color(d.depth % 5);
-                return isGroupRead(d.data) ? d3.color(baseColor).brighter(0.2) : d3.color(baseColor).darker(0.4);
-              } else {
-                return hasUserRead(d.data) ? "#8EA4B7" : "#748BB8";
-              }
-            })
+            .attr("stroke", d => getNodeStrokeColor(d))
             .attr("stroke-width", d => {
               if (d.data.isSummary) {
                 return hasUserRead(d.data) ? 2 : 2;
               } else if (d.children) {
-                return isGroupRead(d.data) ? 2 : 3;
+                return isGroupRead(d) ? 2 : 3;
               } else {
                 return hasUserRead(d.data) ? 2 : 1;
               }
@@ -384,7 +398,7 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       })
       .on("mouseout", function(event, d) { 
         const strokeWidth = d.data.isSummary ? 2 :
-                           d.children ? (isGroupRead(d.data) ? 2 : 3) :
+                           d.children ? (isGroupRead(d) ? 2 : 3) :
                            (hasUserRead(d.data) ? 2 : 1);
         d3.select(this).transition()
           .duration(200)

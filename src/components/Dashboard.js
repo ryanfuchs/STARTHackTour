@@ -3,6 +3,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import CirclePacking from './CirclePacking';
 import BlindSpotsView from './BlindSpotsView';
 import './Dashboard.css';
+import nested4dData from '../Nested4d.json';
 
 const Dashboard = ({ onLogout, userEmail }) => {
   // Date state for Pulse Insights
@@ -14,9 +15,9 @@ const Dashboard = ({ onLogout, userEmail }) => {
   // Current user ID (you can get this from authentication)
   const [currentUserId] = useState('user1');
 
-  // State for fetched data
-  const [outputData, setOutputData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // State for data
+  const [outputData, setOutputData] = useState(nested4dData);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   // State for article detail view
@@ -32,34 +33,9 @@ const Dashboard = ({ onLogout, userEmail }) => {
   const [slackAlerts, setSlackAlerts] = useState(false);
   const [showAlertsModal, setShowAlertsModal] = useState(false);
 
-  // Fetch data from API
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('https://t3zuixlu7gmep4l657lhm5ekpm0ukrrb.lambda-url.eu-north-1.on.aws');
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        setOutputData(data);
-        setError(null);
-      } catch (err) {
-        console.error('Error fetching data:', err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   // Generate portfolio relevancy trend data from news data
   const generatePortfolioTrendData = (data) => {
-    if (!data || !data[0] || !data[0].data || !data[0].data.labeldata) {
+    if (!Array.isArray(data) || data.length === 0) {
       return [
         { name: 'Week 1', relevancy: 6.2 },
         { name: 'Week 2', relevancy: 6.8 },
@@ -70,11 +46,11 @@ const Dashboard = ({ onLogout, userEmail }) => {
       ];
     }
 
-    const labelData = data[0].data.labeldata;
-    const currentAvgRelevancy = labelData.reduce((sum, item) => {
+    // Calculate average relevancy from the top-level items
+    const currentAvgRelevancy = data.reduce((sum, item) => {
       const avgRelevancy = (item.relevancy_port1 + item.relevancy_port2 + item.relevancy_port3) / 3;
       return sum + avgRelevancy;
-    }, 0) / labelData.length;
+    }, 0) / data.length;
 
     // Generate trend data based on current relevancy with some variation
     return [
@@ -89,7 +65,7 @@ const Dashboard = ({ onLogout, userEmail }) => {
 
   // Generate portfolio allocation data from news relevancy
   const generatePortfolioAllocationData = (data) => {
-    if (!data || !data[0] || !data[0].data || !data[0].data.labeldata) {
+    if (!Array.isArray(data) || data.length === 0) {
       return [
         { name: 'Portfolio 1', value: 35, color: '#748BB8' },
         { name: 'Portfolio 2', value: 40, color: '#B0926D' },
@@ -97,10 +73,9 @@ const Dashboard = ({ onLogout, userEmail }) => {
       ];
     }
 
-    const labelData = data[0].data.labeldata;
     let port1Total = 0, port2Total = 0, port3Total = 0;
 
-    labelData.forEach(item => {
+    data.forEach(item => {
       port1Total += item.relevancy_port1 || 0;
       port2Total += item.relevancy_port2 || 0;
       port3Total += item.relevancy_port3 || 0;
@@ -113,19 +88,19 @@ const Dashboard = ({ onLogout, userEmail }) => {
         name: 'Portfolio 1', 
         value: Math.round((port1Total / total) * 100), 
         color: '#748BB8',
-        avgRelevancy: Math.round((port1Total / labelData.length) * 10) / 10
+        avgRelevancy: Math.round((port1Total / data.length) * 10) / 10
       },
       { 
         name: 'Portfolio 2', 
         value: Math.round((port2Total / total) * 100), 
         color: '#B0926D',
-        avgRelevancy: Math.round((port2Total / labelData.length) * 10) / 10
+        avgRelevancy: Math.round((port2Total / data.length) * 10) / 10
       },
       { 
         name: 'Portfolio 3', 
         value: Math.round((port3Total / total) * 100), 
         color: '#D6DDEA',
-        avgRelevancy: Math.round((port3Total / labelData.length) * 10) / 10
+        avgRelevancy: Math.round((port3Total / data.length) * 10) / 10
       },
     ];
   };
@@ -135,11 +110,11 @@ const Dashboard = ({ onLogout, userEmail }) => {
   const assetAllocation = generatePortfolioAllocationData(outputData);
 
 
-  // Transform the new data structure for circle packing
+  // Transform the Nested4d.json data structure for circle packing
   const transformDataForCirclePacking = (data) => {
-    // Handle the new nested structure: data[0].data.labeldata
-    const labelData = data && data[0] && data[0].data && data[0].data.labeldata;
-    if (!Array.isArray(labelData)) return { name: "News Portfolio", children: [] };
+    if (!Array.isArray(data) || data.length === 0) {
+      return { name: "News Portfolio", children: [] };
+    }
     
     // Create standalone summary node for the root level
     const rootSummary = {
@@ -153,13 +128,13 @@ const Dashboard = ({ onLogout, userEmail }) => {
       isSummary: true
     };
     
-    const portfolioChildren = labelData.map((item, index) => {
+    const portfolioChildren = data.map((item, index) => {
         // Calculate average relevancy across portfolios
         const avgRelevancy = item.relevancy_port1 && item.relevancy_port2 && item.relevancy_port3 
           ? Math.round((item.relevancy_port1 + item.relevancy_port2 + item.relevancy_port3) / 3)
           : 50;
         
-        // Create children array with individual articles (no summary node for portfolio groups)
+        // Create children array with individual articles
         const children = [];
         
         // Add individual articles - handle nested children structure (up to 4 levels deep)
@@ -204,7 +179,7 @@ const Dashboard = ({ onLogout, userEmail }) => {
               // This is a leaf article
               const article = {
                 name: child.label_title || `Article ${childIndex + 1}`,
-                value: Math.floor(Math.random() * 100), // Random value for now
+                value: child.urgency || Math.floor(Math.random() * 100),
                 description: child.label_summary || "No summary available",
                 readBy: child.read || [],
                 id: child.id || `article-${parentIndex}-${childIndex}-${level}`,
@@ -447,8 +422,7 @@ const Dashboard = ({ onLogout, userEmail }) => {
                 <h3 className="card-title">Portfolio Relevancy Overview</h3>
                 <div className="relevancy-stats">
                   {(() => {
-                    const labelData = outputData[0]?.data?.labeldata;
-                    if (!labelData) return null;
+                    if (!Array.isArray(outputData) || outputData.length === 0) return null;
                     
                     const allRelevancyScores = [];
                     const processNode = (node) => {
@@ -465,7 +439,9 @@ const Dashboard = ({ onLogout, userEmail }) => {
                         node.children.forEach(processNode);
                       }
                     };
-                    labelData.forEach(processNode);
+                    outputData.forEach(processNode);
+                    
+                    if (allRelevancyScores.length === 0) return null;
                     
                     const avgPort1 = allRelevancyScores.reduce((sum, item) => sum + item.port1, 0) / allRelevancyScores.length;
                     const avgPort2 = allRelevancyScores.reduce((sum, item) => sum + item.port2, 0) / allRelevancyScores.length;
@@ -512,8 +488,7 @@ const Dashboard = ({ onLogout, userEmail }) => {
                 <h3 className="card-title">Top Relevancy Stories</h3>
                 <div className="stories-list">
                   {(() => {
-                    const labelData = outputData[0]?.data?.labeldata;
-                    if (!labelData) return null;
+                    if (!Array.isArray(outputData) || outputData.length === 0) return null;
                     
                     const allStories = [];
                     const processNode = (node, level = 0) => {
@@ -535,7 +510,7 @@ const Dashboard = ({ onLogout, userEmail }) => {
                         node.children.forEach(child => processNode(child, level + 1));
                       }
                     };
-                    labelData.forEach(node => processNode(node));
+                    outputData.forEach(node => processNode(node));
                     
                     const topStories = allStories
                       .sort((a, b) => b.relevancy - a.relevancy)
@@ -584,8 +559,7 @@ const Dashboard = ({ onLogout, userEmail }) => {
                 <h3 className="card-title">Potential Blind Spots</h3>
                 <div className="blind-spot-analysis">
                   {(() => {
-                    const labelData = outputData[0]?.data?.labeldata;
-                    if (!labelData) return null;
+                    if (!Array.isArray(outputData) || outputData.length === 0) return null;
                     
                      // Analyze for potential blind spots
                      const analysis = {
@@ -629,7 +603,7 @@ const Dashboard = ({ onLogout, userEmail }) => {
                        }
                      };
                      
-                     labelData.forEach(node => processNode(node));
+                     outputData.forEach(node => processNode(node));
                      
                      // Sort all articles by relevancy and take top 3
                      analysis.highRelevancy = allArticles
