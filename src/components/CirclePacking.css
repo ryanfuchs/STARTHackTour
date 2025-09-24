@@ -298,6 +298,24 @@
   padding: 0;
 }
 
+.description-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 12px 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.description-content figure {
+  margin: 12px 0;
+  text-align: center;
+}
+
+.description-content figure img {
+  margin: 0;
+}
+
 /* Source styling */
 .source-content {
   margin: 0;
