@@ -8,8 +8,7 @@ import nested4dData from '../Nested4d.json';
 const Dashboard = ({ onLogout, userEmail }) => {
   // Date state for Pulse Insights
   const [selectedDate, setSelectedDate] = useState(() => {
-    const today = new Date();
-    return today.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    return '2025-01-21'; // Format: YYYY-MM-DD
   });
 
   // Current user ID (you can get this from authentication)
