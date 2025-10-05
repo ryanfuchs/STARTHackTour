@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import CirclePacking from './CirclePacking';
 import BlindSpotsView from './BlindSpotsView';
@@ -31,6 +31,67 @@ const Dashboard = ({ onLogout, userEmail }) => {
   const [emailAlerts, setEmailAlerts] = useState(false);
   const [slackAlerts, setSlackAlerts] = useState(false);
   const [showAlertsModal, setShowAlertsModal] = useState(false);
+
+  // Pulse Insights category search state
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const circlePackingRef = useRef(null);
+  const searchContainerRef = useRef(null);
+  const searchInputRef = useRef(null);
+
+  const extractCategories = useCallback((node, path = []) => {
+    if (!node) return [];
+
+    const results = [];
+    const isCategory = !node.isSummary && Array.isArray(node.children) && node.children.length > 0;
+    const nextPath = node.name ? [...path, node.name] : path;
+
+    if (isCategory && node.id) {
+      results.push({
+        id: node.id,
+        name: node.name,
+        description: node.description || '',
+        urgency: node.urgency,
+        relevancy: node.relevancy,
+        path: nextPath
+      });
+    }
+
+    if (Array.isArray(node.children)) {
+      node.children.forEach(child => {
+        if (!child.isSummary) {
+          results.push(...extractCategories(child, nextPath));
+        }
+      });
+    }
+
+    return results;
+  }, []);
+
+  const handleCategorySelect = useCallback((category) => {
+    if (!category) return;
+    setSearchTerm('');
+    setIsSearchActive(false);
+    if (circlePackingRef.current && typeof circlePackingRef.current.focusOnNode === 'function') {
+      circlePackingRef.current.focusOnNode(category.id);
+    }
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
+        setIsSearchActive(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   // Generate portfolio relevancy trend data from news data
   const generatePortfolioTrendData = (data) => {
@@ -221,7 +282,28 @@ const Dashboard = ({ onLogout, userEmail }) => {
     };
   };
 
-  const circlePackingData = outputData ? transformDataForCirclePacking(outputData) : { name: "News Portfolio", children: [] };
+  const circlePackingData = useMemo(() => {
+    if (!outputData) {
+      return { name: 'News Portfolio', children: [] };
+    }
+    return transformDataForCirclePacking(outputData);
+  }, [outputData]);
+
+  const categoryOptions = useMemo(() => {
+    if (!circlePackingData) return [];
+    return extractCategories(circlePackingData).filter(category => category.id !== 'root-summary');
+  }, [circlePackingData, extractCategories]);
+
+  const filteredCategories = useMemo(() => {
+    const query = searchTerm.trim().toLowerCase();
+    if (!query) return [];
+
+    return categoryOptions.filter(category => {
+      const { name, description, path } = category;
+      const haystacks = [name, description, ...(path || [])].filter(Boolean);
+      return haystacks.some(text => text.toLowerCase().includes(query));
+    }).slice(0, 10);
+  }, [categoryOptions, searchTerm]);
 
   // Handle article detail view
   const openArticleDetail = (article) => {
@@ -378,6 +460,64 @@ const Dashboard = ({ onLogout, userEmail }) => {
           <div className="card pulse-insights-card">
             <div className="pulse-insights-header">
               <h3 className="card-title">Pulse Insights</h3>
+              <div
+                className={`pulse-insights-search ${isSearchActive ? 'active' : ''}`}
+                ref={searchContainerRef}
+              >
+                <input
+                  type="search"
+                  className="pulse-insights-search-input"
+                  placeholder="Search categories..."
+                  value={searchTerm}
+                  onChange={(event) => {
+                    const { value } = event.target;
+                    setSearchTerm(value);
+                    if (!isSearchActive) {
+                      setIsSearchActive(true);
+                    }
+                  }}
+                  onFocus={() => setIsSearchActive(true)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Escape') {
+                      setSearchTerm('');
+                      setIsSearchActive(false);
+                    }
+                    if (event.key === 'Enter') {
+                      if (filteredCategories.length > 0) {
+                        event.preventDefault();
+                        handleCategorySelect(filteredCategories[0]);
+                      }
+                    }
+                  }}
+                  ref={searchInputRef}
+                />
+                {isSearchActive && searchTerm.trim() !== '' && (
+                  <div className="pulse-insights-search-dropdown">
+                    {filteredCategories.length === 0 ? (
+                      <div className="pulse-insights-search-empty">
+                        No categories match "{searchTerm.trim()}"
+                      </div>
+                    ) : (
+                      filteredCategories.map((category) => (
+                        <button
+                          key={category.id}
+                          type="button"
+                          className="pulse-insights-search-item"
+                          onMouseDown={(event) => event.preventDefault()}
+                          onClick={() => handleCategorySelect(category)}
+                        >
+                          <span className="search-item-name">{category.name}</span>
+                          {category.path && category.path.length > 1 && (
+                            <span className="search-item-path">
+                          {category.path.slice(0, -1).join(' > ')}
+                            </span>
+                          )}
+                        </button>
+                      ))
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
             <div className="pulse-insights-content">
               <div className="pulse-insights-main full-width">
@@ -397,6 +537,7 @@ const Dashboard = ({ onLogout, userEmail }) => {
                   <>
                     <div className="circle-packing-wrapper">
                       <CirclePacking 
+                        ref={circlePackingRef}
                         data={circlePackingData} 
                         selectedDate={selectedDate} 
                         currentUserId={currentUserId}
@@ -910,4 +1051,3 @@ const Dashboard = ({ onLogout, userEmail }) => {
 };
 
 export default Dashboard;
-

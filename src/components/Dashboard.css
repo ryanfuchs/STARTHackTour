@@ -669,6 +669,7 @@
   align-items: flex-start;
   margin-bottom: 16px;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .date-controls {
@@ -683,6 +684,89 @@
   font-size: 24px;
   font-weight: 700;
   margin: 0;
+}
+
+.pulse-insights-search {
+  position: relative;
+  flex: 0 0 280px;
+  max-width: 100%;
+}
+
+.pulse-insights-search-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pulse-insights-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.pulse-insights-search-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+}
+
+.pulse-insights-search-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 100%;
+  min-width: 240px;
+  max-height: 260px;
+  overflow-y: auto;
+  background: #ffffff;
+  color: #1f2933;
+  border-radius: 12px;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.25);
+  padding: 8px 0;
+  z-index: 5;
+}
+
+.pulse-insights-search-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 10px 14px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.pulse-insights-search-item:hover,
+.pulse-insights-search-item:focus {
+  background-color: rgba(116, 139, 184, 0.16);
+  outline: none;
+}
+
+.pulse-insights-search-item .search-item-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #12202f;
+}
+
+.pulse-insights-search-item .search-item-path {
+  font-size: 12px;
+  color: #5b6573;
+}
+
+.pulse-insights-search-empty {
+  padding: 12px 14px;
+  font-size: 13px;
+  color: #5b6573;
 }
 
 .date-input-container {
@@ -1080,6 +1164,10 @@
     align-items: stretch;
     gap: 16px;
   }
+
+  .pulse-insights-search {
+    flex: 1 1 100%;
+  }
   
   .date-controls {
     align-items: stretch;
@@ -1412,4 +1500,3 @@
     align-self: flex-end;
   }
 }
-
