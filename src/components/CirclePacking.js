@@ -1,10 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useImperativeHandle, forwardRef } from 'react';
 import * as d3 from 'd3';
 import './CirclePacking.css';
+import feedIconMap from '../assets/feedIcons';
 
-const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChange }) => {
+const CirclePacking = forwardRef(({ data, selectedDate, currentUserId = 'user1', onDateChange }, ref) => {
   const svgRef = useRef();
   const [isLegendCollapsed, setIsLegendCollapsed] = useState(true);
+  const focusNodeHandlerRef = useRef(null);
+  const nodeLookupRef = useRef(new Map());
+
+  useEffect(() => {
+    Object.values(feedIconMap).forEach(src => {
+      if (src) {
+        const img = new Image();
+        img.src = src;
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (!data || !svgRef.current) return;
@@ -15,8 +27,9 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
     // Get container dimensions
     const container = svgRef.current.parentElement;
     const containerRect = container.getBoundingClientRect();
-    const width = containerRect.width;
-    const height = containerRect.height;
+    const width = containerRect.width || container.clientWidth || container.offsetWidth || 800;
+    const height = containerRect.height || container.clientHeight || container.offsetHeight || 600;
+    let minViewComponent = Math.max(Math.min(width, height) * 0.05, 20);
 
     // Define color scheme
     const unreadArticleColor = "white"; // White background for unread articles
@@ -59,13 +72,13 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       if (!nodeData.children) return false;
       
       // Check if summary is read
-      const summary = nodeData.children.find(child => child.isSummary);
+      const summary = nodeData.summaryNode;
       if (summary && hasUserRead(summary)) {
         return true;
       }
       
       // Check if all non-summary children are read
-      const nonSummaryChildren = nodeData.children.filter(child => !child.isSummary);
+      const nonSummaryChildren = (nodeData.children || []);
       if (nonSummaryChildren.length === 0) return false;
       
       return nonSummaryChildren.every(child => {
@@ -105,51 +118,259 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       }
     };
 
-    // Helper function to check if text fits in circle and wrap if needed
-    // More lenient - only hide text when circle is truly too small
-    const processTextForCircle = (text, maxWidth, fontSize = 10, maxLines = 4) => {
-      const words = text.split(' ');
-      const lines = [];
-      let currentLine = words[0];
+    const fontFamily = 'sans-serif';
+    let textMeasureContext = null;
+    const layoutCache = new Map();
 
-      for (let i = 1; i < words.length; i++) {
-        const testLine = currentLine + ' ' + words[i];
-        // More generous text width calculation (0.5 * fontSize per character)
-        const testWidth = testLine.length * fontSize * 0.5;
-        
-        if (testWidth < maxWidth) {
-          currentLine = testLine;
-        } else {
-          lines.push(currentLine);
-          currentLine = words[i];
+    const getMeasureContext = () => {
+      if (textMeasureContext) return textMeasureContext;
+      if (typeof document === 'undefined') return null;
+      const canvas = document.createElement('canvas');
+      textMeasureContext = canvas.getContext('2d');
+      return textMeasureContext;
+    };
+
+    const measureTextWidth = (fontSizeValue, textString) => {
+      const context = getMeasureContext();
+      if (!context) {
+        return textString.length * fontSizeValue * 0.5;
+      }
+      context.font = `${fontSizeValue}px ${fontFamily}`;
+      return context.measureText(textString).width;
+    };
+
+    const getNodeKey = (d) => d?.data?.__layoutId || d?.data?.id || d?.data?.name || `${d.depth}-${Math.round(d.x)}-${Math.round(d.y)}`;
+    const getScaleBucket = (scaleValue) => {
+      if (!Number.isFinite(scaleValue) || scaleValue <= 0) return 1;
+      return Math.max(1, Math.round(scaleValue * 60));
+    };
+
+    const getIconUrl = (sourceUrl) => {
+      if (!sourceUrl) return null;
+      let normalized = sourceUrl;
+      if (!/^https?:\/\//i.test(normalized)) {
+        normalized = `https://${normalized}`;
+      }
+      try {
+        const urlObj = new URL(normalized);
+        const host = urlObj.hostname;
+        if (feedIconMap[host]) {
+          return feedIconMap[host];
         }
+      } catch (err) {
+        return null;
       }
-      lines.push(currentLine);
-      
-      // Only consider text too long if it has more than maxLines AND the circle is very small
-      // For larger circles, allow more lines
-      const minCircleSize = 30; // Minimum radius to show text
-      const isTooSmall = maxWidth < minCircleSize;
-      const isTooManyLines = lines.length > maxLines;
-      
-      if (isTooSmall || (isTooManyLines && maxWidth < 60)) {
-        return { lines: [], tooLong: true };
+      return null;
+    };
+
+    // Helper function to derive wrapped text sized to the visible circle
+    const processTextForCircle = (text, radius, depth = 0, scale = 1) => {
+      const safeScale = Number.isFinite(scale) && scale > 0 ? scale : 1;
+      const diameter = radius * 2 * safeScale;
+      const minVisibleDiameter = 14;
+
+      if (!text || diameter < minVisibleDiameter) {
+        return { lines: [], tooLong: true, fontSize: 0, lineHeight: 0, scale, depth };
       }
-      
-      return { lines, tooLong: false };
+
+      const words = text.trim().split(/\s+/).filter(Boolean);
+      if (!words.length) {
+        return { lines: [], tooLong: true, fontSize: 0, lineHeight: 0, scale, depth };
+      }
+
+      const maxWidthRatio = 0.8;
+      const maxHeightRatio = 0.85;
+      const minFontSize = 4;
+      const depthFactor = 1 + Math.max(0, depth - 1) * 0.15;
+      const baseMaxFontSize = Math.max(minFontSize, diameter / 5.5);
+      const maxFontSize = Math.max(minFontSize, baseMaxFontSize * depthFactor);
+      const lineSpacingMultiplier = 1.12;
+      const maxWidth = diameter * maxWidthRatio;
+      const availableHeight = diameter * maxHeightRatio;
+
+      const wrapWords = (fontSizeValue) => {
+        const lines = [];
+        let currentLine = words[0];
+
+        for (let i = 1; i < words.length; i++) {
+          const word = words[i];
+          const testLine = `${currentLine} ${word}`;
+          const testWidth = measureTextWidth(fontSizeValue, testLine);
+
+          if (testWidth <= maxWidth) {
+            currentLine = testLine;
+          } else {
+            lines.push(currentLine);
+            currentLine = word;
+          }
+        }
+
+        if (currentLine) {
+          lines.push(currentLine);
+        }
+
+        return lines;
+      };
+
+      const diameterLimit = diameter / 6;
+      const cappedMaxFont = Math.min(maxFontSize, diameterLimit);
+      let fontSize = Math.max(minFontSize, cappedMaxFont);
+
+      const scaleFactor = Math.min(0.85, Math.pow(words.length, 0.3));
+
+      while (fontSize >= minFontSize) {
+        const lineHeight = fontSize * lineSpacingMultiplier;
+        const maxLines = Math.max(1, Math.floor(availableHeight / lineHeight));
+        const widestWord = Math.max(...words.map(word => measureTextWidth(fontSize, word)));
+
+        if (widestWord > maxWidth) {
+          fontSize -= 1;
+          continue;
+        }
+
+        const lines = wrapWords(fontSize);
+
+        const exceedsWidth = lines.some(line => measureTextWidth(fontSize, line) > maxWidth);
+
+        if (lines.length <= maxLines && !exceedsWidth) {
+          const adjustedFontSize = fontSize * scaleFactor;
+          const adjustedLineHeight = lineHeight * scaleFactor;
+          return { lines, tooLong: false, fontSize: adjustedFontSize, lineHeight: adjustedLineHeight, scale: safeScale, depth };
+        }
+
+        fontSize -= 1;
+      }
+
+      return {
+        lines: [],
+        tooLong: true,
+        fontSize: minFontSize,
+        lineHeight: minFontSize * lineSpacingMultiplier,
+        scale: safeScale,
+        depth
+      };
+    };
+
+    let focus;
+    let view;
+    let suppressIconReveal = false;
+
+    const getCurrentScale = () => {
+      if (!view) return 1;
+      const currentWidth = svgRef.current ? svgRef.current.getBoundingClientRect().width : width;
+      return currentWidth / view[2];
+    };
+
+    const shouldShowLabel = (d) => {
+      if (!focus) return false;
+      if (d === focus) return false;
+      if (!d.children) return false; // hide labels on article (leaf) circles
+      if (d.parent !== focus) return false;
+      const layout = d.data.__textLayout;
+      return !!(layout && !layout.tooLong && layout.lines.length > 0);
+    };
+
+    const shouldShowIcon = (d) => {
+      if (!focus) return false;
+      if (d.children || d.data.isSummary) return false;
+      if (!d.data.source) return false;
+      if (!getIconUrl(d.data.source)) return false;
+      return d.parent === focus;
+    };
+
+    const getLayoutFromCache = (d, scale) => {
+      const bucket = getScaleBucket(scale);
+      const key = `${getNodeKey(d)}|${bucket}`;
+      let layout = layoutCache.get(key);
+
+      const needsRecompute = !layout || Math.abs((layout.scale || scale) - scale) > 0.01;
+
+      if (needsRecompute) {
+        layout = processTextForCircle(d.data.name, d.r, d.depth, scale);
+        layout.cacheKey = key;
+        layout.bucket = bucket;
+        layout.scale = scale;
+        layoutCache.set(key, layout);
+      }
+
+      layout.scale = scale;
+      d.data.__textLayout = layout;
+      return layout;
+    };
+
+    const applyTextLayout = (textElement, d, scaleOverride) => {
+      const scaleToUse = typeof scaleOverride === 'number' ? scaleOverride : getCurrentScale();
+      if (!d.children) {
+        const leafLayout = getLayoutFromCache(d, scaleToUse);
+        const leafKey = `${getNodeKey(d)}|leaf|${getScaleBucket(scaleToUse)}`;
+        if (textElement.attr('data-layout-key') !== leafKey) {
+          textElement.attr('data-layout-key', leafKey);
+          textElement.selectAll('tspan').remove();
+        }
+        textElement.style('display', 'none');
+        textElement.style('font-size', null);
+        return leafLayout;
+      }
+
+      const layout = getLayoutFromCache(d, scaleToUse);
+      const layoutKey = layout.cacheKey || `${getNodeKey(d)}|${getScaleBucket(scaleToUse)}`;
+
+      if (textElement.attr('data-layout-key') === layoutKey) {
+        return layout;
+      }
+
+      textElement.attr('data-layout-key', layoutKey);
+      textElement.selectAll('tspan').remove();
+
+      if (layout.tooLong || layout.lines.length === 0) {
+        textElement.style('display', 'none');
+        textElement.style('font-size', null);
+        return layout;
+      }
+
+      textElement.style('font-size', `${layout.fontSize}px`);
+
+      const lineHeight = layout.lineHeight;
+      const startY = -(layout.lines.length - 1) * lineHeight / 2;
+
+      layout.lines.forEach((line, index) => {
+        textElement.append('tspan')
+          .text(line)
+          .attr('x', 0)
+          .attr('y', startY + index * lineHeight);
+      });
+
+      return layout;
+    };
+
+    const getLayoutForTooltip = (d) => {
+      const currentScale = getCurrentScale();
+      return getLayoutFromCache(d, currentScale);
     };
 
     // Since input.json doesn't have date fields, show all data
     const filterDataByDate = (node, selectedDate) => {
-      // Create a copy of the node with all its children
       const filteredNode = { ...node };
-      
+
       if (node.children) {
-        // Process all children recursively (no date filtering)
-        const filteredChildren = node.children.map(child => filterDataByDate(child, selectedDate));
+        const filteredChildren = [];
+        let summaryNode = null;
+
+        node.children.forEach(child => {
+          const processedChild = filterDataByDate(child, selectedDate);
+          if (child.isSummary) {
+            summaryNode = processedChild;
+          } else {
+            filteredChildren.push(processedChild);
+          }
+        });
+
         filteredNode.children = filteredChildren;
+        if (summaryNode) {
+          filteredNode.summaryNode = summaryNode;
+        }
       }
-      
+
       return filteredNode;
     };
 
@@ -171,6 +392,12 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       const isGroupReadStatus = nodeData.children ? isGroupRead({ data: nodeData, parent: null }) : false;
       const readCount = nodeData.readBy ? nodeData.readBy.length : 0;
 
+      const panelChildren = [];
+      if (nodeData.summaryNode) panelChildren.push(nodeData.summaryNode);
+      if (nodeData.children && nodeData.children.length > 0) {
+        panelChildren.push(...nodeData.children);
+      }
+
       // Populate panel content first
       summaryPanel.innerHTML = `
         <div class="summary-header">
@@ -190,7 +417,7 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
         <div class="summary-content">
           <div class="info-section">
             <h4>Description</h4>
-            <div class="description-content">${nodeData.description || (nodeData.children ? `This group contains ${nodeData.children.length} items` : 'No description available')}</div>
+            <div class="description-content">${nodeData.description || (panelChildren.length ? `This group contains ${panelChildren.length} items` : 'No description available')}</div>
           </div>
           ${nodeData.source ? `
             <div class="info-section">
@@ -214,11 +441,11 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
               <p>${nodeData.count} articles</p>
             </div>
           ` : ''}
-          ${nodeData.children && nodeData.children.length > 0 ? `
+          ${panelChildren.length > 0 ? `
             <div class="info-section">
               <h4>Contents</h4>
               <div class="children-list">
-                ${nodeData.children.map(child => `
+                ${panelChildren.map(child => `
                   <div class="child-item ${child.isSummary ? 'summary-item' : ''}">
                     <span class="child-name">${child.name}</span>
                     ${child.isSummary ? '<span class="child-type">Summary</span>' : ''}
@@ -306,6 +533,27 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
         .sort((a, b) => a.value - b.value)); // Reverse sort for horizontal arrangement
     
     const root = pack(dataWithSummaries);
+    const baseInitialRadius = Math.max(root.r, width / 2, height / 2);
+    const initialComponent = Math.max(baseInitialRadius * 2, minViewComponent);
+    focus = root;
+    view = [root.x, root.y, initialComponent];
+
+    const warmScale = width > 0 ? width / initialComponent : 1;
+    const nodeById = new Map();
+    root.descendants().forEach(descendant => {
+      const pathKey = descendant.ancestors()
+        .map(node => node.data?.name || '')
+        .reverse()
+        .join('>');
+      descendant.data.__layoutId = pathKey || descendant.data?.id || `${descendant.depth}-${Math.round(descendant.x)}-${Math.round(descendant.y)}`;
+      getLayoutFromCache(descendant, warmScale);
+
+      const descriptorId = descendant.data?.id;
+      if (descriptorId) {
+        nodeById.set(descriptorId, descendant);
+      }
+    });
+    nodeLookupRef.current = nodeById;
 
     // Create the SVG container
     const svg = d3.select(svgRef.current)
@@ -330,9 +578,10 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       .style("word-wrap", "break-word");
 
     // Append the nodes with smooth transitions
-    const node = svg.append("g")
+    const nodesGroup = svg.append("g").attr("class", "circle-nodes");
+    const node = nodesGroup
       .selectAll("circle")
-      .data(root.descendants().slice(1), d => d.data.name) // Use name as key for proper tracking
+      .data(root.descendants().slice(1), d => d.data.__layoutId || d.data.name) // Use stable key for tracking
       .join(
         enter => enter.append("circle")
           .attr("fill", d => getNodeColor(d))
@@ -379,8 +628,8 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
             .ease(d3.easeCubicInOut)
             .attr("opacity", 0)
             .attr("r", 0)
-            .remove()
-          )
+          .remove()
+        )
       )
       .attr("pointer-events", d => (!d.children && !d.data.description) ? "none" : null)
       .on("mouseover", function(event, d) { 
@@ -389,9 +638,9 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
           .attr("stroke-width", 3);
         
         // Show tooltip only if text is too long to display
-        const maxWidth = d.r * 1.8;
-        const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
-        if (textResult.tooLong) {
+        const layout = getLayoutForTooltip(d);
+        const shouldShowTooltip = !d.children || layout.tooLong;
+        if (shouldShowTooltip) {
           tooltip
             .style("opacity", 1)
             .html(d.data.name)
@@ -412,9 +661,9 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       })
       .on("mousemove", function(event, d) {
         // Update tooltip position on mouse move
-        const maxWidth = d.r * 1.8;
-        const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
-        if (textResult.tooLong) {
+        const layout = getLayoutForTooltip(d);
+        const shouldShowTooltip = !d.children || layout.tooLong;
+        if (shouldShowTooltip) {
           tooltip
             .style("left", (event.pageX + 10) + "px")
             .style("top", (event.pageY - 10) + "px");
@@ -434,13 +683,103 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
         }
       });
 
+    const ICON_BG_RATIO = 0.55;
+    const ICON_SIZE_RATIO = 1.1;
+    const MIN_ICON_RADIUS = 8;
+    const MIN_ICON_SIZE = 16;
+
+    const iconGroup = svg.append("g").attr("class", "article-icons");
+    let icons = iconGroup.selectAll("g.article-icon");
+
+    const getVisibleIconNodes = () => {
+      if (!focus || !focus.children) return [];
+      return focus.children.filter(child => !child.children && !child.data.isSummary && child.data.source && getIconUrl(child.data.source));
+    };
+
+    const hideIcons = () => {
+      if (icons && !icons.empty()) {
+        icons.style("display", "none").style("opacity", 0);
+      }
+    };
+
+    const updateIconAppearance = () => {
+      if (!view || suppressIconReveal) {
+        hideIcons();
+        return;
+      }
+
+      const nodes = getVisibleIconNodes();
+      const join = iconGroup.selectAll("g.article-icon")
+        .data(nodes, d => d.data.__layoutId || d.data.name);
+
+      join.exit().remove();
+
+      const enter = join.enter()
+        .append("g")
+        .attr("class", "article-icon")
+        .style("pointer-events", "none")
+        .style("opacity", 0)
+        .style("display", "none");
+
+      enter.append("circle")
+        .attr("class", "article-icon-bg")
+        .attr("fill", "#ffffff")
+        .attr("stroke", "none");
+
+      enter.append("image")
+        .attr("class", "article-icon-image")
+        .attr("preserveAspectRatio", "xMidYMid slice");
+
+      icons = enter.merge(join);
+
+      const currentWidthForIcons = svgRef.current ? svgRef.current.getBoundingClientRect().width : width;
+      const k = currentWidthForIcons > 0 ? currentWidthForIcons / view[2] : 1;
+
+      icons
+        .attr("transform", d => `translate(${(d.x - view[0]) * k},${(d.y - view[1]) * k})`)
+        .style("display", "inline")
+        .style("opacity", 1);
+
+      icons.select("circle")
+        .attr("r", d => Math.max(d.r * k * ICON_BG_RATIO, MIN_ICON_RADIUS));
+
+      icons.select("image")
+        .each(function(d) {
+          const iconUrl = getIconUrl(d.data.source);
+          const sel = d3.select(this);
+          if (iconUrl) {
+            sel.attr("href", iconUrl).attr("xlink:href", iconUrl);
+          }
+        })
+        .attr("width", d => Math.max(d.r * k * ICON_SIZE_RATIO, MIN_ICON_SIZE))
+        .attr("height", d => Math.max(d.r * k * ICON_SIZE_RATIO, MIN_ICON_SIZE))
+        .attr("x", d => -Math.max(d.r * k * ICON_SIZE_RATIO, MIN_ICON_SIZE) / 2)
+        .attr("y", d => -Math.max(d.r * k * ICON_SIZE_RATIO, MIN_ICON_SIZE) / 2);
+    };
+
+    const applyFinalLayout = function(d) {
+      const textSel = d3.select(this);
+      if (shouldShowLabel(d)) {
+        applyTextLayout(textSel, d, getCurrentScale());
+        this.style.display = "inline";
+        this.style.opacity = "1";
+      } else {
+        this.style.display = "none";
+        this.style.opacity = "0";
+      }
+
+      suppressIconReveal = false;
+      updateIconAppearance();
+    };
+
     // Append the text labels with smooth transitions
-    const label = svg.append("g")
-      .style("font", "10px sans-serif")
+    const labelsGroup = svg.append("g")
+      .style("font-family", "sans-serif")
       .attr("pointer-events", "none")
-      .attr("text-anchor", "middle")
+      .attr("text-anchor", "middle");
+    const label = labelsGroup
       .selectAll("text")
-      .data(root.descendants(), d => d.data.name) // Use name as key for proper tracking
+      .data(root.descendants(), d => d.data.__layoutId || d.data.name) // Use stable key for tracking
       .join(
         enter => {
           const textGroup = enter.append("text")
@@ -451,87 +790,39 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
             .style("paint-order", "stroke fill")
             .attr("transform", d => `translate(${d.x},${d.y})`);
           
-          // Add wrapped text lines or hide if too long
           textGroup.each(function(d) {
-            const textElement = d3.select(this);
-            const maxWidth = d.r * 1.8; // Use 90% of circle diameter
-            const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
-            
-            if (!textResult.tooLong && textResult.lines.length > 0) {
-              const lineHeight = 12;
-              const startY = -(textResult.lines.length - 1) * lineHeight / 2;
-              
-              textResult.lines.forEach((line, i) => {
-                textElement.append("tspan")
-                  .text(line)
-                  .attr("x", 0)
-                  .attr("y", startY + i * lineHeight);
-              });
-            } else {
-              // Hide text if too long
-              textElement.style("display", "none");
-            }
+            applyTextLayout(d3.select(this), d);
           });
+          textGroup.style("display", d => shouldShowLabel(d) ? "inline" : "none");
           
           return textGroup.call(enter => enter.transition()
             .duration(800)
             .delay(200)
             .ease(d3.easeCubicInOut)
-            .style("fill-opacity", d => {
-              if (d.parent !== root) return 0;
-              const maxWidth = d.r * 1.8;
-              const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
-              return textResult.tooLong ? 0 : 1;
+            .style("fill-opacity", d => shouldShowLabel(d) ? 1 : 0)
+            .on("start", function(d) {
+              this.style.display = "none";
+              this.style.opacity = "0";
             })
-            .style("display", d => {
-              if (d.parent !== root) return "none";
-              const maxWidth = d.r * 1.8;
-              const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
-              return textResult.tooLong ? "none" : "inline";
-            })
+            .on("end", applyFinalLayout)
           );
         },
         update => {
-          // Clear existing tspans and recreate
-          update.selectAll("tspan").remove();
-          
           update.each(function(d) {
-            const textElement = d3.select(this);
-            const maxWidth = d.r * 1.8; // Use 90% of circle diameter
-            const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
-            
-            if (!textResult.tooLong && textResult.lines.length > 0) {
-              const lineHeight = 12;
-              const startY = -(textResult.lines.length - 1) * lineHeight / 2;
-              
-              textResult.lines.forEach((line, i) => {
-                textElement.append("tspan")
-                  .text(line)
-                  .attr("x", 0)
-                  .attr("y", startY + i * lineHeight);
-              });
-            } else {
-              // Hide text if too long
-              textElement.style("display", "none");
-            }
+            applyTextLayout(d3.select(this), d);
           });
+          update.style("display", d => shouldShowLabel(d) ? "inline" : "none");
           
           return update.call(update => update.transition()
             .duration(600)
             .ease(d3.easeCubicInOut)
             .attr("transform", d => `translate(${d.x},${d.y})`)
-            .style("fill-opacity", d => {
-              if (d.parent !== root) return 0;
-              const maxWidth = d.r * 1.8;
-              const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
-              return textResult.tooLong ? 0 : 1;
+            .style("fill-opacity", d => shouldShowLabel(d) ? 1 : 0)
+            .on("start", function(d) {
+              this.style.display = "none";
+              this.style.opacity = "0";
             })
-            .style("display", d => {
-              if (d.parent !== root) return "none";
-              const maxWidth = d.r * 1.8;
-              const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
-              return textResult.tooLong ? "none" : "inline";
-            })
+            .on("end", applyFinalLayout)
           );
         },
         exit => exit
@@ -552,142 +843,167 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
         resetToInitialView();
       }
     });
-    let focus = root;
-    let view;
-    
+
     // Set initial view to show the entire root circle (all circles visible)
-    const initialRadius = Math.max(root.r, width/2, height/2);
-    zoomTo([root.x, root.y, initialRadius * 2]);
+    zoomTo([root.x, root.y, initialComponent]);
+    const initialScale = getCurrentScale();
+    label.each(function(d) {
+      if (d === root || d.parent === root) {
+        applyTextLayout(d3.select(this), d, initialScale);
+        this.style.display = shouldShowLabel(d) ? "inline" : "none";
+        this.style.opacity = this.style.display === "inline" ? "1" : "0";
+      } else {
+        this.style.display = "none";
+        this.style.opacity = "0";
+      }
+    });
+
 
     function resetToInitialView() {
+      suppressIconReveal = true;
+      hideIcons();
+      const baseInitialRadius = Math.max(root.r, width/2, height/2);
+      const desiredComponent = Math.max(baseInitialRadius * 2, minViewComponent);
+
       const transition = svg.transition()
         .duration(1200)
         .ease(d3.easeCubicInOut)
         .tween("zoom", d => {
-          const initialRadius = Math.max(root.r, width/2, height/2);
-          const i = d3.interpolateZoom(view, [root.x, root.y, initialRadius * 2]);
+          const i = d3.interpolateZoom(view, [root.x, root.y, desiredComponent]);
           return t => zoomTo(i(t));
         });
 
       focus = root;
-      
+      const currentWidthForReset = svgRef.current ? svgRef.current.getBoundingClientRect().width : width;
+      const initialScale = currentWidthForReset > 0 ? currentWidthForReset / desiredComponent : 1;
+
+      label.each(function(d) {
+        if (d === root || d.parent === root) {
+          applyTextLayout(d3.select(this), d, initialScale);
+        }
+      });
+    label.style("display", d => shouldShowLabel(d) ? "inline" : "none");
+    updateIconAppearance();
+
       label
         .transition(transition)
-        .style("fill-opacity", d => d.parent === root ? 1 : 0)
+        .style("fill-opacity", d => shouldShowLabel(d) ? 1 : 0)
         .style("fill", "#000000")
         .style("stroke", "#ffffff")
         .style("stroke-width", "3px")
         .style("paint-order", "stroke fill")
-        .on("start", function(d) { 
-          if (d.parent === root) {
-            this.style.display = "inline";
-            // Recreate wrapped text for visible labels
-            const textElement = d3.select(this);
-            textElement.selectAll("tspan").remove();
-            const maxWidth = d.r * 1.8;
-            const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
-            
-            if (!textResult.tooLong && textResult.lines.length > 0) {
-              const lineHeight = 12;
-              const startY = -(textResult.lines.length - 1) * lineHeight / 2;
-              
-              textResult.lines.forEach((line, i) => {
-                textElement.append("tspan")
-                  .text(line)
-                  .attr("x", 0)
-                  .attr("y", startY + i * lineHeight);
-              });
-            } else {
-              // Hide text if too long
-              textElement.style("display", "none");
-            }
-          }
+        .on("start", function(d) {
+          this.style.display = "none";
+          this.style.opacity = "0";
         })
-        .on("end", function(d) { if (d.parent !== root) this.style.display = "none"; });
+        .on("end", applyFinalLayout);
     }
 
     function zoomTo(v) {
-      const k = width / v[2];
-      view = v;
+      const centerX = v[0];
+      const centerY = v[1];
+      const sizeComponent = Math.max(v[2], minViewComponent);
+      const currentWidth = svgRef.current ? svgRef.current.getBoundingClientRect().width : width;
+      const k = sizeComponent !== 0 ? currentWidth / sizeComponent : 1;
+      view = [centerX, centerY, sizeComponent];
 
-      label.attr("transform", d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
-      node.attr("transform", d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
+      label.attr("transform", d => `translate(${(d.x - centerX) * k},${(d.y - centerY) * k})`);
+      node.attr("transform", d => `translate(${(d.x - centerX) * k},${(d.y - centerY) * k})`);
       node.attr("r", d => d.r * k);
+      updateIconAppearance();
     }
 
     function zoom(event, d) {
-      const focus0 = focus;
       focus = d;
+      suppressIconReveal = true;
+      hideIcons();
 
       // Calculate optimal zoom level to show all children without cutting them off
-      let targetRadius;
+      let targetComponent;
+      const groupPaddingFactor = 1.2; // tighter padding so focused clusters appear larger
+      const groupScaleFloor = 2.4;
+      const leafScaleFactor = 2.6;
+
       if (d.children && d.children.length > 0) {
         // Find the maximum radius needed to contain all children
-        const maxChildRadius = Math.max(...d.children.map(child => child.r));
-        const maxChildDistance = Math.max(...d.children.map(child => 
+        const maxChildDistance = Math.max(...d.children.map(child =>
           Math.sqrt((child.x - d.x) ** 2 + (child.y - d.y) ** 2) + child.r
         ));
-        // Add padding but keep zoom level reasonable
-        targetRadius = Math.max(maxChildDistance * 1.5, d.r * 3);
+        // Use a smaller component so the focused bubble occupies more of the viewport
+        targetComponent = Math.max(maxChildDistance * groupPaddingFactor, d.r * groupScaleFloor);
       } else {
-        // For leaf nodes, use a moderate zoom level
-        targetRadius = d.r * 4;
+        // For leaf nodes, zoom tighter around the single article bubble
+        const safeLeafRadius = Math.max(d.r, minViewComponent / 4);
+        targetComponent = Math.max(safeLeafRadius * leafScaleFactor, minViewComponent);
       }
+
+      targetComponent = Math.max(targetComponent, minViewComponent);
+
+      const currentWidthForZoom = svgRef.current ? svgRef.current.getBoundingClientRect().width : width;
+      const targetScale = currentWidthForZoom > 0 ? currentWidthForZoom / targetComponent : 1;
 
       const transition = svg.transition()
         .duration(event.altKey ? 15000 : 1000)
         .ease(d3.easeCubicInOut)
         .tween("zoom", d => {
           // Always center on the selected circle
-          const i = d3.interpolateZoom(view, [focus.x, focus.y, targetRadius]);
+          const i = d3.interpolateZoom(view, [focus.x, focus.y, targetComponent]);
           return t => zoomTo(i(t));
         });
 
+      label.each(function(d) {
+        if (d === focus || d.parent === focus) {
+          applyTextLayout(d3.select(this), d, targetScale);
+        }
+      });
+      label.style("display", d => shouldShowLabel(d) ? "inline" : "none");
+
       label
-        .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
         .transition(transition)
-        .style("fill-opacity", d => d.parent === focus ? 1 : 0)
+        .style("fill-opacity", d => shouldShowLabel(d) ? 1 : 0)
         .style("fill", "#000000")
         .style("stroke", "#ffffff")
         .style("stroke-width", "3px")
         .style("paint-order", "stroke fill")
-        .on("start", function(d) { 
-          if (d.parent === focus) {
-            this.style.display = "inline";
-            // Recreate wrapped text for visible labels
-            const textElement = d3.select(this);
-            textElement.selectAll("tspan").remove();
-            const maxWidth = d.r * 1.8;
-            const textResult = processTextForCircle(d.data.name, maxWidth, 10, 4);
-            
-            if (!textResult.tooLong && textResult.lines.length > 0) {
-              const lineHeight = 12;
-              const startY = -(textResult.lines.length - 1) * lineHeight / 2;
-              
-              textResult.lines.forEach((line, i) => {
-                textElement.append("tspan")
-                  .text(line)
-                  .attr("x", 0)
-                  .attr("y", startY + i * lineHeight);
-              });
-            } else {
-              // Hide text if too long
-              textElement.style("display", "none");
-            }
-          }
+        .on("start", function(d) {
+          this.style.display = "none";
+          this.style.opacity = "0";
         })
-        .on("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
+        .on("end", applyFinalLayout);
     }
 
-    // Handle window resize
-    const handleResize = () => {
+    focusNodeHandlerRef.current = (nodeId) => {
+      if (!nodeId) {
+        hideSummaryPanel();
+        resetToInitialView();
+        return;
+      }
+
+      const targetNode = nodeLookupRef.current.get(nodeId);
+      if (!targetNode) {
+        return;
+      }
+
+      if (targetNode.children && !targetNode.data.isSummary) {
+        showSummaryPanel(targetNode.data);
+        zoom({ altKey: false }, targetNode);
+      } else if (targetNode.data.isSummary || (!targetNode.children && targetNode.data.description)) {
+        showSummaryPanel(targetNode.data);
+      }
+    };
+
+    // Handle window resize (debounced)
+    const performResize = () => {
       if (!svgRef.current || !data) return;
+      suppressIconReveal = true;
+      hideIcons();
       
       const container = svgRef.current.parentElement;
       const containerRect = container.getBoundingClientRect();
-      const newWidth = containerRect.width;
-      const newHeight = containerRect.height;
-      
+      const newWidth = containerRect.width || container.clientWidth || container.offsetWidth || width;
+      const newHeight = containerRect.height || container.clientHeight || container.offsetHeight || height;
+      minViewComponent = Math.max(Math.min(newWidth, newHeight) * 0.05, 20);
+
       // Update SVG dimensions
       svg.attr("viewBox", `-${newWidth / 2} -${newHeight / 2} ${newWidth} ${newHeight}`);
       
@@ -700,42 +1016,144 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
           .sort((a, b) => a.value - b.value)); // Reverse sort for horizontal arrangement
       
       const newRoot = newPack(dataWithSummaries);
+      const newBaseInitialRadius = Math.max(newRoot.r, newWidth / 2, newHeight / 2);
+      const newInitialComponent = Math.max(newBaseInitialRadius * 2, minViewComponent);
+      const newScale = newWidth > 0 ? newWidth / newInitialComponent : getCurrentScale();
+      focus = newRoot;
+      view = [newRoot.x, newRoot.y, newInitialComponent];
+
+      newRoot.descendants().forEach(descendant => {
+        const pathKey = descendant.ancestors()
+          .map(node => node.data?.name || '')
+          .reverse()
+          .join('>');
+        descendant.data.__layoutId = pathKey || descendant.data?.id || `${descendant.depth}-${Math.round(descendant.x)}-${Math.round(descendant.y)}`;
+        getLayoutFromCache(descendant, newScale);
+      });
       
       // Update nodes and labels with new positions
-      const newNodes = svg.select("g").selectAll("circle")
-        .data(newRoot.descendants().slice(1));
+      const newNodes = nodesGroup.selectAll("circle")
+        .data(newRoot.descendants().slice(1), d => d.data.__layoutId || d.data.name);
       
       newNodes
         .transition()
-        .duration(1000)
+        .duration(600)
         .ease(d3.easeCubicInOut)
         .attr("transform", d => `translate(${d.x},${d.y})`)
         .attr("r", d => d.r);
       
-      const newLabels = svg.select("g").selectAll("text")
-        .data(newRoot.descendants());
+      const newLabels = labelsGroup.selectAll('text')
+        .data(newRoot.descendants(), d => d.data.__layoutId || d.data.name);
+
+      newLabels.each(function(d) {
+        if (d === focus || d.parent === focus) {
+          applyTextLayout(d3.select(this), d, newScale);
+        }
+      });
+      newLabels.style("display", d => shouldShowLabel(d) ? "inline" : "none");
       
       newLabels
         .transition()
-        .duration(1000)
+        .duration(600)
         .ease(d3.easeCubicInOut)
-        .attr("transform", d => `translate(${d.x},${d.y})`);
-      
+        .attr("transform", d => `translate(${d.x},${d.y})`)
+        .style("fill-opacity", d => shouldShowLabel(d) ? 1 : 0)
+        .on("start", function(d) {
+          this.style.display = "none";
+          this.style.opacity = "0";
+        })
+        .on("end", applyFinalLayout);
+
+      const newIconNodes = newRoot.descendants().filter(descendant => !descendant.children && !descendant.data.isSummary && descendant.data.source);
+
+      icons = iconGroup.selectAll("g.article-icon")
+        .data(newIconNodes, d => d.data.__layoutId || d.data.name)
+        .join(
+          enter => {
+            const gIcon = enter.append("g")
+              .attr("class", "article-icon")
+              .attr("transform", d => `translate(${d.x},${d.y})`)
+              .style("pointer-events", "none")
+              .style("opacity", 0);
+
+            gIcon.append("circle")
+              .attr("class", "article-icon-bg")
+              .attr("r", d => Math.max(d.r * ICON_BG_RATIO, MIN_ICON_RADIUS))
+              .attr("fill", "#ffffff")
+              .attr("stroke", "none");
+
+            gIcon.append("image")
+              .attr("class", "article-icon-image")
+              .attr("href", d => getIconUrl(d.data.source))
+              .attr("width", d => Math.max(d.r * ICON_SIZE_RATIO, MIN_ICON_SIZE))
+              .attr("height", d => Math.max(d.r * ICON_SIZE_RATIO, MIN_ICON_SIZE))
+              .attr("x", d => -Math.max(d.r * ICON_SIZE_RATIO, MIN_ICON_SIZE) / 2)
+              .attr("y", d => -Math.max(d.r * ICON_SIZE_RATIO, MIN_ICON_SIZE) / 2)
+              .attr("preserveAspectRatio", "xMidYMid slice");
+
+            return gIcon;
+          },
+        update => update
+          .attr("transform", d => `translate(${d.x},${d.y})`)
+          .style("opacity", 0)
+          .each(function(d) {
+            const iconImage = d3.select(this).select("image");
+            const iconUrl = getIconUrl(d.data.source);
+            if (iconUrl) {
+              iconImage.attr("href", iconUrl).attr("xlink:href", iconUrl);
+              } else {
+                iconImage.attr("href", null).attr("xlink:href", null);
+              }
+            }),
+          exit => exit.remove()
+        );
+
+      updateIconAppearance();
+
       // Update focus and view to show all circles
-      focus = newRoot;
-      const newInitialRadius = Math.max(newRoot.r, newWidth/2, newHeight/2);
-      zoomTo([focus.x, focus.y, newInitialRadius * 2]);
+      zoomTo([focus.x, focus.y, newInitialComponent]);
+      suppressIconReveal = false;
+      updateIconAppearance();
+    };
+
+    let resizeRaf = null;
+    const handleResize = () => {
+      if (resizeRaf !== null) return;
+      resizeRaf = requestAnimationFrame(() => {
+        resizeRaf = null;
+        performResize();
+      });
     };
 
     window.addEventListener('resize', handleResize);
 
+    // No deferred layout, initial render already applied
     // Cleanup function
     return () => {
+      focusNodeHandlerRef.current = null;
+      nodeLookupRef.current = new Map();
+
+      if (resizeRaf !== null) {
+        cancelAnimationFrame(resizeRaf);
+      }
       window.removeEventListener('resize', handleResize);
       svg.selectAll("*").remove();
       tooltip.remove();
     };
   }, [data, selectedDate, currentUserId]);
+
+  useImperativeHandle(ref, () => ({
+    focusOnNode: (nodeId) => {
+      if (typeof nodeId === 'undefined') {
+        return;
+      }
+
+      const handler = focusNodeHandlerRef.current;
+      if (handler) {
+        handler(nodeId);
+      }
+    }
+  }), [focusNodeHandlerRef]);
 
   return (
     <div className="circle-packing-container">
@@ -802,6 +1220,8 @@ const CirclePacking = ({ data, selectedDate, currentUserId = 'user1', onDateChan
       </div>
     </div>
   );
-};
+});
+
+CirclePacking.displayName = 'CirclePacking';
 
 export default CirclePacking;
