@@ -786,7 +786,7 @@ const CirclePacking = forwardRef(({ data, selectedDate, currentUserId = 'user1',
             .style("fill-opacity", 0)
             .style("fill", "#000000")
             .style("stroke", "#ffffff")
-            .style("stroke-width", "3px")
+            .style("stroke-width", "2px")
             .style("paint-order", "stroke fill")
             .attr("transform", d => `translate(${d.x},${d.y})`);
           
