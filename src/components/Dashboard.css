@@ -896,6 +896,14 @@
   align-items: flex-start;
 }
 
+.pulse-insights-main .loading-container,
+.pulse-insights-main .error-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .pulse-insights-description {
   font-size: 16px;
   color: rgba(255, 255, 255, 0.9);
@@ -1225,6 +1233,9 @@
   justify-content: center;
   padding: 60px 20px;
   text-align: center;
+  height: 500px;
+  min-height: 500px;
+  width: 100%;
 }
 
 .loading-spinner {
@@ -1253,8 +1264,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 500px;
+  min-height: 500px;
   padding: 60px 20px;
   text-align: center;
+  width: 100%;
 }
 
 .error-container p {
