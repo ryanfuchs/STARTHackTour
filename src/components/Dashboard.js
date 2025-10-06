@@ -8,16 +8,23 @@ import nested4dData from '../Nested4d.json';
 const Dashboard = ({ onLogout, userEmail }) => {
   // Date state for Pulse Insights
   const [selectedDate, setSelectedDate] = useState(() => {
-    return '2025-01-21'; // Format: YYYY-MM-DD
+    // Get current date in YYYY-MM-DD format
+    const today = new Date();
+    return today.toISOString().split('T')[0];
   });
 
   // Current user ID (you can get this from authentication)
   const [currentUserId] = useState('user1');
 
   // State for data
-  const [outputData, setOutputData] = useState(nested4dData);
-  const [loading, setLoading] = useState(false);
+  const [outputData, setOutputData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [dataSource, setDataSource] = useState('api'); // 'api' or 'local'
+  
+  // Performance optimization: Cache for API responses
+  const dataCacheRef = useRef(new Map());
+  const activeRequestsRef = useRef(new Map());
 
   // State for article detail view
   const [selectedArticle, setSelectedArticle] = useState(null);
@@ -38,6 +45,118 @@ const Dashboard = ({ onLogout, userEmail }) => {
   const circlePackingRef = useRef(null);
   const searchContainerRef = useRef(null);
   const searchInputRef = useRef(null);
+
+  // Helper function to convert YYYY-MM-DD to DDMMYYYY format for API URL
+  const formatDateForAPI = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}${month}${year}`;
+  };
+
+  // Optimized data fetching with caching and request deduplication
+  const fetchDataOptimized = useCallback(async (dateString) => {
+    const cacheKey = dateString;
+    
+    // Check cache first
+    if (dataCacheRef.current.has(cacheKey)) {
+      const cachedData = dataCacheRef.current.get(cacheKey);
+      console.log('Using cached data for:', dateString);
+      return cachedData;
+    }
+    
+    // Check if request is already in progress
+    if (activeRequestsRef.current.has(cacheKey)) {
+      console.log('Request already in progress for:', dateString);
+      return activeRequestsRef.current.get(cacheKey);
+    }
+    
+    // Create new request promise
+    const requestPromise = fetchDataFromAPI(dateString);
+    activeRequestsRef.current.set(cacheKey, requestPromise);
+    
+    try {
+      const result = await requestPromise;
+      // Cache successful results
+      dataCacheRef.current.set(cacheKey, result);
+      return result;
+    } finally {
+      // Clean up active request
+      activeRequestsRef.current.delete(cacheKey);
+    }
+  }, []);
+
+  // Core API fetching logic with optimized proxy selection
+  const fetchDataFromAPI = useCallback(async (dateString) => {
+    const targetUrl = `https://rssaktuell.s3.eu-north-1.amazonaws.com/${dateString}.json`;
+    
+    // Optimized proxy list with timeout and priority
+    const proxies = [
+      { 
+        url: 'https://api.allorigins.win/get?url=', 
+        timeout: 5000, 
+        priority: 1,
+        parser: (response) => response.json().then(data => JSON.parse(data.contents))
+      },
+      { 
+        url: 'https://api.codetabs.com/v1/proxy?quest=', 
+        timeout: 8000, 
+        priority: 2,
+        parser: (response) => response.json()
+      },
+      { 
+        url: 'https://cors-anywhere.herokuapp.com/', 
+        timeout: 10000, 
+        priority: 3,
+        parser: (response) => response.json()
+      }
+    ];
+    
+    // Sort by priority (lower number = higher priority)
+    proxies.sort((a, b) => a.priority - b.priority);
+    
+    const errors = [];
+    
+    // Try proxies in parallel with timeout
+    const promises = proxies.map(async (proxy) => {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), proxy.timeout);
+        
+        const response = await fetch(`${proxy.url}${encodeURIComponent(targetUrl)}`, {
+          signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await proxy.parser(response);
+        
+        if (data && Array.isArray(data) && data.length > 0) {
+          return { data, source: 'api' };
+        } else {
+          throw new Error('Empty or invalid data received');
+        }
+      } catch (error) {
+        errors.push({ proxy: proxy.url, error: error.message });
+        throw error;
+      }
+    });
+    
+    // Use Promise.any to get the first successful response
+    try {
+      const result = await Promise.any(promises);
+      return result;
+    } catch (error) {
+      // All proxies failed
+      console.error('All proxies failed:', errors);
+      throw new Error(`All API proxies failed. Last error: ${error.message}`);
+    }
+  }, []);
 
   const extractCategories = useCallback((node, path = []) => {
     if (!node) return [];
@@ -90,6 +209,42 @@ const Dashboard = ({ onLogout, userEmail }) => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // Fetch data from external URL with performance optimizations
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        const dateString = formatDateForAPI(selectedDate);
+        const result = await fetchDataOptimized(dateString);
+        
+        setOutputData(result.data);
+        setDataSource(result.source);
+      } catch (err) {
+        console.error('Error fetching data:', err);
+        console.log('Falling back to local data...');
+        
+        // Fallback to local data when API fails
+        setOutputData(nested4dData);
+        setDataSource('local');
+        setError(null); // Clear error since we have fallback data
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [selectedDate, fetchDataOptimized]);
+
+  // Cleanup cache on component unmount
+  useEffect(() => {
+    return () => {
+      dataCacheRef.current.clear();
+      activeRequestsRef.current.clear();
     };
   }, []);
 
@@ -459,7 +614,12 @@ const Dashboard = ({ onLogout, userEmail }) => {
           {/* Pulse Insights Card */}
           <div className="card pulse-insights-card">
             <div className="pulse-insights-header">
-              <h3 className="card-title">Pulse Insights</h3>
+              <div className="pulse-insights-title-section">
+                <h3 className="card-title">Pulse Insights</h3>
+                <div className={`data-source-hint ${dataSource === 'local' ? 'local' : 'api'}`}>
+                  {dataSource === 'local' ? 'Local Data' : 'Live Data'}
+                </div>
+              </div>
               <div
                 className={`pulse-insights-search ${isSearchActive ? 'active' : ''}`}
                 ref={searchContainerRef}

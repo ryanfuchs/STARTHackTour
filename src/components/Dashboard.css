@@ -672,6 +672,35 @@
   flex-wrap: wrap;
 }
 
+.pulse-insights-title-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.data-source-hint {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #E3F2FD;
+  color: #1976D2;
+  border: 1px solid #BBDEFB;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.data-source-hint.local {
+  background-color: #FFF3E0;
+  color: #F57C00;
+  border-color: #FFCC02;
+}
+
+.data-source-hint:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
 .date-controls {
   display: flex;
   flex-direction: column;
