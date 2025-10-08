@@ -666,25 +666,26 @@
 .pulse-insights-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 16px;
   gap: 20px;
-  flex-wrap: wrap;
 }
 
 .pulse-insights-title-section {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 12px;
+  flex: 0 0 auto;
 }
 
 .pulse-insights-actions {
-  display: flex;
+  display: inline-flex;
   align-items: stretch;
   gap: 12px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-end;
   --pulse-insights-control-size: 48px;
+  flex: 0 0 auto;
 }
 
 .data-source-hint {
@@ -726,8 +727,9 @@
 
 .pulse-insights-search {
   position: relative;
-  flex: 0 0 280px;
-  max-width: 100%;
+  flex: 0 0 240px;
+  min-width: 200px;
+  max-width: none;
   display: flex;
   align-items: center;
 }
@@ -1147,6 +1149,12 @@
   .pulse-insights-actions {
     width: 100%;
     justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .pulse-insights-search {
+    flex: 1 1 100%;
+    min-width: 0;
   }
 
   .pulse-insights-overlay {
