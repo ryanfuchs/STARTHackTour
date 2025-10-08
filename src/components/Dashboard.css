@@ -743,6 +743,7 @@
   padding: 0;
   width: var(--pulse-insights-control-size);
   height: var(--pulse-insights-control-size);
+  flex: 0 0 var(--pulse-insights-control-size);
   cursor: pointer;
   transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   display: inline-flex;
