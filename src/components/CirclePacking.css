@@ -410,33 +410,36 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid #E5E5E6;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(229, 229, 230, 0.75);
   border-radius: 8px;
   padding: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
   font-size: 12px;
   z-index: 2;
   width: 200px;
   margin-bottom: 8px;
+  backdrop-filter: blur(8px);
 }
 
 .date-input-in-legend {
   width: auto;
   min-width: 120px;
   padding: 6px 8px;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   font-size: 12px;
   margin: 0 auto 8px auto;
-  background: white;
+  background: rgba(255, 255, 255, 0.8);
   display: block;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .date-input-in-legend:focus {
   outline: none;
-  border-color: #748BB8;
-  box-shadow: 0 0 0 2px rgba(116, 139, 184, 0.2);
+  border-color: rgba(116, 139, 184, 0.6);
+  box-shadow: 0 0 0 2px rgba(116, 139, 184, 0.25);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .date-arrows-in-legend {
@@ -448,10 +451,10 @@
 .date-arrow-in-legend {
   width: 28px;
   height: 28px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background: white;
-  color: #333;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.75);
+  color: rgba(0, 0, 0, 0.7);
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
@@ -459,16 +462,17 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
+  backdrop-filter: blur(6px);
 }
 
 .date-arrow-in-legend:hover {
-  background: #f5f5f5;
-  border-color: #748BB8;
-  color: #748BB8;
+  background: rgba(116, 139, 184, 0.18);
+  border-color: rgba(116, 139, 184, 0.6);
+  color: #4a6185;
 }
 
 .date-arrow-in-legend:active {
-  background: #e8e8e8;
+  background: rgba(116, 139, 184, 0.28);
   transform: scale(0.95);
 }
 
@@ -477,15 +481,16 @@
   position: absolute;
   top: 120px;
   left: 10px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid #E5E5E6;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(229, 229, 230, 0.75);
   border-radius: 8px;
   padding: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
   font-size: 12px;
   z-index: 2;
   width: 200px;
   transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
 }
 
 .reading-legend.collapsed {

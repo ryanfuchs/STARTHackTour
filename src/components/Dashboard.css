@@ -680,10 +680,11 @@
 
 .pulse-insights-actions {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 12px;
   flex-wrap: wrap;
   justify-content: flex-end;
+  --pulse-insights-control-size: 48px;
 }
 
 .data-source-hint {
@@ -727,17 +728,19 @@
   position: relative;
   flex: 0 0 280px;
   max-width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .pulse-insights-fullscreen-btn {
   appearance: none;
   border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 10px;
+  border-radius: 14px;
   background-color: rgba(255, 255, 255, 0.15);
   color: #ffffff;
-  padding: 10px;
-  width: 44px;
-  height: 44px;
+  padding: 0;
+  width: var(--pulse-insights-control-size);
+  height: var(--pulse-insights-control-size);
   cursor: pointer;
   transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   display: inline-flex;
@@ -761,15 +764,24 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Material Symbols Outlined';
   font-size: 24px;
   line-height: 1;
+  font-weight: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
 .pulse-insights-search-input {
   width: 100%;
-  padding: 10px 12px;
-  border-radius: 10px;
+  height: var(--pulse-insights-control-size);
+  padding: 0 16px;
+  border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.35);
   background-color: rgba(255, 255, 255, 0.12);
   color: #ffffff;
