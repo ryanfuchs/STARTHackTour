@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import CirclePacking from './CirclePacking';
 import BlindSpotsView from './BlindSpotsView';
@@ -42,6 +43,7 @@ const Dashboard = ({ onLogout, userEmail }) => {
   // Pulse Insights category search state
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearchActive, setIsSearchActive] = useState(false);
+  const [isPulseInsightsFullscreen, setIsPulseInsightsFullscreen] = useState(false);
   const circlePackingRef = useRef(null);
   const searchContainerRef = useRef(null);
   const searchInputRef = useRef(null);
@@ -199,6 +201,146 @@ const Dashboard = ({ onLogout, userEmail }) => {
     }
   }, []);
 
+  const openPulseInsightsFullscreen = useCallback(() => {
+    setIsPulseInsightsFullscreen(true);
+  }, []);
+
+  const closePulseInsightsFullscreen = useCallback(() => {
+    setIsPulseInsightsFullscreen(false);
+    setIsSearchActive(false);
+  }, []);
+
+  const renderPulseInsightsCard = (isFullscreen = false) => {
+    const cardClassName = `card pulse-insights-card${isFullscreen ? ' is-fullscreen' : ''}`;
+    const fullscreenButtonLabel = isFullscreen ? 'Exit Full Screen' : 'Open Full Screen';
+
+    return (
+      <div className={cardClassName}>
+        <div className="pulse-insights-header">
+          <div className="pulse-insights-title-section">
+            <h3 className="card-title">Pulse Insights</h3>
+            <div className={`data-source-hint ${dataSource === 'local' ? 'local' : 'api'}`}>
+              {dataSource === 'local' ? 'Local Data' : 'Live Data'}
+            </div>
+          </div>
+          <div className="pulse-insights-actions">
+            <div
+              className={`pulse-insights-search ${isSearchActive ? 'active' : ''}`}
+              ref={searchContainerRef}
+            >
+              <input
+                type="search"
+                className="pulse-insights-search-input"
+                placeholder="Search categories..."
+                value={searchTerm}
+                onChange={(event) => {
+                  const { value } = event.target;
+                  setSearchTerm(value);
+                  if (!isSearchActive) {
+                    setIsSearchActive(true);
+                  }
+                }}
+                onFocus={() => setIsSearchActive(true)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Escape') {
+                    setSearchTerm('');
+                    if (isFullscreen) {
+                      closePulseInsightsFullscreen();
+                    } else {
+                      setIsSearchActive(false);
+                    }
+                  }
+                  if (event.key === 'Enter') {
+                    if (filteredCategories.length > 0) {
+                      event.preventDefault();
+                      handleCategorySelect(filteredCategories[0]);
+                    }
+                  }
+                }}
+                ref={searchInputRef}
+              />
+              {isSearchActive && searchTerm.trim() !== '' && (
+                <div className="pulse-insights-search-dropdown">
+                  {filteredCategories.length === 0 ? (
+                    <div className="pulse-insights-search-empty">
+                      No categories match "{searchTerm.trim()}"
+                    </div>
+                  ) : (
+                    filteredCategories.map((category) => (
+                      <button
+                        key={category.id}
+                        type="button"
+                        className="pulse-insights-search-item"
+                        onMouseDown={(event) => event.preventDefault()}
+                        onClick={() => handleCategorySelect(category)}
+                      >
+                        <span className="search-item-name">{category.name}</span>
+                        {category.path && category.path.length > 1 && (
+                          <span className="search-item-path">
+                            {category.path.slice(0, -1).join(' > ')}
+                          </span>
+                        )}
+                      </button>
+                    ))
+                  )}
+                </div>
+              )}
+            </div>
+            <button
+              type="button"
+              className="pulse-insights-fullscreen-btn"
+              onClick={isFullscreen ? closePulseInsightsFullscreen : openPulseInsightsFullscreen}
+              aria-pressed={isFullscreen}
+              aria-label={isFullscreen ? 'Exit Pulse Insights full screen' : 'Open Pulse Insights full screen'}
+            >
+              <span
+                className="pulse-insights-fullscreen-icon material-symbols-outlined"
+                aria-hidden="true"
+              >
+                {isFullscreen ? 'fullscreen_exit' : 'fullscreen'}
+              </span>
+              <span className="sr-only">{fullscreenButtonLabel}</span>
+            </button>
+          </div>
+        </div>
+        <div className="pulse-insights-content">
+          <div className="pulse-insights-main full-width">
+            {loading ? (
+              <div className="loading-container">
+                <div className="loading-spinner"></div>
+                <p>Loading news data...</p>
+              </div>
+            ) : error ? (
+              <div className="error-container">
+                <p>Error loading data: {error}</p>
+                <button onClick={() => window.location.reload()} className="btn btn-primary">
+                  Retry
+                </button>
+              </div>
+            ) : (
+              <>
+                <div className="circle-packing-wrapper">
+                  <CirclePacking 
+                    ref={circlePackingRef}
+                    data={circlePackingData} 
+                    selectedDate={selectedDate} 
+                    currentUserId={currentUserId}
+                    onDateChange={setSelectedDate}
+                  />
+                </div>
+                <div id="pulse-summary-panel" className="pulse-summary-panel">
+                  <div className="summary-placeholder">
+                    <p>Click on a summary or article to view details</p>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
@@ -211,6 +353,28 @@ const Dashboard = ({ onLogout, userEmail }) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    if (!isPulseInsightsFullscreen) return;
+    if (typeof document === 'undefined') return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        closePulseInsightsFullscreen();
+      }
+    };
+
+    const body = document.body;
+    const previousOverflow = body.style.overflow;
+
+    document.addEventListener('keydown', handleKeyDown);
+    body.style.overflow = 'hidden';
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      body.style.overflow = previousOverflow;
+    };
+  }, [isPulseInsightsFullscreen, closePulseInsightsFullscreen]);
 
   // Fetch data from external URL with performance optimizations
   useEffect(() => {
@@ -612,108 +776,7 @@ const Dashboard = ({ onLogout, userEmail }) => {
           </div>
 
           {/* Pulse Insights Card */}
-          <div className="card pulse-insights-card">
-            <div className="pulse-insights-header">
-              <div className="pulse-insights-title-section">
-                <h3 className="card-title">Pulse Insights</h3>
-                <div className={`data-source-hint ${dataSource === 'local' ? 'local' : 'api'}`}>
-                  {dataSource === 'local' ? 'Local Data' : 'Live Data'}
-                </div>
-              </div>
-              <div
-                className={`pulse-insights-search ${isSearchActive ? 'active' : ''}`}
-                ref={searchContainerRef}
-              >
-                <input
-                  type="search"
-                  className="pulse-insights-search-input"
-                  placeholder="Search categories..."
-                  value={searchTerm}
-                  onChange={(event) => {
-                    const { value } = event.target;
-                    setSearchTerm(value);
-                    if (!isSearchActive) {
-                      setIsSearchActive(true);
-                    }
-                  }}
-                  onFocus={() => setIsSearchActive(true)}
-                  onKeyDown={(event) => {
-                    if (event.key === 'Escape') {
-                      setSearchTerm('');
-                      setIsSearchActive(false);
-                    }
-                    if (event.key === 'Enter') {
-                      if (filteredCategories.length > 0) {
-                        event.preventDefault();
-                        handleCategorySelect(filteredCategories[0]);
-                      }
-                    }
-                  }}
-                  ref={searchInputRef}
-                />
-                {isSearchActive && searchTerm.trim() !== '' && (
-                  <div className="pulse-insights-search-dropdown">
-                    {filteredCategories.length === 0 ? (
-                      <div className="pulse-insights-search-empty">
-                        No categories match "{searchTerm.trim()}"
-                      </div>
-                    ) : (
-                      filteredCategories.map((category) => (
-                        <button
-                          key={category.id}
-                          type="button"
-                          className="pulse-insights-search-item"
-                          onMouseDown={(event) => event.preventDefault()}
-                          onClick={() => handleCategorySelect(category)}
-                        >
-                          <span className="search-item-name">{category.name}</span>
-                          {category.path && category.path.length > 1 && (
-                            <span className="search-item-path">
-                          {category.path.slice(0, -1).join(' > ')}
-                            </span>
-                          )}
-                        </button>
-                      ))
-                    )}
-                  </div>
-                )}
-              </div>
-            </div>
-            <div className="pulse-insights-content">
-              <div className="pulse-insights-main full-width">
-                {loading ? (
-                  <div className="loading-container">
-                    <div className="loading-spinner"></div>
-                    <p>Loading news data...</p>
-          </div>
-                ) : error ? (
-                  <div className="error-container">
-                    <p>Error loading data: {error}</p>
-                    <button onClick={() => window.location.reload()} className="btn btn-primary">
-                      Retry
-                    </button>
-                  </div>
-                ) : (
-                  <>
-                    <div className="circle-packing-wrapper">
-                      <CirclePacking 
-                        ref={circlePackingRef}
-                        data={circlePackingData} 
-                        selectedDate={selectedDate} 
-                        currentUserId={currentUserId}
-                        onDateChange={setSelectedDate}
-                      />
-                    </div>
-                    <div id="pulse-summary-panel" className="pulse-summary-panel">
-                      <div className="summary-placeholder">
-                        <p>Click on a summary or article to view details</p>
-                      </div>
-                    </div>
-                  </>
-                )}
-                </div>
-            </div>
-          </div>
+          {!isPulseInsightsFullscreen && renderPulseInsightsCard(false)}
 
           {/* Portfolio Relevancy Analysis */}
           {outputData && (
@@ -1008,6 +1071,24 @@ const Dashboard = ({ onLogout, userEmail }) => {
 
         </div>
       </main>
+
+      {isPulseInsightsFullscreen &&
+        createPortal(
+          <div
+            className="pulse-insights-overlay"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Pulse Insights full screen"
+            onClick={(event) => {
+              if (event.target === event.currentTarget) {
+                closePulseInsightsFullscreen();
+              }
+            }}
+          >
+            {renderPulseInsightsCard(true)}
+          </div>,
+          document.body
+        )}
 
       {/* Article Detail Modal */}
       {showArticleDetail && selectedArticle && (

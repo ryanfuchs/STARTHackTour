@@ -261,11 +261,43 @@ const CirclePacking = forwardRef(({ data, selectedDate, currentUserId = 'user1',
       return currentWidth / view[2];
     };
 
+    const isVisibleChildOf = (node, activeFocus = focus) => {
+      if (!activeFocus || !node) return false;
+      return node.parent === activeFocus;
+    };
+
+    const isAncestorOfFocus = (node, activeFocus = focus) => {
+      if (!activeFocus || !node) return false;
+      let current = activeFocus.parent;
+      while (current) {
+        if (current === node) {
+          return true;
+        }
+        current = current.parent;
+      }
+      return false;
+    };
+
+    const shouldRenderNode = (node, activeFocus = focus) => {
+      if (!activeFocus || !node) return false;
+      if (node === activeFocus) return true;
+      if (node.parent === activeFocus) return true;
+      return isAncestorOfFocus(node, activeFocus);
+    };
+
+    const getNodeTargetOpacity = (node, activeFocus = focus) => {
+      if (!shouldRenderNode(node, activeFocus)) return 0;
+      if (node === activeFocus) return 0.55;
+      if (node.parent === activeFocus) return 1;
+      if (isAncestorOfFocus(node, activeFocus)) return 0.25;
+      return 1;
+    };
+
     const shouldShowLabel = (d) => {
       if (!focus) return false;
       if (d === focus) return false;
       if (!d.children) return false; // hide labels on article (leaf) circles
-      if (d.parent !== focus) return false;
+      if (!isVisibleChildOf(d, focus)) return false;
       const layout = d.data.__textLayout;
       return !!(layout && !layout.tooLong && layout.lines.length > 0);
     };
@@ -275,7 +307,7 @@ const CirclePacking = forwardRef(({ data, selectedDate, currentUserId = 'user1',
       if (d.children || d.data.isSummary) return false;
       if (!d.data.source) return false;
       if (!getIconUrl(d.data.source)) return false;
-      return d.parent === focus;
+      return isVisibleChildOf(d, focus);
     };
 
     const getLayoutFromCache = (d, scale) => {
@@ -598,6 +630,7 @@ const CirclePacking = forwardRef(({ data, selectedDate, currentUserId = 'user1',
           .attr("opacity", 0)
           .attr("r", 0)
           .attr("transform", d => `translate(${d.x},${d.y})`)
+          .style("display", "none")
           .call(enter => enter.transition()
             .duration(800)
             .ease(d3.easeCubicInOut)
@@ -631,7 +664,6 @@ const CirclePacking = forwardRef(({ data, selectedDate, currentUserId = 'user1',
           .remove()
         )
       )
-      .attr("pointer-events", d => (!d.children && !d.data.description) ? "none" : null)
       .on("mouseover", function(event, d) { 
         d3.select(this).transition()
           .duration(200)
@@ -757,6 +789,52 @@ const CirclePacking = forwardRef(({ data, selectedDate, currentUserId = 'user1',
         .attr("y", d => -Math.max(d.r * k * ICON_SIZE_RATIO, MIN_ICON_SIZE) / 2);
     };
 
+    const updateNodeVisibility = (activeFocus, { immediate = false, transition = null } = {}) => {
+      if (!node) return;
+      if (!activeFocus) activeFocus = focus;
+
+      const pointerEventValue = (d) => {
+        if (!shouldRenderNode(d, activeFocus)) return "none";
+        if (d === activeFocus || isAncestorOfFocus(d, activeFocus)) return "none";
+        return (!d.children && !d.data.description) ? "none" : null;
+      };
+
+      node.attr("pointer-events", d => pointerEventValue(d));
+
+      if (transition) {
+        node.filter(d => shouldRenderNode(d, activeFocus))
+          .style("display", "inline");
+
+        node.transition(transition)
+          .style("opacity", d => getNodeTargetOpacity(d, activeFocus))
+          .on("start", function(d) {
+            if (shouldRenderNode(d, activeFocus)) {
+              d3.select(this).style("display", "inline");
+            }
+          })
+          .on("end", function(d) {
+            if (!shouldRenderNode(d, activeFocus)) {
+              d3.select(this).style("display", "none");
+            }
+          });
+      } else if (immediate) {
+        node.each(function(d) {
+          const sel = d3.select(this);
+          if (shouldRenderNode(d, activeFocus)) {
+            sel.style("display", "inline").style("opacity", getNodeTargetOpacity(d, activeFocus));
+          } else {
+            sel.style("opacity", 0).style("display", "none");
+          }
+        });
+      } else {
+        node
+          .style("display", d => shouldRenderNode(d, activeFocus) ? "inline" : "none")
+          .style("opacity", d => getNodeTargetOpacity(d, activeFocus));
+      }
+    };
+
+    updateNodeVisibility(focus, { immediate: true });
+
     const applyFinalLayout = function(d) {
       const textSel = d3.select(this);
       if (shouldShowLabel(d)) {
@@ -874,6 +952,7 @@ const CirclePacking = forwardRef(({ data, selectedDate, currentUserId = 'user1',
         });
 
       focus = root;
+      updateNodeVisibility(focus, { transition });
       const currentWidthForReset = svgRef.current ? svgRef.current.getBoundingClientRect().width : width;
       const initialScale = currentWidthForReset > 0 ? currentWidthForReset / desiredComponent : 1;
 
@@ -920,13 +999,15 @@ const CirclePacking = forwardRef(({ data, selectedDate, currentUserId = 'user1',
 
       // Calculate optimal zoom level to show all children without cutting them off
       let targetComponent;
-      const groupPaddingFactor = 1.2; // tighter padding so focused clusters appear larger
-      const groupScaleFloor = 2.4;
-      const leafScaleFactor = 2.6;
+      let maxChildDistance = 0;
+      const groupPaddingFactor = 1.3; // show more surrounding context before revealing children
+      const groupScaleFloor = 2.5;
+      const leafScaleFactor = 2.75;
+      const zoomIntensityBoost = 0.94; // closer to 1 => gentler zoom intensity
 
       if (d.children && d.children.length > 0) {
         // Find the maximum radius needed to contain all children
-        const maxChildDistance = Math.max(...d.children.map(child =>
+        maxChildDistance = Math.max(...d.children.map(child =>
           Math.sqrt((child.x - d.x) ** 2 + (child.y - d.y) ** 2) + child.r
         ));
         // Use a smaller component so the focused bubble occupies more of the viewport
@@ -934,9 +1015,15 @@ const CirclePacking = forwardRef(({ data, selectedDate, currentUserId = 'user1',
       } else {
         // For leaf nodes, zoom tighter around the single article bubble
         const safeLeafRadius = Math.max(d.r, minViewComponent / 4);
+        maxChildDistance = safeLeafRadius;
         targetComponent = Math.max(safeLeafRadius * leafScaleFactor, minViewComponent);
       }
 
+      const minimalSafeComponent = maxChildDistance > 0
+        ? maxChildDistance + Math.max(minViewComponent * 0.2, d.r * 0.1)
+        : minViewComponent;
+
+      targetComponent = Math.max(targetComponent * zoomIntensityBoost, minimalSafeComponent, minViewComponent);
       targetComponent = Math.max(targetComponent, minViewComponent);
 
       const currentWidthForZoom = svgRef.current ? svgRef.current.getBoundingClientRect().width : width;
@@ -950,6 +1037,8 @@ const CirclePacking = forwardRef(({ data, selectedDate, currentUserId = 'user1',
           const i = d3.interpolateZoom(view, [focus.x, focus.y, targetComponent]);
           return t => zoomTo(i(t));
         });
+
+      updateNodeVisibility(focus, { transition });
 
       label.each(function(d) {
         if (d === focus || d.parent === focus) {
@@ -1041,6 +1130,8 @@ const CirclePacking = forwardRef(({ data, selectedDate, currentUserId = 'user1',
         .ease(d3.easeCubicInOut)
         .attr("transform", d => `translate(${d.x},${d.y})`)
         .attr("r", d => d.r);
+
+      updateNodeVisibility(focus, { immediate: true });
       
       const newLabels = labelsGroup.selectAll('text')
         .data(newRoot.descendants(), d => d.data.__layoutId || d.data.name);
